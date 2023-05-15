@@ -53,3 +53,11 @@
   background-color: #9147ff;
   border: none;
 }
+
+.GridLive{
+  width: 100%;
+  height: 8%;
+  border: 1px solid skyblue;
+  display: grid;
+  grid-template-columns: 18% 82%;
+}
