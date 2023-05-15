@@ -1,0 +1,55 @@
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+.Points{
+  width: 4px;
+  height: 4px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background-color: black;
+}
+/* color: #9147ff; */
+#Parcourir:hover{
+  color: #5c16c5;
+  cursor: pointer;
+}
+/* color : #772ce8*/
+#BarreSearch:focus{
+  outline : 4px solid #772ce8;
+  border: none;
+}
+#BarreSearch{
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px 0px 0px 5px;
+    height: 6vh;
+    position: relative;
+    z-index: 9;
+}
+#BTNFly{
+  width: 10%;
+  border-radius: 0px 5px 5px 0px;
+  height: 5.5vh;
+  position: relative;
+  z-index: 3;
+  border: none;
+}
+.BTNLogin{
+  width: 8vw;
+  height: 5vh;
+  border-radius: 3px;
+  border: none;
+}
+.BTNSub{
+  height: 5vh;
+  width: 6vw;
+  border-radius: 3px;
+  color: white;
+  background-color: #9147ff;
+  border: none;
+}
