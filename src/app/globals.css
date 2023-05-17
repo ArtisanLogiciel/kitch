@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html {
+  @apply bg-gray-200 text-black scroll-smooth
+}
+
+
+
+
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -25,3 +34,6 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+*/
+
+
