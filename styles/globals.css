@@ -57,7 +57,17 @@
 .GridLive{
   width: 100%;
   height: 8%;
-  border: 1px solid skyblue;
+  border: 1px solid transparent;
   display: grid;
   grid-template-columns: 18% 82%;
+}
+.GridLive:hover{
+  cursor: pointer;
+}
+.ContenuPrincipale{
+  width: 78%;
+  height: 100%;
+  margin-top: 10vh;
+  border: 1px solid yellow; 
+  margin-left: 20vw;
 }

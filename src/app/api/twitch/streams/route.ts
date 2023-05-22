@@ -7,11 +7,16 @@ export async function GET(){
         headers: {
             'Content-Type': 'application/json',
             'Client-ID': process.env.DB_CLIENT || '',
-            'Authorization': `Bearer odpbr6t68apio584k19pav5obyqu5v`,
+            'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
           },
     };
-    const res = await fetch('https://api.twitch.tv/helix/streams?language=fr', options)
+    try{
+        const res = await fetch('https://api.twitch.tv/helix/streams?language=fr', options)
+        const twitch = await res.json()
+        return NextResponse.json(twitch.data)
 
-    const twitch = await res.json()
-    return NextResponse.json(twitch)
+    }catch(error: any){
+        console.log(error.message)
+    }
+       
 }

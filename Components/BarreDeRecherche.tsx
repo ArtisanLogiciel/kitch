@@ -22,7 +22,7 @@ export default function BarreDeRecherche() {
         color: 'black',
     }}>
         <div style={{
-            border: '2px solid red',
+            border: '2px solid transparentt',
             width: '15%',
             height: '100%',
             display: 'flex',
@@ -44,7 +44,7 @@ export default function BarreDeRecherche() {
              </div>
         </div>
         <div style={{
-            border: '2px solid green',
+            border: '2px solid transparent',
             width: '31%',
             height: '100%',
             display: 'flex',
@@ -69,7 +69,7 @@ export default function BarreDeRecherche() {
         </div>
 
         <div style={{
-        border: '2px solid blue',
+        border: '2px solid transparent',
         width: '23%',
         height: '100%',
         display: 'flex',

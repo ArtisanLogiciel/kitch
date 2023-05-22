@@ -1,21 +1,20 @@
+'use client';
+import * as React from 'react';
+import { useRouter } from 'next/navigation';
+import Skeleton from '@mui/material/Skeleton';
 
-export async function Boxe(){
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Client-ID': process.env.DB_CLIENT || '',
-            'Authorization': `Bearer 7tuq2nxz60gaaocwls9liy9secgdzg`,
-          },
-    };
-    const res = await fetch('https://api.twitch.tv/helix/streams?language=fr', options)
-
-    const twitch = await res.json()
-    const TwitchData = twitch.data;
-    return TwitchData
+ async function fetchBoxeData(){
+    try{
+        const response = await fetch('http://localhost:3000/api/twitch/streams');
+        const data = await response.json();
+        console.log(data)
+        return data
+    }catch(error: any){
+        console.log(error.message)
+    }
 }
 
-export  function Nombres(nombre: number){
+ function Nombres(nombre: number){
         const kol = nombre.toString()
         const tab = kol.split('')
         const longueur = tab.length
@@ -36,16 +35,26 @@ export  function Nombres(nombre: number){
 
 }
 
-export function Image(view: string){
+ function Image(view: string){
     const un = view.replace('{width}', '30')
     const deux = un.replace('{height}', '30')
     return deux
 }
       
-export default async function NavigLive(){
-  const data = await Boxe()
-  const chaine = 'Chaînes recommandées';
-  const dataFiltrer = data.filter((element: any, index: number) => index < 10)
+export default function NavigLive(){
+    /* Penser à régler l'histoire de la casse des documents 
+    cela ralenti l'application lors de la compilation*/
+    const router = useRouter();
+    const chaine = 'Chaînes recommandées';
+    const [data, setData] = React.useState([]);
+    React.useEffect(() => {
+      async function fetchData() {
+        const data = await fetchBoxeData(); 
+        setData(data);
+      }
+  
+      fetchData();
+    }, []);
 
     return(
        <div style={{
@@ -59,14 +68,17 @@ export default async function NavigLive(){
         display: 'flex',
         flexDirection: 'column',
        }}>
-            <div style={{border: '1px solid blue', width: '100%', height: '8%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{border: '1px solid transparent', width: '100%', height: '8%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                 <h2 style={{fontSize: '0.9em', fontWeight: '400'}}>{chaine.toLocaleUpperCase()}</h2>
                 <svg width="3.5vw" height="3.5vh" version="1.1" viewBox="0 0 20 20" x="0px" y="0px" className="ScIconSVG-sc-1q25cff-1 dSicFr"><g><path d="M16 16V4h2v12h-2zM6 9l2.501-2.5-1.5-1.5-5 5 5 5 1.5-1.5-2.5-2.5h8V9H6z"></path></g></svg>
             </div>
-            <div style={{border: '1px solid orange', width: '100%', height: '90%', display: 'flex', flexDirection: 'column', flexWrap: 'nowrap'}}>            
-                {dataFiltrer.map((channelName: any) => (
+           
+            <div style={{border: '1px solid transparent', width: '100%', height: '90%', display: 'flex', flexDirection: 'column', flexWrap: 'nowrap'}}>
+                    {data.length === 0 ? (<Skeleton variant="rounded" width={"100%"} height={"80%"} animation="wave" />) : data.map((channelName: any, index: number) => 
+                    index > 9 ? null :
+                (
                 <>
-                <div className="GridLive">
+                <div className="GridLive" key={channelName?.user_name} onClick={() => router.push(`/vdeo/${channelName?.user_name}`)}>
                     <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <img  src={Image(channelName?.thumbnail_url)} style={{borderRadius: '50%', width: '30px', height: '30px'}}></img>
                     </div>
@@ -80,9 +92,10 @@ export default async function NavigLive(){
                         <p style={{fontSize: '13px', fontWeight: 'lighter'}}>{channelName?.viewer_count < 1000 ? channelName?.viewer_count  : Nombres(channelName?.viewer_count)}<span>K</span></p>
                     </div>
                   </div>  
-            </div>  
+            </div>
         </>
-      ))}
+                ))}
+                
             </div>
        </div>    
     )
