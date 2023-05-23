@@ -133,7 +133,7 @@ export default function User() {
     console.log("DATA : ", data);
     console.log("data 0 : ",data[0]);
 
-    const lastFollower = data[0].from_name
+    const lastFollower = data[0]?.from_name
 
     return (
         <div>
