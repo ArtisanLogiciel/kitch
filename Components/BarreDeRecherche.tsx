@@ -1,10 +1,12 @@
 'use client';
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import AppBar from '@mui/material/AppBar';
 
 
 export default function BarreDeRecherche() {
     const [recherche, setRecherche] = React.useState()
+    const router = useRouter();
     const Modification = (e: any)  => setRecherche(e.target.value)
     console.log('test') 
     const Envoyer = () => {
@@ -31,7 +33,7 @@ export default function BarreDeRecherche() {
             flexDirection: 'row',
             flexWrap: 'nowrap',
         }}>
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '25%'}}>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '25%'}} onClick={() => router.push(`/`)}>
                 <img alt="logo twitch" src="Twitch-icon-purple.png" style={{height: '28px', width: '24px'}}></img>
             </div>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '50%'}}>

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import Skeleton from '@mui/material/Skeleton';
+import { Nombres, Image } from './UsefulsComponents';
 
  async function fetchBoxeData(){
     try{
@@ -13,48 +14,28 @@ import Skeleton from '@mui/material/Skeleton';
         console.log(error.message)
     }
 }
-
- function Nombres(nombre: number){
-        const kol = nombre.toString()
-        const tab = kol.split('')
-        const longueur = tab.length
-        const reconvertir = tab.map(elmnt => parseFloat(elmnt))
-        if (longueur === 4){
-            const convertir = reconvertir.filter((element: any, index: number) => index < 2)
-            const un = convertir[0];
-            const deux = convertir[1];
-            return `${un}.${deux}`
-        }
-        else{
-
-            const rien = longueur - 3
-            const convertir = reconvertir.filter((element: any, index: number) => index < rien)
-            const valeur = convertir.toString().replaceAll(',', '')
-            return valeur
-        }
-
-}
-
- function Image(view: string){
-    const un = view.replace('{width}', '30')
-    const deux = un.replace('{height}', '30')
-    return deux
-}
       
 export default function NavigLive(){
-    /* Penser à régler l'histoire de la casse des documents 
-    cela ralenti l'application lors de la compilation*/
     const router = useRouter();
     const chaine = 'Chaînes recommandées';
-    const [data, setData] = React.useState([]);
+    const [data, setData] = React.useState<any>(null);
+    const [error, setError] = React.useState<any>(null)
     React.useEffect(() => {
+        
       async function fetchData() {
+        try{
         const data = await fetchBoxeData(); 
         setData(data);
-      }
+      }catch(error){
+        setError(error)
+      }}
   
       fetchData();
     }, []);
+
+    if(error){
+        return <div> Error : {error.message}</div>
+    }
 
     return(
        <div style={{
@@ -74,26 +55,24 @@ export default function NavigLive(){
             </div>
            
             <div style={{border: '1px solid transparent', width: '100%', height: '90%', display: 'flex', flexDirection: 'column', flexWrap: 'nowrap'}}>
-                    {data.length === 0 ? (<Skeleton variant="rounded" width={"100%"} height={"80%"} animation="wave" />) : data.map((channelName: any, index: number) => 
+                    {!data ? (<Skeleton variant="rounded" width={"100%"} height={"80%"} animation="wave" style={{backgroundColor: '#efeff1'}} />) : data.map((channelName: any, index: number) => 
                     index > 9 ? null :
                 (
-                <>
-                <div className="GridLive" key={channelName?.user_name} onClick={() => router.push(`/vdeo/${channelName?.user_name}`)}>
-                    <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                        <img  src={Image(channelName?.thumbnail_url)} style={{borderRadius: '50%', width: '30px', height: '30px'}}></img>
+                <div className="GridLive" key={index} onClick={() => router.push(`/vdeo/${channelName?.user_name}`)}>
+                    <div  style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <img  src={Image(channelName?.thumbnail_url, '30', '30')} style={{borderRadius: '50%', width: '30px', height: '30px'}}></img>
                     </div>
-                    <div style={{width: '100%', height: '100%', display: 'flex', justifyContent:'space-evenly', alignItems: 'center', flexDirection: 'row', flexWrap: 'nowrap'}}>
+                    <div  style={{width: '100%', height: '100%', display: 'flex', justifyContent:'space-evenly', alignItems: 'center', flexDirection: 'row', flexWrap: 'nowrap'}}>
                         <div style={{width: '75%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'}}>
                             <p>{channelName?.user_name}</p>
                             <p style={{fontSize: '13px', fontWeight: 'lighter'}}>{channelName?.game_name.length > 17 ? channelName?.game_name.substring(0, 18) + "..." : channelName?.game_name}</p>
                         </div>
-                    <div style={{width: '25%', height: '100%', display: 'flex', justifyContent:'space-evenly', alignItems: 'center', flexDirection: 'row', flexWrap: 'nowrap'}}>
+                    <div  style={{width: '25%', height: '100%', display: 'flex', justifyContent:'space-evenly', alignItems: 'center', flexDirection: 'row', flexWrap: 'nowrap'}}>
                         <div style={{backgroundColor: '#eb0400', width: '8px', height: '8px', borderRadius: '50%'}}></div>
-                        <p style={{fontSize: '13px', fontWeight: 'lighter'}}>{channelName?.viewer_count < 1000 ? channelName?.viewer_count  : Nombres(channelName?.viewer_count)}<span>K</span></p>
+                        <p style={{fontSize: '13px', fontWeight: 'lighter'}}>{channelName?.viewer_count < 1000 ? <div>channelName?.viewer_count</div>  : Nombres(channelName?.viewer_count)}</p>
                     </div>
                   </div>  
             </div>
-        </>
                 ))}
                 
             </div>

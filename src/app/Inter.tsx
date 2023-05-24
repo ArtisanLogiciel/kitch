@@ -2,6 +2,7 @@
 
 import BarreDeRecherche from "../../Components/BarreDeRecherche"
 import NavigLive from "../../Components/NaviguationLive"
+import Container from "../../Components/ContainerHome";
 
 export default function App() {
   
@@ -9,45 +10,8 @@ export default function App() {
     <>
       <BarreDeRecherche />
       <NavigLive />
-      <div className="ContenuPrincipale">
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-        </div>
+      <Container />
+      
     </>
 
   )

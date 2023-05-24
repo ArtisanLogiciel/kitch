@@ -1,10 +1,13 @@
 'use client';
 import * as React from 'react'
-import ReactPlayer from 'react-player/lazy'
 import BarreDeRecherche from '../../../../Components/BarreDeRecherche';
 import NavigLive from '../../../../Components/NaviguationLive';
 import { useParams } from 'next/navigation';
- 
+import { default as _ReactPlayer } from 'react-player/lazy';
+import { ReactPlayerProps } from "react-player/types/lib";
+
+
+const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>; 
 
 export default function Home(){
     const params = useParams()

@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 
 
 export async function POST(){
-  /*Mettre en place setTimeout pour générer un token tous les x temps
-    pour rafriachir la data*/
     const options = {
         method: 'POST',
          headers: {

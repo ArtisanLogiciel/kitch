@@ -22,9 +22,9 @@ function Nombres(nombre: number){
     }
 }
 
-function Image(view: string){
-    const un = view.replace('{width}', '50')
-    const deux = un.replace('{height}', '50')
+function Image(view: string, width: any, height: any){
+    const un = view.replace('{width}', `${width}`)
+    const deux = un.replace('{height}', `${height}`)
     return deux
 }
 
