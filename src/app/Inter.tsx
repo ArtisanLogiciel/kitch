@@ -1,6 +1,6 @@
 'use client';
 
-import BarreDeRecherche from "../../Components/BarreDeRecherche"
+import NavBar from "../../Components/NavBar"
 import NavigLive from "../../Components/NaviguationLive"
 import Container from "../../Components/ContainerHome";
 
@@ -8,7 +8,7 @@ export default function App() {
   
   return (
     <>
-      <BarreDeRecherche />
+      <NavBar />
       <NavigLive />
       <Container />
       
