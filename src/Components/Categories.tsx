@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 // Components
-import { ImageSized } from "./UsefulsComponents";
+import { ImageSized } from "./UsefulComponents";
 
 // Types
 import { API, API_CATEGORIES } from "@/types/api";

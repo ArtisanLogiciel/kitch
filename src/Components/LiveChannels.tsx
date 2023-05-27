@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 // Components
-import { ImageSized, Nombres } from "./UsefulsComponents";
+import { ImageSized, Nombres } from "./UsefulComponents";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
@@ -128,7 +128,5 @@ export async function LiveChannels() {
         })}
       </div>
     </div>
-  ) : (
-    <p>pas de data</p>
-  );
+  ) : null;
 }

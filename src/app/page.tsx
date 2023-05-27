@@ -18,7 +18,7 @@ export default function Homepage() {
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
-          loop={true}
+          loop
           pagination={{
             clickable: true,
           }}

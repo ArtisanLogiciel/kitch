@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ImageSized, SwiperButtonNext, SwiperButtonPrev } from "./UsefulsComponents";
+import { ImageSized, SwiperButtonNext, SwiperButtonPrev } from "./UsefulComponents";
 import { default as _ReactPlayer } from "react-player/lazy";
 import { ReactPlayerProps } from "react-player/types/lib";
 

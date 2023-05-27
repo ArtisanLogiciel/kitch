@@ -6,7 +6,7 @@ import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
 // Components
-import { ImageSized, Nombres } from "./UsefulsComponents";
+import { ImageSized, Nombres } from "./UsefulComponents";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
