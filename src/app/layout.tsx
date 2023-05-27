@@ -1,6 +1,6 @@
 import "styles/globals.css";
-import { MainAppBar } from "../../Components/MainAppBar";
-import NavigationLive from "../../Components/NaviguationLive";
+import { MainAppBar } from "../Components/MainAppBar";
+import NavigationLive from "../Components/NaviguationLive";
 
 export const metadata = {
   title: "Kitch",

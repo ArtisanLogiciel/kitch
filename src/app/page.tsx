@@ -4,9 +4,9 @@ import { Swiper } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 
 // Components
-import { LiveCarousel } from "../../Components/LiveCarousel";
-import { LiveChannels } from "../../Components/LiveChannels";
-import { Categories } from "../../Components/Categories";
+import { LiveCarousel } from "../Components/LiveCarousel";
+import { LiveChannels } from "../Components/LiveChannels";
+import { Categories } from "../Components/Categories";
 
 export default function Homepage() {
   return (
