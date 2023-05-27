@@ -1,3 +1,4 @@
+'use server';
 // Types
 import { API, API_CATEGORIES, API_STREAMS } from "@/types/api";
 
