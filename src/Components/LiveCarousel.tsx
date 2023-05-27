@@ -86,7 +86,6 @@ export async function LiveCarousel() {
                         alt="logo"
                         width={240}
                         height={280}
-                        style={{ borderRadius: "50%", width: "50px", height: "50px" }}
                       />
                     </div>
                     <div

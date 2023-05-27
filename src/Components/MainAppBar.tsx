@@ -6,11 +6,11 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 
 export function MainAppBar() {
-  const [recherche, setRecherche] = React.useState();
+  const [search, setSearch] = React.useState<string>();
   const router = useRouter();
-  const Modification = (e: any) => setRecherche(e.target.value);
-  const Envoyer = () => {
-    console.log(recherche);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.currentTarget.value);
+  const Send = () => {
+    console.log(search);
   };
   return (
     <AppBar
@@ -100,7 +100,7 @@ export function MainAppBar() {
         }}
       >
         <form
-          onSubmit={Envoyer}
+          onSubmit={Send}
           style={{
             width: "100%",
             display: "flex",
@@ -110,9 +110,9 @@ export function MainAppBar() {
         >
           <input
             type="search"
-            value={recherche}
+            value={search}
             placeholder="Rechercher"
-            onChange={Modification}
+            onChange={handleSearch}
             id="BarreSearch"
           />
           <button type="submit" id="BTNFly">

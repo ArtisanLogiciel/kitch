@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import App from "./Inter"
-import "./globals.css"
-
-export default function Home() {  
-  return (
-    <App />
-  )
-=======
 "use client";
 
 import { Swiper } from "swiper/react";
@@ -48,5 +39,4 @@ export default function Homepage() {
       <Categories />
     </div>
   );
->>>>>>> df09780d0d8b090ee3e474694e443d3da0ff9af8
 }

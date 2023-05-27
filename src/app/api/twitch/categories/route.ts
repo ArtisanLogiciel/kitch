@@ -1,26 +1,4 @@
 import { NextResponse } from "next/server";
-
-<<<<<<< HEAD
-export async function GET(){
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Client-ID': process.env.DB_CLIENT || '',
-            'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-          },
-    };
-    try{
-        const res = await fetch('https://api.twitch.tv/helix/games?id=512998', options)
-        const twitch = await res.json()
-        return NextResponse.json(twitch.data)
-
-    }catch(error: any){
-        console.log(error.message)
-    }
-       
-}
-=======
 export async function GET() {
   const options = {
     method: "GET",
@@ -44,4 +22,3 @@ export async function GET() {
 // https://api.twitch.tv/helix/search/categories
 // https://api.twitch.tv/helix/games
 // https://api.twitch.tv/helix/games/top
->>>>>>> df09780d0d8b090ee3e474694e443d3da0ff9af8
