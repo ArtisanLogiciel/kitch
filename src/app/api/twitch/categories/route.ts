@@ -10,7 +10,7 @@ export async function GET(){
           },
     };
     try{
-        const res = await fetch('https://api.twitch.tv/helix/games?id=512998', options)
+        const res = await fetch(`https://api.twitch.tv/helix/games?id=509658&id=743&id=20596&id=21779&id=516575&id=512998`, options)
         const twitch = await res.json()
         return NextResponse.json(twitch.data)
 

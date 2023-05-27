@@ -27,6 +27,12 @@ function Image(view: string, width: any, height: any){
     const deux = un.replace('{height}', `${height}`)
     return deux
 }
+function ImageSearch(view: string, width: any, height: any){
+    const un = view.replace('-300', `-${width}`)
+    const deux = un.replace('x300', `x${height}`)
+    return deux
+}
+
 
 const SwiperButtonNext = ({ children }: { children: any }) => {
     const swiper = useSwiper();
@@ -38,4 +44,4 @@ const SwiperButtonNext = ({ children }: { children: any }) => {
     return <button onClick={() => swiper.slidePrev()}>{children}</button>;
   };
 
-  export {Nombres, Image, SwiperButtonNext, SwiperButtonPrev}
+  export {Nombres, Image, SwiperButtonNext, SwiperButtonPrev, ImageSearch}

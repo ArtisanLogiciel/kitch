@@ -19,13 +19,13 @@ async function fetchBoxeData(){
     try{
         const response = await fetch('http://localhost:3000/api/twitch/streams');
         const data = await response.json();
-        console.log(data)
+        //console.log(data)
         return data
     }catch(error: any){
         console.log(error.message)
     }
 }
-async function fetchCategories(categories: number){
+async function fetchCategories(){
     try{
         const response = await fetch(`http://localhost:3000/api/twitch/categories`);
         const data = await response.json();
@@ -39,15 +39,18 @@ export default function Container(){
     const [data, setData] = React.useState<any>(null)
     const router = useRouter();
     const [dataSection, setDataSection] = React.useState<any>(null)
+    const [dataCategories, setCategories] = React.useState<any>(null)
     const [error, setError] = React.useState<any>(null)
 
     React.useEffect(() => {
         
         async function fetchData() {
           try{
-          const data = await fetchBoxeData(); 
+          const data = await fetchBoxeData();
+          const data2 = await fetchCategories(); 
           setData(data.splice(-10, 7));
-          setDataSection(data.splice(6));
+          setDataSection(data.splice(5));
+          setCategories(data2)
         }catch(error){
           setError(error)
         }}
@@ -141,25 +144,24 @@ export default function Container(){
 
                 </div>                      
       </div>
-
+          <div style={{width: '100%', height: '50vh'}}>
+          <h2 className='text-lg font-medium m-2'>
+            <Link href="" id='TitreChainesLive'>Catégories </Link>
+                qui pourrait vous plaires
+            </h2>                            
+                <div style={{width: '100%', border: '2px solid pink', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: '1%'}}>
+                    {dataCategories.map((element: any, index: number) => (
+                        <div key={index} style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', height: '100%', width: '155px', marginRight: '1%'}}>
+                            <img src={Image(element?.box_art_url, '155', '206')}></img>    
+                            <h2 style={{fontWeight: '600', fontSize: '15px', width: '100%', marginTop: '1%'}}>{element?.name}</h2>
+                        </div>
+                    ))}
+                                           
+                </div>
+          </div> 
           <p>Conteunu</p>
           <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Contenu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-       
+          <p>Conteunu</p>   
         </div>
     )
 }

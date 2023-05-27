@@ -5,13 +5,13 @@ import AppBar from '@mui/material/AppBar';
 
 
 export default function BarreDeRecherche() {
-    const [recherche, setRecherche] = React.useState()
+    const [recherche, setRecherche] = React.useState<any>('')
     const router = useRouter();
-    const Modification = (e: any)  => setRecherche(e.target.value)
-    console.log('test') 
     const Envoyer = () => {
         console.log(recherche)
+        router.push(`/recherche/${recherche}`)
     }
+
   return (
     <AppBar position="fixed" sx={{
         width: '100%',
@@ -53,7 +53,7 @@ export default function BarreDeRecherche() {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <form onSubmit={Envoyer} style={{
+            <form style={{
                 width: '100%', 
                 display: 'flex',
                 alignItems: 'center',
@@ -63,10 +63,10 @@ export default function BarreDeRecherche() {
                 type="search"
                 value={recherche}
                 placeholder="Rechercher"
-                onChange={Modification}
+                onChange={e  => setRecherche(e.target.value)}
                 id="BarreSearch"
                  />
-                <button type="submit" id="BTNFly"><svg width="80%" height="80%" version="1.1" viewBox="0 0 20 20" x="0px" y="0px" data-a-selector="tw-core-button-icon" className="ScIconSVG-sc-1q25cff-1 dSicFr"><g><path fillRule="evenodd" d="M13.192 14.606a7 7 0 111.414-1.414l3.101 3.1-1.414 1.415-3.1-3.1zM14 9A5 5 0 114 9a5 5 0 0110 0z" clipRule="evenodd"></path></g></svg></button>
+                <button type="button" id="BTNFly" onClick={Envoyer}><svg width="80%" height="80%" version="1.1" viewBox="0 0 20 20" x="0px" y="0px" data-a-selector="tw-core-button-icon" className="ScIconSVG-sc-1q25cff-1 dSicFr"><g><path fillRule="evenodd" d="M13.192 14.606a7 7 0 111.414-1.414l3.101 3.1-1.414 1.415-3.1-3.1zM14 9A5 5 0 114 9a5 5 0 0110 0z" clipRule="evenodd"></path></g></svg></button>
             </form>
         </div>
 
