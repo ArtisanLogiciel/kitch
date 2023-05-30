@@ -1,13 +1,16 @@
 'use client';
 import * as React from 'react'
-import BarreDeRecherche from '../../../../Components/BarreDeRecherche';
-import NavigLive from '../../../../Components/NaviguationLive';
+import BarreDeRecherche from '../../../../../Components/NavBar';
 import { useParams } from 'next/navigation';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
+<<<<<<< HEAD:src/app/vdeo/[idvideos]/videos.tsx
 import { TwitchChat } from './Chatting';
 import { fetchStreams } from '../../../../Components/FetchSearch';
 import { Image } from '../../../../Components/UsefulsComponents';
+=======
+import NavigLive from '../../../../../Components/NaviguationLive';
+>>>>>>> 40256fd9b89748a7f3ba30195bd02ceee7b5854a:src/app/api/vdeo/[idvideos]/videos.tsx
 
 
 

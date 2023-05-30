@@ -7,7 +7,7 @@ export default function App() {
   
   return (
     <>
-      <BarreDeRecherche />
+      <NavBar />
       <NavigLive />
       <Container />  
     </>
