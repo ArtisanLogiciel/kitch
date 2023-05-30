@@ -11,7 +11,12 @@ export default function BarreDeRecherche() {
         console.log(recherche)
         router.push(`/recherche/${recherche}`)
     }
-
+    const handleKeyPress = (e: any) => {
+        if (e.keyCode === 13) {
+            router.push(`/recherche/${recherche}`)
+        }
+      }
+ 
   return (
     <AppBar position="fixed" sx={{
         width: '100%',
@@ -33,7 +38,7 @@ export default function BarreDeRecherche() {
             flexDirection: 'row',
             flexWrap: 'nowrap',
         }}>
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '25%'}} onClick={() => router.push(`/`)}>
+            <div className='hover:cursor-pointer' style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '25%'}} onClick={() => router.push(`/`)}>
                 <img alt="logo twitch" src="Twitch-icon-purple.png" style={{height: '28px', width: '24px'}}></img>
             </div>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '50%'}}>
@@ -53,7 +58,7 @@ export default function BarreDeRecherche() {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <form style={{
+            <div style={{
                 width: '100%', 
                 display: 'flex',
                 alignItems: 'center',
@@ -65,9 +70,10 @@ export default function BarreDeRecherche() {
                 placeholder="Rechercher"
                 onChange={e  => setRecherche(e.target.value)}
                 id="BarreSearch"
+                onKeyDown={handleKeyPress}
                  />
                 <button type="button" id="BTNFly" onClick={Envoyer}><svg width="80%" height="80%" version="1.1" viewBox="0 0 20 20" x="0px" y="0px" data-a-selector="tw-core-button-icon" className="ScIconSVG-sc-1q25cff-1 dSicFr"><g><path fillRule="evenodd" d="M13.192 14.606a7 7 0 111.414-1.414l3.101 3.1-1.414 1.415-3.1-3.1zM14 9A5 5 0 114 9a5 5 0 0110 0z" clipRule="evenodd"></path></g></svg></button>
-            </form>
+            </div>
         </div>
 
         <div style={{

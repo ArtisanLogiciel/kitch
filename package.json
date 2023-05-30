@@ -32,6 +32,7 @@
     "request": "^2.88.2",
     "swiper": "^9.3.2",
     "tailwindcss": "3.3.2",
+    "tmi.js": "^1.8.5",
     "typescript": "5.0.4"
   }
 }
