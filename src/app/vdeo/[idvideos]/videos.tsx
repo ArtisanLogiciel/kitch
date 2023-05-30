@@ -5,7 +5,6 @@ import NavigLive from '../../../../Components/NaviguationLive';
 import { useParams } from 'next/navigation';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
-import { TwitchChat } from './Chatting';
 import { fetchStreams } from '../../../../Components/FetchSearch';
 import { Image } from '../../../../Components/UsefulsComponents';
 
@@ -55,7 +54,7 @@ export default function Home(){
               </div>
           </div>
           
-              <TwitchChat />
+           
         </div>  
       </div>
   </>
