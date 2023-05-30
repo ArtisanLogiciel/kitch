@@ -63,13 +63,13 @@ export async function LiveCarousel() {
                 </SwiperButtonPrev>
               </div>
               <div className="GridSlide">
-                {/* <ReactPlayer
+                <ReactPlayer
                   url={`https://www.twitch.tv/${element.user_name}`}
                   className="react-player"
                   controls
                   width={"100%"}
                   height={"100%"}
-                /> */}
+                />
 
                 <div className="InfosVideosSlide">
                   <div className="StyleInfosSlide">
