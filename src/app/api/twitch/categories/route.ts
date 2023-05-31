@@ -5,7 +5,7 @@ export async function GET() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Client-ID": process.env.DB_CLIENT || "",
+      "Client-ID": process.env.DB_CLIENT as string,
       Authorization: `Bearer ${process.env.DB_RESULT_TOKEN}`,
     },
   };
