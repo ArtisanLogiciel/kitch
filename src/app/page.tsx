@@ -13,9 +13,8 @@ export default function Homepage() {
         
           {/* @ts-expect-error Async Server Component */}
           <LiveCarousel />
-        
       </div>
-
+      
       {/* @ts-expect-error Async Server Component */}
       <LiveChannels />
 
