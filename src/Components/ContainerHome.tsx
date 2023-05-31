@@ -9,7 +9,7 @@ import Link from 'next/link';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Nombres, Image, SwiperButtonNext, SwiperButtonPrev } from '../../Components/UsefulsComponents';
+import { Nombres, Image, SwiperButtonNext, SwiperButtonPrev } from './UsefulsComponents';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
 
