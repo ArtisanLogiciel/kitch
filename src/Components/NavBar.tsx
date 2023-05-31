@@ -2,7 +2,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import AppBar from "@mui/material/AppBar";
-import "../src/app/globals.css"
 import Image from "next/image";
 
 export default function NavBar() {
