@@ -48,7 +48,7 @@ function GET() {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Client-ID": process.env.DB_CLIENT,
+                            "Client-ID": process.env.DB_CLIENT || "",
                             Authorization: "Bearer ".concat(process.env.DB_RESULT_TOKEN)
                         }
                     };

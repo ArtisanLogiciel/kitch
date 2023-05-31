@@ -67,8 +67,8 @@ export default function NavigationLive() {
       >
         <h2 style={{ fontSize: "0.9em", fontWeight: "400" }}>{chaine.toLocaleUpperCase()}</h2>
         <svg
-          width="3.5vw"
-          height="3.5vh"
+          width="3.5%"
+          height="3.5%"
           version="1.1"
           viewBox="0 0 20 20"
           x="0px"
