@@ -1,8 +1,7 @@
 "use client";
-
 // Components
 
-
+import Image from "next/image";
 export default function Browsepage() {
   return (
     <div className="ContenuPrincipale">
@@ -13,11 +12,11 @@ export default function Browsepage() {
           <p className='text-white font-semibold text-[24px]'>Jeux</p>
       </div>
        <div>
-          <img className="tw-image vertical-selector__card_icon" 
-                  alt="Icône jeux" sizes="65px" 
+          <Image className="tw-image vertical-selector__card_icon" 
+                  alt="Icône jeux" width={65} height={65} 
                   src="https://static-cdn.jtvnw.net/c3-vg/verticals/gaming.svg">
                       
-          </img>
+          </Image>
       </div>       
     </div>
     <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
@@ -25,11 +24,11 @@ export default function Browsepage() {
           <p className='text-white font-semibold text-[24px]'>IRL</p>
       </div>
        <div>
-          <img className="tw-image vertical-selector__card_icon" 
-                  alt="Icône jeux" sizes="65px" 
+          <Image className="tw-image vertical-selector__card_icon" 
+                  alt="Icône jeux" width={65} height={65}
                   src="https://static-cdn.jtvnw.net/c3-vg/verticals/irl.svg">
                       
-          </img>
+          </Image>
       </div>       
     </div>
     <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
@@ -37,11 +36,11 @@ export default function Browsepage() {
           <p className='text-white font-semibold text-[24px]'>Musique</p>
       </div>
        <div>
-          <img className="tw-image vertical-selector__card_icon h-[53px]" 
-                  alt="Icône jeux" sizes="65px" 
+          <Image className="tw-image vertical-selector__card_icon h-[53px]" 
+                  alt="Icône jeux" width={65} height={65}
                   src="https://static-cdn.jtvnw.net/c3-vg/verticals/music.svg">
                       
-          </img>
+          </Image>
       </div>       
     </div>
     <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
@@ -49,11 +48,11 @@ export default function Browsepage() {
           <p className='text-white font-semibold text-[24px]'>Esport</p>
       </div>
        <div>
-          <img className="tw-image vertical-selector__card_icon" 
-                  alt="Icône jeux" sizes="65px" 
+          <Image className="tw-image vertical-selector__card_icon" 
+                  alt="Icône jeux" width={65} height={65}
                   src="https://static-cdn.jtvnw.net/c3-vg/verticals/esports.svg">
                       
-          </img>
+          </Image>
       </div>       
     </div>
     <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
@@ -61,11 +60,11 @@ export default function Browsepage() {
           <p className='text-white font-semibold text-[24px]'>Créatif</p>
       </div>
        <div>
-          <img className="tw-image vertical-selector__card_icon" 
-                  alt="Icône jeux" sizes="65px" 
+          <Image className="tw-image vertical-selector__card_icon" 
+                  alt="Icône jeux" width={65} height={65}
                   src="https://static-cdn.jtvnw.net/c3-vg/verticals/creative.svg">
                       
-          </img>
+          </Image>
       </div>       
     </div>
 
