@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import React from "react";
-
+import { Swiper } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Nombres } from "./UsefulComponents";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -26,21 +28,33 @@ export async function LiveCarousel() {
   console.log("liveCarousel", liveCarousel);
 
   React.useEffect(() => {
-    async function fetchData() {
+   /*async function fetchData() {
       try {
         const data = await getStreams();
         setLiveCarousel(data);
       } catch (error) {
         console.log(error);
       }
-    }
+    }*/
+    getStreams().then(data => setLiveCarousel(data)).catch(error => console.log(error))
 
-    fetchData();
+    /*fetchData()*/;
   }, []);
 
-  return liveCarousel
-    ? liveCarousel.map((element, index) => {
-        return (
+  return (
+    <Swiper
+    slidesPerView={1}
+    spaceBetween={30}
+    loop
+    pagination={{
+      clickable: true,
+    }}
+    style={{ width: "100%", height: "100%" }}
+    navigation={true}
+    modules={[Pagination, Navigation]}
+    className="mySwiper"
+  >
+    {!liveCarousel ? null : liveCarousel.map((element, index) => (  
           <SwiperSlide
             key={index}
             style={{
@@ -63,13 +77,13 @@ export async function LiveCarousel() {
                 </SwiperButtonPrev>
               </div>
               <div className="GridSlide">
-                <ReactPlayer
+                 <ReactPlayer
                   url={`https://www.twitch.tv/${element.user_name}`}
                   className="react-player"
                   controls
                   width={"100%"}
                   height={"100%"}
-                />
+                /> 
 
                 <div className="InfosVideosSlide">
                   <div className="StyleInfosSlide">
@@ -104,7 +118,7 @@ export async function LiveCarousel() {
                       <p style={{ fontSize: "12px" }}>
                         {element?.viewer_count <= 1000
                           ? element.viewer_count
-                          : element.viewer_count}{" "}
+                          : Nombres(element.viewer_count)}{" "}
                         <span>spectateurs</span>
                       </p>
                     </div>
@@ -132,7 +146,7 @@ export async function LiveCarousel() {
               </div>
             </div>
           </SwiperSlide>
-        );
-      })
-    : null;
+        ))}
+          </Swiper>
+      )
 }

@@ -1,3 +1,4 @@
+'use server';
 // Types
 import { API, API_CATEGORIES, API_STREAMS } from "@/types/api";
 
@@ -18,7 +19,7 @@ export async function getCategories() {
 
 export async function getStreams() {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { next: { revalidate: 10 } });
+    const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { cache: 'no-store' });
     const data: API<API_STREAMS[]> = await response.json();
     return data;
   } catch (error) {
