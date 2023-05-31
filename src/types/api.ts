@@ -24,3 +24,10 @@ export type API_STREAMS = {
   user_name: string;
   viewer_count: number;
 };
+
+export type API_GAMES = {
+  id: string;
+  name: string;
+  box_art_url: string;
+  igdb_id: string;
+}
