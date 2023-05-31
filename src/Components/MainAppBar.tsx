@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import Link from "next/link";
 
 export function MainAppBar() {
   const [search, setSearch] = React.useState<string>();
@@ -65,6 +66,7 @@ export function MainAppBar() {
             width: "50%",
           }}
         >
+          <Link href="/browse">
           <p
             style={{ fontSize: "14px", fontWeight: "500" }}
             id="Parcourir"
@@ -72,6 +74,7 @@ export function MainAppBar() {
           >
             Parcourir
           </p>
+          </Link>
         </div>
         <div
           style={{
