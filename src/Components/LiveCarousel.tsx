@@ -2,16 +2,14 @@
 
 import Image from "next/image";
 import React from "react";
-import { Swiper } from "swiper/react";
+import { Swiper, useSwiper } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Nombres } from "./UsefulComponents";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ImageSized, SwiperButtonNext, SwiperButtonPrev } from "./UsefulComponents";
 import { default as _ReactPlayer } from "react-player/lazy";
 import { ReactPlayerProps } from "react-player/types/lib";
 
@@ -20,6 +18,8 @@ import { API, API_STREAMS } from "@/types/api";
 
 // Utils
 import { getStreams } from "@/utils/api";
+import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
+import { getImageSized } from "@/utils/getImageSized";
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
@@ -96,7 +96,7 @@ export async function LiveCarousel() {
                       }}
                     >
                       <Image
-                        src={ImageSized(element?.thumbnail_url, "126", "94")}
+                        src={getImageSized(element?.thumbnail_url, "126", "94")}
                         alt="logo"
                         width={240}
                         height={280}
@@ -118,7 +118,7 @@ export async function LiveCarousel() {
                       <p style={{ fontSize: "12px" }}>
                         {element?.viewer_count <= 1000
                           ? element.viewer_count
-                          : Nombres(element.viewer_count)}{" "}
+                          : getNumber_K_Mode(element.viewer_count)}{" "}
                         <span>spectateurs</span>
                       </p>
                     </div>
@@ -150,3 +150,13 @@ export async function LiveCarousel() {
           </Swiper>
       )
 }
+
+const SwiperButtonNext = ({ children }: { children: any }) => {
+  const swiper = useSwiper();
+  return <button onClick={() => swiper.slideNext()}>{children}</button>;
+};
+
+const SwiperButtonPrev = ({ children }: { children: any }) => {
+  const swiper = useSwiper();
+  return <button onClick={() => swiper.slidePrev()}>{children}</button>;
+};

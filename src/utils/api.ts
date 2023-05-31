@@ -1,4 +1,5 @@
 'use server';
+
 // Types
 import { API, API_CATEGORIES, API_STREAMS } from "@/types/api";
 
@@ -26,3 +27,14 @@ export async function getStreams() {
     console.log("Error in getStreams: ", error);
   }
 }
+
+export async function getGames() {
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/games`);
+    const data: API<any[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in getGames: ", error);
+  }
+}
+// GET https://api.twitch.tv/helix/analytics/games
