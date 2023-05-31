@@ -39,7 +39,7 @@ export default function BarreDeRecherche() {
             flexWrap: 'nowrap',
         }}>
             <div className='hover:cursor-pointer' style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '25%'}} onClick={() => router.push(`/`)}>
-                <img alt="logo twitch" src="Twitch-icon-purple.png" style={{height: '28px', width: '24px'}}></img>
+                <img alt="logo twitch" src="/Twitch-icon-purple.png" style={{height: '28px', width: '24px'}}></img>
             </div>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '50%'}}>
                 <p style={{fontSize: '14px', fontWeight: '500'}} id="Parcourir">Parcourir</p>

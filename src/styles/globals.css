@@ -80,7 +80,7 @@
 
 .marginLeftVw{
   margin-top: 9vh;
-  margin-left: 19vw;
+  margin-left: 18.5vw;
 }
 
 .InfosVideosSlide{
@@ -211,24 +211,11 @@
 .WidthContainer{
   width: 81%;
 }
-.scroller{
-  overflow-y: scroll;
-  overflow-x: hidden;
-  white-space: wrap;
-  scroll-behavior: smooth;
-}
+
 #ChatContainer{
   border: 1px solid black;
 }
-.VdeoContainer{
-  width: 100%;
-  border: 2px solid orange;
-  display: grid;
-  grid-template-columns: 70% 30%;
-}
-.Blockvideos{
-    width: 100%;
-    border: 1px solid green;
-    display: flex;
-    flex-direction: column;
+
+#ChatTwittos{
+  color: black
 }

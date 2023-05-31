@@ -11,7 +11,7 @@ export async function GET() {
   }
 
   try {
-    const res = await fetch('https://api.twitch.tv/helix/games?id=509658&id=32982&id=30921', options);
+    const res = await fetch('https://api.twitch.tv/helix/games?id=509658&id=32982&id=30921&id=21779&id=512710&id=513143', options);
     const twitch = await res.json();
     return NextResponse.json(twitch.data);
   } catch (error: any) {

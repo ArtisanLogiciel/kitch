@@ -1,14 +1,13 @@
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import Skeleton from '@mui/material/Skeleton';
+import SkeletonLive from './skeletons';
 import { Nombres, Image } from './UsefulsComponents';
 
  async function fetchBoxeData(){
     try{
         const response = await fetch('http://localhost:3000/api/twitch/streams');
         const data = await response.json();
-        console.log(data)
         return data
     }catch(error: any){
         console.log(error.message)
@@ -19,23 +18,15 @@ export default function NavigLive(){
     const router = useRouter();
     const chaine = 'Chaînes recommandées';
     const [data, setData] = React.useState<any>(null);
-    const [error, setError] = React.useState<any>(null)
     React.useEffect(() => {
         
       async function fetchData() {
-        try{
         const data = await fetchBoxeData(); 
         setData(data);
-      }catch(error){
-        setError(error)
-      }}
+     }
   
       fetchData();
-    }, []);
-
-    if(error){
-        return <div> Error : {error.message}</div>
-    }
+    }, [])
 
     return(
        <div style={{
@@ -55,7 +46,7 @@ export default function NavigLive(){
             </div>
            
             <div style={{border: '1px solid transparent', width: '100%', height: '90%', display: 'flex', flexDirection: 'column', flexWrap: 'nowrap'}}>
-                    {!data ? (<Skeleton variant="rounded" width={"100%"} height={"80%"} animation="wave" style={{backgroundColor: '#efeff1'}} />) : data.map((channelName: any, index: number) => 
+                    {!data ? <SkeletonLive /> : data.map((channelName: any, index: number) => 
                     index > 9 ? null :
                 (
                 <div className="GridLive" key={index} onClick={() => router.push(`/vdeo/${channelName?.user_name}`)}>

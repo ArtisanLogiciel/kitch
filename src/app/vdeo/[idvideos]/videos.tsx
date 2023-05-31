@@ -34,7 +34,7 @@ export default function VideosContainer(){
             <ReactPlayer url={`https://www.twitch.tv/${params.idvideos}`} className='react-player' controls width={'100%'} height={'70vh'}/>
               <div style={{width: '100%'}}>
                 {!dataVDO ? null :  dataVDO.map((element: any, index: number) => (
-                    <>
+                    <div key={index}>
                     <div style={{width: '25%'}}>
                           <img  src={Image(element?.thumbnail_url, '50', '50')} style={{borderRadius: '50%', width: '50px', height: '50px'}}></img>
                       </div>
@@ -47,7 +47,7 @@ export default function VideosContainer(){
                           <button>Suivre</button>
                           <button>S'abonner</button>
                       </div> 
-                      </> 
+                      </div> 
                     ))}
               </div>      
           </>

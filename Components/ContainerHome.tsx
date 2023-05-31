@@ -12,14 +12,14 @@ import "swiper/css/navigation";
 import { Nombres, Image, SwiperButtonNext, SwiperButtonPrev } from './UsefulsComponents';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
+import {GetTopGames} from './FetchSearch';
+
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
-
-async function fetchBoxeData(){
+ async function fetchBoxeData(){
     try{
         const response = await fetch('http://localhost:3000/api/twitch/streams');
         const data = await response.json();
-        //console.log(data)
         return data
     }catch(error: any){
         console.log(error.message)
@@ -29,36 +29,32 @@ async function fetchCategories(){
     try{
         const response = await fetch(`http://localhost:3000/api/twitch/categories`);
         const data = await response.json();
-        console.log(data)
         return data
     }catch(error: any){
         console.log(error.message)
     }
 }
+
 export default function Container(){
     const [data, setData] = React.useState<any>(null)
     const router = useRouter();
+    const [Games, setGames] = React.useState<any>(null)
     const [dataCategories, setCategories] = React.useState<any>(null)
-    const [error, setError] = React.useState<any>(null)
-
+ console.log('Games', Games)
     React.useEffect(() => {
         
         async function fetchData() {
-          try{
+            GetTopGames().then(valeur => setGames(valeur)).catch(error => console.log(error))
           const data = await fetchBoxeData();
-          const data2 = await fetchCategories(); 
+          const data2 = await fetchCategories();
           setData(data.splice(-10, 7));
           setCategories(data2)
-        }catch(error){
-          setError(error)
-        }}
+
+       }
     
         fetchData();
       }, []);
   
-      if(error){
-          return <div> Error : {error.message}</div>
-      }
       if(!data){
         return <div>loading...</div>
       }
@@ -116,7 +112,7 @@ export default function Container(){
             <Link href="" id='TitreChainesLive'>Chaines lives </Link>
                 qui pourrait vous plaires
             </h2>
-                <div className='Disposition'>
+                <div className='Disposition mb-[2%]'>
                     {data.map((element: any, index: number) => index > 5 ? null : (
                         <div className='SectionVideo' key={index} onClick={() => router.push(`/vdeo/${element?.user_name}`)}>
                             <div style={{position: 'relative', width: '100%'}}>
@@ -142,21 +138,86 @@ export default function Container(){
 
                 </div>                      
       </div>
-          <div style={{width: '100%', height: '50vh'}}>
+
+      <div className='w-full border-2 border-solid border-transparent flex items-center justify-evenly row flex-wrap mb-[2%]'>
+                  <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
+                     <div className='flex items-center justify-center'>
+                        <p className='text-white font-semibold text-[24px]'>Jeux</p>
+                    </div>
+                     <div>
+                        <img className="tw-image vertical-selector__card_icon" 
+                                alt="Icône jeux" sizes="65px" 
+                                src="https://static-cdn.jtvnw.net/c3-vg/verticals/gaming.svg">
+                                    
+                        </img>
+                    </div>       
+                  </div>
+                  <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
+                     <div className='flex items-center justify-center'>
+                        <p className='text-white font-semibold text-[24px]'>IRL</p>
+                    </div>
+                     <div>
+                        <img className="tw-image vertical-selector__card_icon" 
+                                alt="Icône jeux" sizes="65px" 
+                                src="https://static-cdn.jtvnw.net/c3-vg/verticals/irl.svg">
+                                    
+                        </img>
+                    </div>       
+                  </div>
+                  <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
+                     <div className='flex items-center justify-center'>
+                        <p className='text-white font-semibold text-[24px]'>Musique</p>
+                    </div>
+                     <div>
+                        <img className="tw-image vertical-selector__card_icon h-[53px]" 
+                                alt="Icône jeux" sizes="65px" 
+                                src="https://static-cdn.jtvnw.net/c3-vg/verticals/music.svg">
+                                    
+                        </img>
+                    </div>       
+                  </div>
+                  <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
+                     <div className='flex items-center justify-center'>
+                        <p className='text-white font-semibold text-[24px]'>Esport</p>
+                    </div>
+                     <div>
+                        <img className="tw-image vertical-selector__card_icon" 
+                                alt="Icône jeux" sizes="65px" 
+                                src="https://static-cdn.jtvnw.net/c3-vg/verticals/esports.svg">
+                                    
+                        </img>
+                    </div>       
+                  </div>
+                  <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
+                     <div className='flex items-center justify-center'>
+                        <p className='text-white font-semibold text-[24px]'>Créatif</p>
+                    </div>
+                     <div>
+                        <img className="tw-image vertical-selector__card_icon" 
+                                alt="Icône jeux" sizes="65px" 
+                                src="https://static-cdn.jtvnw.net/c3-vg/verticals/creative.svg">
+                                    
+                        </img>
+                    </div>       
+                  </div>
+        
+            </div>  
+
+          <div className='mb-[2%] w-full h-[50vh]'>
           <h2 className='text-lg font-medium m-2'>
             <Link href="" id='TitreChainesLive'>Catégories </Link>
                 qui pourrait vous plaires
             </h2>                            
-                <div style={{width: '100%', border: '2px solid pink', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: '1%'}}>
+                <div className='w-full border-2 border-solid border-pink-600 flex justify-start items-start mr-[1%]'>
                     {dataCategories.map((element: any, index: number) => (
-                        <div key={index} style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', height: '100%', width: '155px', marginRight: '1%'}}>
+                        <div key={index} className='flex items-start justify-start flex-col h-[100%] w-[155px] mr-[1%]'>
                             <img src={Image(element?.box_art_url, '155', '206')}></img>    
-                            <h2 style={{fontWeight: '600', fontSize: '15px', width: '100%', marginTop: '1%'}}>{element?.name}</h2>
+                            <h2 className='font-semibold text-[15px] w-full mt-[1%]'>{element?.name}</h2>
                         </div>
                     ))}
                                            
                 </div>
-          </div>    
+          </div>  
         </div>
     )
 }
