@@ -82,7 +82,7 @@ export async function LiveCarousel() {
                   className="react-player"
                   controls
                   width={"100%"}
-                  height={"100%"}
+                  height={"100vh"}
                 /> 
 
                 <div className="InfosVideosSlide">
