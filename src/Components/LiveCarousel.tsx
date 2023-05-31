@@ -28,17 +28,19 @@ export async function LiveCarousel() {
   console.log("liveCarousel", liveCarousel);
 
   React.useEffect(() => {
-   /*async function fetchData() {
+   async function fetchData() {
       try {
         const data = await getStreams();
         setLiveCarousel(data);
       } catch (error) {
         console.log(error);
+        console.log(liveCarousel);
       }
-    }*/
-    getStreams().then(data => setLiveCarousel(data)).catch(error => console.log(error))
+    }
+    // getStreams().then(data => {setLiveCarousel(data)
+    // console.log(liveCarousel)}).catch(error => console.log(error))
 
-    /*fetchData()*/;
+    fetchData();
   }, []);
 
   return (
