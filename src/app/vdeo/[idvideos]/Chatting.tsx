@@ -37,7 +37,7 @@ export function TwitchChat(){
       }, [])
 
       return (
-        <div style={{width: '100%', height: '70vh', border: '1px solid green'}} className='scroller' id='ChatContainer'>
+        <div style={{width: '98%', height: '70vh', border: '1px solid green'}} className='scroller' id='ChatContainer'>
         <ul style={{width: '100%', border: '1px solid skyblue'}}>
             {chatting.length === 0 ? 'Bienvenue sur le chat!' : 
               chatting.map((element: any, index: number) => (

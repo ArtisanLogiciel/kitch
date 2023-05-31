@@ -38,7 +38,6 @@ async function fetchCategories(){
 export default function Container(){
     const [data, setData] = React.useState<any>(null)
     const router = useRouter();
-    const [dataSection, setDataSection] = React.useState<any>(null)
     const [dataCategories, setCategories] = React.useState<any>(null)
     const [error, setError] = React.useState<any>(null)
 
@@ -48,8 +47,7 @@ export default function Container(){
           try{
           const data = await fetchBoxeData();
           const data2 = await fetchCategories(); 
-          setData(data.splice(-10, 8));
-          setDataSection(data);
+          setData(data.splice(-10, 7));
           setCategories(data2)
         }catch(error){
           setError(error)
@@ -119,7 +117,7 @@ export default function Container(){
                 qui pourrait vous plaires
             </h2>
                 <div className='Disposition'>
-                    {dataSection.map((element: any, index: number) => index > 5 ? null : (
+                    {data.map((element: any, index: number) => index > 5 ? null : (
                         <div className='SectionVideo' key={index} onClick={() => router.push(`/vdeo/${element?.user_name}`)}>
                             <div style={{position: 'relative', width: '100%'}}>
                                 <img  src={Image(element?.thumbnail_url, '313', '114')} style={{width: '100%', height: '100%'}}></img>
@@ -158,10 +156,7 @@ export default function Container(){
                     ))}
                                            
                 </div>
-          </div> 
-          <p>Conteunu</p>
-          <p>Conteunu</p>
-          <p>Conteunu</p>   
+          </div>    
         </div>
     )
 }

@@ -1,5 +1,7 @@
 import BarreDeRecherche from '../../../../Components/BarreDeRecherche';
 import NavigLive from '../../../../Components/NaviguationLive';
+import VideosContainer from './videos';
+import { TwitchChat } from './Chatting';
 
 export default function App(){
 
@@ -10,7 +12,9 @@ export default function App(){
       <div className="WidthContainer h-full border-2 border-solid border-b-yellow-300 marginLeftVw">
         <div className='VdeoContainer'>
           <div className='Blockvideos'>
+              <VideosContainer />
           </div>
+          <TwitchChat />
        </div>
        </div>
      </>    
