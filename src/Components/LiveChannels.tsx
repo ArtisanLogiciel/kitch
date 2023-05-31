@@ -6,13 +6,14 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 // Components
-import { ImageSized, Nombres } from "./UsefulComponents";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
 
 // Utils
 import { getStreams } from "@/utils/api";
+import { getImageSized } from "@/utils/getImageSized";
+import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 export async function LiveChannels() {
   const router = useRouter();
@@ -51,7 +52,7 @@ export async function LiveChannels() {
               >
                 <div style={{ position: "relative", width: "100%" }}>
                   <Image
-                    src={ImageSized(element?.thumbnail_url, "126", "94")}
+                    src={getImageSized(element?.thumbnail_url, "126", "94")}
                     style={{ width: "100%", height: "100%" }}
                     alt="logo twitch"
                     width={24}
@@ -65,7 +66,7 @@ export async function LiveChannels() {
                     <p style={{ margin: "3px" }}>
                       {element?.viewer_count <= 1000
                         ? element?.viewer_count
-                        : Nombres(element?.viewer_count)}{" "}
+                        : getNumber_K_Mode(element?.viewer_count)}{" "}
                       <span>spectateurs</span>
                     </p>
                   </div>
@@ -81,7 +82,7 @@ export async function LiveChannels() {
                     }}
                   >
                     <Image
-                      src={ImageSized(element?.thumbnail_url, "126", "94")}
+                      src={getImageSized(element?.thumbnail_url, "126", "94")}
                       alt="logo twitch"
                       width={24}
                       height={28}
