@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *{
   padding: 0;
   margin: 0;
@@ -139,9 +140,6 @@
   font-size: 18px;
   font-weight: 550;
 }
-*/
-
-
 
 #TitreChainesLive:hover{
     color: #9147ff;

@@ -1,31 +1,20 @@
-
-import Navbar from './components/Navbar'
-import User from './components/User'
-import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import "../styles/globals.css";
+import { MainAppBar } from "../Components/MainAppBar";
+import NavigationLive from "../Components/NaviguationLive";
 
 export const metadata = {
-  title: 'Clone TWITCH',   // Titre onglet
-  description: 'Projet de groupe React/Next JS : Clone de Twitch',
-}
+  title: "Kitch",
+  description: "Clone de Twitch mais en version Kitch",
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-
-        <Navbar />
-
-        <User />    
-    
+    <html lang="fr">
+      <body>
+        <MainAppBar />
+        <NavigationLive />
         {children}
       </body>
     </html>
-  )
+  );
 }
