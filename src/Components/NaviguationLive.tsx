@@ -6,13 +6,14 @@ import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
 // Components
-import { ImageSized, Nombres } from "./UsefulComponents";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
 
 // Utils
 import { getStreams } from "@/utils/api";
+import { getImageSized } from "@/utils/getImageSized";
+import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 export default function NavigationLive() {
   const router = useRouter();
@@ -116,7 +117,7 @@ export default function NavigationLive() {
                   }}
                 >
                   <Image
-                    src={ImageSized(channelName.thumbnail_url, "50", "50")}
+                    src={getImageSized(channelName.thumbnail_url, "50", "50")}
                     width={30}
                     height={30}
                     alt="avatar"
@@ -174,7 +175,7 @@ export default function NavigationLive() {
                       {channelName?.viewer_count < 1000 ? (
                         <div>channelName?.viewer_count</div>
                       ) : (
-                        Nombres(channelName?.viewer_count)
+                        getNumber_K_Mode(channelName?.viewer_count)
                       )}
                     </p>
                   </div>
