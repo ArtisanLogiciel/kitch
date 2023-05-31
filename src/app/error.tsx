@@ -9,6 +9,7 @@ export default function GlobalError({
   error,
   reset,
 }: GlobalErrorProps) {
+  console.log(error);
   return (
     <html>
       <body>
