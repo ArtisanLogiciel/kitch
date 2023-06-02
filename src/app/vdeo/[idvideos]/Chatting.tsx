@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 export function TwitchChat(){
     const params = useParams()
       return (
-        <div style={{width: '100%', height: '80vh', border: '1px solid green'}} className='scroller' id='ChatContainer'>
+        <div className='w-full h-[80vh] border border-solid border-green-600'>
             <iframe id="ChatTwittos"
                 src={`https://www.twitch.tv/embed/${params.idvideos}/chat?parent=localhost`}
                 height={'100%'}

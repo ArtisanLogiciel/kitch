@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
 //import { TwitchChat } from './Chatting';
-import { fetchStreams } from '../../../../Components/FetchSearch';
+import { fetchStreams } from '../../../../Components/FetchApi';
 import { Image } from '../../../../Components/UsefulsComponents';
 
 
@@ -36,7 +36,7 @@ export default function VideosContainer(){
                 {!dataVDO ? null :  dataVDO.map((element: any, index: number) => (
                     <div key={index}>
                     <div style={{width: '25%'}}>
-                          <img  src={Image(element?.thumbnail_url, '50', '50')} style={{borderRadius: '50%', width: '50px', height: '50px'}}></img>
+                          <img  src={Image(element?.thumbnail_url, '50', '50')} className='rounded-full w-[50px] h-[50px]'></img>
                       </div>
                       <div style={{width: '40%'}}>
                             <h2>{element?.user_name}</h2>

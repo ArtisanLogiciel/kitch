@@ -10,20 +10,21 @@
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   
 }
-.Points{
+/*.Points{
   width: 4px;
   height: 4px;
   margin-bottom: 2px;
   border-radius: 50%;
   background-color: black;
-}
+}*/
 /* color: #9147ff; */
+/*
 #Parcourir:hover{
   color: #5c16c5;
   cursor: pointer;
-}
+}*/
 /* color : #772ce8*/
-#BarreSearch:focus{
+/*#BarreSearch:focus{
   outline : 4px solid #772ce8;
   border: none;
 }
@@ -34,8 +35,8 @@
     height: 6vh;
     position: relative;
     z-index: 9;
-}
-#BTNFly{
+}*/
+/*#BTNFly{
   width: 10%;
   border-radius: 0px 5px 5px 0px;
   height: 5.5vh;
@@ -43,8 +44,8 @@
   z-index: 3;
   background-color: #efeff1;
   border: none;
-}
-.BTNLogin{
+}*/
+/*.BTNLogin{
   width: 8vw;
   height: 5vh;
   border-radius: 3px;
@@ -58,9 +59,9 @@
   color: white;
   background-color: #9147ff;
   border: none;
-}
+}*/
 
-.GridLive{
+/*.GridLive{
   width: 100%;
   height: 8%;
   border: 1px solid transparent;
@@ -69,21 +70,25 @@
 }
 .GridLive:hover{
   cursor: pointer;
-}
-.ContenuPrincipale{
-  width: 78%;
-  height: 100%;
-  margin-top: 10vh;
-  border: 1px solid yellow; 
-  margin-left: 20vw;
-}
+}*/
+/*.ContenuPrincipale{
+  padding: 3vh 1vw 3vh 1vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 2px solid rgb(0, 255, 149);
+  color: black;
+  width: 100%; 
+}*/
 
-.marginLeftVw{
+/*.marginLeftVw{
   margin-top: 9vh;
   margin-left: 18.5vw;
-}
+}*/
 
-.InfosVideosSlide{
+/*.InfosVideosSlide{
   width: 100%;
   height: 100%;
   background-color: white;
@@ -91,37 +96,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.GridSlide{
+}*/
+/*.GridSlide{
   width: 100%;
   height: 300px;
   display: grid;
   border: 1px solid green;
   grid-template-columns: 75% 25%;
-}
-.GridGlobaleHomeSlide{
+}*/
+/*.GridGlobaleHomeSlide{
     width: 100%;
     height: 300px;
     display: grid;
     border: 1px solid yellow;
     grid-template-columns: 12% 77% 11%;
-}
+}*/
 
-.StyleInfosSlide{
+/*.StyleInfosSlide{
     width: 100%;
     display: grid;
     border: 1px solid transparent;
     grid-template-columns: 40% 60%;
-}
-.StyleTags{
+}*/
+/*.StyleTags{
     background-color: #efeff1;
     text-align: center;
     display: flex;
     justify-content: center;
     margin: 1% 2% 1% 2%;
     align-items: center;
-}
-.StyleTags2{
+}*/
+/*.StyleTags2{
   background-color: #efeff1;
   text-align: center;
   display: flex;
@@ -129,7 +134,7 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-}
+}*/
 .swiper-pagination span{
   visibility: hidden;
 }
@@ -140,7 +145,7 @@
   visibility: hidden;
 }
 
-#TitreChainesLive{
+/*#TitreChainesLive{
   color: #5c16c5;
   font-size: 18px;
   font-weight: 550;
@@ -149,8 +154,8 @@
 #TitreChainesLive:hover{
     color: #9147ff;
     text-decoration: underline;
-}
-.Disposition{
+}*/
+/*.Disposition{
   width: 100%;
   border: 1px solid blue;
   display: flex;
@@ -158,19 +163,21 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-.SectionVideo{
+}*/
+/*.SectionVideo{
   width: 32%;
-  height: 55vh;
   border: 1px solid sandybrown;
-  display: grid;
+  display: flex;
   margin-bottom: 2%;
-  grid-template-rows: 60% 40%;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  box-sizing: border-box;
 }
 .SectionVideo:hover{
   cursor: pointer;
-}
-.DivLive{
+}*/
+/*.DivLive{
   height: 3vh;
   font-weight: 500;
   display: flex;
@@ -184,8 +191,8 @@
     margin: 0.7rem;
     top: 0px;
     left: 0px;
-}
-.DivSpectateurs{
+}*/
+/*.DivSpectateurs{
   height: 10%;
   background-color: black;
   font-size: 14px;
@@ -199,23 +206,15 @@
     margin: 0.7rem;
     bottom: 0px;
     left: 0px;
-}
-.DetailsVdeoSection{
+}*/
+/*.DetailsVdeoSection{
   width: 100%;
   display: grid;
   padding-top: 2%;
-  box-sizing: border-box;
   border: 1px solid transparent;
   grid-template-columns: 15% 85%;
-}
-.WidthContainer{
+  box-sizing: border-box;
+}*/
+/*.WidthContainer{
   width: 81%;
-}
-
-#ChatContainer{
-  border: 1px solid black;
-}
-
-#ChatTwittos{
-  color: black
-}
+}*/
