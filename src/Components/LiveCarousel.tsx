@@ -44,6 +44,7 @@ export async function LiveCarousel() {
   }, []);
 
   return (
+    <div className='w-full mb-10 h-[350px]'>
     <Swiper
     slidesPerView={1}
     spaceBetween={30}
@@ -65,59 +66,41 @@ export async function LiveCarousel() {
               justifyContent: "center",
             }}
           >
-            <div className="GridGlobaleHomeSlide">
+            <div className="w-full h-[300px] grid grid-cols-[12%_77%_11%]">
               <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
+                className='w-full flex items-center justify-start'
               >
                 <SwiperButtonPrev>
                   <ArrowBackIosNewIcon />
                 </SwiperButtonPrev>
               </div>
-              <div className="GridSlide">
+              <div className="className='w-full h-[300px] grid grid-cols-[75%_25%]">
                  <ReactPlayer
                   url={`https://www.twitch.tv/${element.user_name}`}
                   className="react-player"
                   controls
                   width={"100%"}
-                  height={"100vh"}
+                  height={"100%"}
                 /> 
 
-                <div className="InfosVideosSlide">
-                  <div className="StyleInfosSlide">
-                    <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
+                <div className="w-full h-full bg-[white] flex flex-col justify-center items-center">
+                  <div className="w-full grid grid-cols-[40%_60%]">
+                    <div className="w-full flex items-center justify-center"
                     >
                       <Image
-                        src={getImageSized(element?.thumbnail_url, "126", "94")}
+                        src={getImageSized(element?.thumbnail_url, "50", "50")}
                         alt="logo"
                         width={240}
                         height={280}
+                        className='rounded-full w-[50px] h-[50px]'
                       />
                     </div>
-                    <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        alignItems: "flex-start",
-                        justifyContent: "flex-start",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <p style={{ color: "#5C16C5" }}>{element.user_name}</p>
-                      <p style={{ color: "#5C16C5", fontWeight: "200", fontSize: "12px" }}>
+                    <div className='w-full flex items-start justify-start flex-col'>
+                      <p className='text-[#5C16C5]'>{element?.user_name}</p>
+                      <p className='text-[#5C16C5] font-[200] text-[12px]'>
                         {element.game_name}
                       </p>
-                      <p style={{ fontSize: "12px" }}>
+                      <p className='text-[12px]'>
                         {element?.viewer_count <= 1000
                           ? element.viewer_count
                           : getNumber_K_Mode(element.viewer_count)}{" "}
@@ -127,21 +110,14 @@ export async function LiveCarousel() {
                   </div>
                   <div className="w-full flex justify-start flex-wrap items-center flex-row mt-3">
                     {element?.tags.map((tag, index) => (
-                      <div className="StyleTags" key={index}>
-                        <p style={{ color: "#53535F", fontSize: "12px", padding: "20%" }}>{tag}</p>
+                      <div key={index} className='bg-[#efeff1] text-[12px] mr-[2%] p-[1%] mb-[1%] rounded'>
+                          {tag}
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                }}
-              >
+              <div className='w-full flex items-center justify-end'>
                 <SwiperButtonNext>
                   <ArrowForwardIosIcon />
                 </SwiperButtonNext>
@@ -150,6 +126,7 @@ export async function LiveCarousel() {
           </SwiperSlide>
         ))}
           </Swiper>
+          </div>
       )
 }
 
