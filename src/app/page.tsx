@@ -12,6 +12,7 @@ import { Fight } from "@/Components/Fight";
 import { Platform } from "@/Components/PlatformAndGames";
 import { CarSimulation } from "@/Components/Simulation";
 import { Sports } from "@/Components/Sport";
+import Footer from "@/Components/AmazonLogo";
 
 export default function Homepage() {
   return (
@@ -34,6 +35,7 @@ export default function Homepage() {
       <Platform />
       <CarSimulation />
       <Sports />
+      <Footer />
     </>
   );
 }
