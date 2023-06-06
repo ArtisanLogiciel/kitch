@@ -11,7 +11,6 @@ const [ButtonVogue, setButtonVogue] = React.useState<any>(true)
 const [dataVogue, setdataVogue] = React.useState<any>(null)
 const router = useRouter();
 
-
 React.useEffect(() => {
     GetVogue()
     .then(valeur => setdataVogue(valeur))
@@ -29,7 +28,7 @@ React.useEffect(() => {
                         if(ButtonVogue){
                         if(index < 3){
                             return(
-                        <div className='hover:cursor-pointer w-[32%] border solid -500 flex mb-[2%] flex-col items-start justify-start' key={index} onClick={() => router.push(`/vdeo/${element?.user_name}`)}>
+                        <div className='hover:cursor-pointer w-[32%] border solid -500 flex mb-[2%] flex-col items-start justify-start' key={index} onClick={() => router.push(`/${element?.user_login}`)}>
                             <div style={{position: 'relative', width: '100%'}}>
                                 <img  src={getImageSized(element?.thumbnail_url, '320', '180')} style={{width: '100%', height: '100%'}}></img>
                                 <div className='h-[3vh] font-[500] flex items-center justify-center bg-[#eb0400] text-[white] rounded pointer-events-none absolute m-[0.7rem] top-0 left-0'><p style={{margin: '3px'}}>LIVE</p></div>

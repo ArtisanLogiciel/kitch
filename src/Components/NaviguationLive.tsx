@@ -73,7 +73,7 @@ export default function NavigationLive() {
             index > 9 ? null : (
               <div className="w-full h-[8%] border border-solid border-transparent flex flex-row items-center justify-center hover:cursor-pointer"
                 key={index}
-                onClick={() => router.push(`/${channelName?.user_name}`)}
+                onClick={() => router.push(`/${channelName?.user_login}`)}
               >
                 <div className="w-[18%] h-full flex items-center justify-center"
                 >

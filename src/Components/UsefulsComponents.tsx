@@ -9,7 +9,7 @@ function Nombres(nombre: number){
     const longueur = tab.length
     const reconvertir = tab.map(elmnt => parseFloat(elmnt))
     if (longueur === 4){             
-        const convertir = reconvertir.filter((exemple, index) =>   index < 2)
+        const convertir = reconvertir.filter((exemple, index) => index < 2)
         const un = convertir[0];
         const deux = convertir[1];
         return `${un}.${deux}k`
@@ -22,12 +22,6 @@ function Nombres(nombre: number){
     }
 }
 
-function Image(view: string, width: any, height: any){
-    const un = view.replace('{width}', `${width}`)
-    const deux = un.replace('{height}', `${height}`)
-    return deux
-}
-
 const SwiperButtonNext = ({ children }: { children: any }) => {
     const swiper = useSwiper();
     return <button onClick={() => swiper.slideNext()}>{children}</button>;
@@ -38,4 +32,4 @@ const SwiperButtonNext = ({ children }: { children: any }) => {
     return <button onClick={() => swiper.slidePrev()}>{children}</button>;
   };
 
-  export {Nombres, Image, SwiperButtonNext, SwiperButtonPrev}
+  export {Nombres, SwiperButtonNext, SwiperButtonPrev}

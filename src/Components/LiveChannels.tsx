@@ -46,7 +46,7 @@ export async function LiveChannels() {
           if(ButtonCHLive === true){
             if(index < 3){
                 return(
-            <div className='hover:cursor-pointer w-[32%] flex mb-[2%] flex-col items-start justify-start' key={index} onClick={() => router.push(`/vdeo/${element?.user_name}`)}>
+            <div className='hover:cursor-pointer w-[32%] flex mb-[2%] flex-col items-start justify-start' key={index} onClick={() => router.push(`/${element?.user_login}`)}>
                 <div className='relative w-full'>
                     <img  src={getImageSized(element?.thumbnail_url, '320', '180')} className='w-full h-full'></img>
                     <div className='h-[3vh] font-[500] flex items-center justify-center bg-[#eb0400] text-[white] rounded pointer-events-none absolute m-[0.7rem] top-0 left-0'><p className='m-[3px]'>LIVE</p></div>

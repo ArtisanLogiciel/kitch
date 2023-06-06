@@ -12,13 +12,11 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export default function Stream() {
   const params = useParams();
-
   return (
-    
       <div>
         <div>
           <ReactPlayer
-            url={`https://www.twitch.tv/${params.idvideos}`}
+            url={`https://www.twitch.tv/${params.videoid}`}
             className="react-player"
             controls
           />
