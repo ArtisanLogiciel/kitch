@@ -28,6 +28,7 @@
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.9.0",
     "react-player": "^2.12.0",
     "request": "^2.88.2",
     "swiper": "^9.3.2",

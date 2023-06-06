@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
+
+//import { useRouter } from "next/navigation";
 import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -15,9 +17,18 @@ import { API, API_STREAMS } from "@/types/api";
 import { getStreams } from "@/utils/api";
 
 export default function NavigationLive() {
-  const router = useRouter();
+  //const router = useRouter();
 
   const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
+
+  // Test pour voir les info
+  // const [dataUser, setDataUser] = React.useState<API<API_STREAMS[]>>(null);
+  // const [dataChannel, setDataChannel] = React.useState<API<API_STREAMS[]>>(null);
+  // const [dataGame, setDataGame] = React.useState<API<API_STREAMS[]>>(null);
+  // const [dataFollowers, setDataFollowers] = React.useState<API<API_STREAMS[]>>(null);
+  // const [dataTeams, setDataTeams] = React.useState<API<API_STREAMS[]>>(null);
+
+
   const [error, setError] = React.useState<any>(null);
 
   const chaine = "Chaînes recommandées";
@@ -27,13 +38,59 @@ export default function NavigationLive() {
       try {
         const data = await getStreams();
         setData(data);
+
+        // // Test pour voir les info sur le 1er STREAM
+        // if (data) {
+        //   const user1 = await getUser(data[0].user_login);
+        //   setDataUser(user1)
+
+        //   const channelUser1 = await getChannel(data[0].user_id);
+        //   setDataChannel(channelUser1)
+
+        //   const gameUser1 = await getGame(data[0].game_id);
+        //   setDataGame(gameUser1)
+
+        //   const followersUser1 = await getFollowers(data[0].user_id);
+        //   setDataFollowers(followersUser1)
+
+        //   const teamsUser1 = await getTeams(data[0].user_id);
+        //   setDataTeams(teamsUser1)
+        // }
       } catch (error) {
         setError(error);
       }
     }
-
     fetchData();
   }, []);
+
+  console.log("---1-(Component NavigationLive) On va chercher les STREAMERS : data (=Users/Streamers) = ", data);
+  if (data) {
+    console.log("---------Streamers 1 :-----------");
+    console.log(data[0]);
+    //   console.log("user_login : ",data[0].user_login);    
+    // if (dataUser) {
+    //   console.log("---------Info sur le USER avec le user_login :-----------", data[0].user_login);
+    //   console.log(dataUser[0]);
+    // }
+    // if (dataChannel) {
+    //   console.log("---------Info sur la CHAINE avec le user_id :-----------", data[0].user_id);
+    //   console.log(dataChannel[0]);
+    // }
+    // if (dataGame) {
+    //   console.log("---------Info sur le GAME avec le game_id :-----------", data[0].game_id);
+    //   console.log(dataGame[0]);
+    // }
+    // if (dataFollowers) {
+    //   console.log("---------Info sur les FOLLOWERS avec le user_id :-----------", data[0].user_id);
+    //   console.log(dataFollowers);
+    // }
+    // if (dataTeams) {
+    //   console.log("---------Info sur les TEAMS avec le user_id :-----------", data[0].user_id);
+    //   console.log(dataTeams);
+    // }
+  }
+
+
 
   if (error) {
     return <div> Error : {error.message}</div>;
@@ -101,10 +158,10 @@ export default function NavigationLive() {
         ) : (
           data.map((channelName: any, index: number) =>
             index > 9 ? null : (
-              <div
+              <Link
+                href={`/${channelName?.user_login}`}
                 className="GridLive"
                 key={index}
-                onClick={() => router.push(`/${channelName?.user_name}`)}
               >
                 <div
                   style={{
@@ -179,7 +236,7 @@ export default function NavigationLive() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           )
         )}

@@ -25,7 +25,7 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export async function LiveCarousel() {
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
-  console.log("liveCarousel", liveCarousel);
+  //console.log("liveCarousel", liveCarousel);
 
   React.useEffect(() => {
    /*async function fetchData() {
