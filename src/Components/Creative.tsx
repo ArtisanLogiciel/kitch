@@ -22,7 +22,7 @@ export function Creative(){
         <>
               <div>
                 <h2 className='text-lg font-medium m-2'>
-                    <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Créativité</Link>
+                    <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Créativité</Link>
                     </h2>
                 <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                     {!dataCreative ? <div>chargement...</div> : dataCreative.map((element: any, index: number) =>   {

@@ -21,7 +21,7 @@ export default function Homepage() {
       {/* @ts-expect-error Async Server Component */}
         <LiveCarousel />
       {/* @ts-expect-error Async Server Component */}
-      <LiveChannels />
+      <LiveChannels  Propstags={true}/>
       {/* @ts-expect-error Async Server Component */}
       <SelectorCard />
       {/* @ts-expect-error Async Server Component */}

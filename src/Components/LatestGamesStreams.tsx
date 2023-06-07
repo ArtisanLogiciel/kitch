@@ -21,7 +21,7 @@ export function GamesLatest(){
         <>
         <div>
         <h2 className='text-lg font-medium mt-[2%]'>
-          <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Streams de jeux récemment sortis </Link>
+          <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Streams de jeux récemment sortis </Link>
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                   {!dataLGames ? <div>chargement...</div> : dataLGames.map((element: any, index: number) =>   {

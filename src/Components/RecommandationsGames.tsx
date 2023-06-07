@@ -36,7 +36,7 @@ export function GamesRecom(){
         <>
         <div>
         <h2 className='text-lg m-2 font-[700]'>
-              Chaînes de <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Discussion</Link> recommandées
+              Chaînes de <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Discussion</Link> recommandées
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                   {!GamesOne ? <div>chargement...</div> : GamesOne.map((element: any, index: number) =>   {
@@ -102,7 +102,7 @@ export function GamesRecom(){
           </div>
           <div>
         <h2 className='text-lg m-2 font-[700]'>
-              Chaînes de <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'> League of Legends</Link> recommandées
+              Chaînes de <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'> League of Legends</Link> recommandées
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                   {!GamesTwo ? <div>chargement...</div> : GamesTwo.map((element: any, index: number) =>   {
@@ -168,7 +168,7 @@ export function GamesRecom(){
           </div>
           <div>
         <h2 className='text-lg m-2 font-[700]'>
-              Chaînes de <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Fortnite</Link> recommandées
+              Chaînes de <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Fortnite</Link> recommandées
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                   {!GamesThree ? <div>chargement...</div> : GamesThree.map((element: any, index: number) =>   {

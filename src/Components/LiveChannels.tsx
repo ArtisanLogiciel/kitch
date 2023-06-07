@@ -15,7 +15,7 @@ import { getStreams } from "@/utils/api";
 import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
-export async function LiveChannels() {
+export async function LiveChannels({ Propstags }: { Propstags: boolean }) {
   const router = useRouter();
   const [ButtonCHLive, setButtonCHLive] = React.useState<any>(true)
   const [liveChannels, setLiveChannels] = React.useState<API<API_STREAMS[]>>(null);
@@ -36,7 +36,7 @@ export async function LiveChannels() {
   return liveChannels ? (
     <div>
       <h2 className='text-lg font-[600] m-2'>
-        <Link href="" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>
+        <Link href="/" className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>
           Chaînes lives{" "}
         </Link>
         qui pourraient vous plaire
@@ -58,11 +58,11 @@ export async function LiveChannels() {
                         <h3 className='w-full text-[14px] font-[600] whitespace-nowrap'>{element?.title.length <= 33 ? element?.title : element?.title.substring(0, 33) + '...'}</h3>
                         <p className='w-full text-[13px] text-[#53535F]'>{element?.user_name}</p>
                         <p className='w-full text-[13px] text-[#53535F]'>{element?.game_name}</p>
-                        <div className='w-full flex justify-start flex-wrap items-center flex-row '>
+                        {Propstags === true ? <div></div> : <div className='w-full flex justify-start flex-wrap items-center flex-row '>
                             {element?.tags.map((liste: any, index: number) => 
                                  index < 4 ?  <div key={index} className='bg-[#efeff1] text-[12px] mr-[2%] p-[1%] mb-[1%] rounded'>{liste}</div> : null
                              )}
-                        </div>
+                        </div>}
                     </div>        
                 </div>
             </div>
