@@ -8,13 +8,14 @@ import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
 // Components
-import { ImageSized, Nombres } from "./UsefulComponents";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
 
 // Utils
 import { getStreams } from "@/utils/api";
+import { getImageSized } from "@/utils/getImageSized";
+import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 export default function NavigationLive() {
   //const router = useRouter();
@@ -97,34 +98,12 @@ export default function NavigationLive() {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#efeff1",
-        width: "19%",
-        height: "100%",
-        position: "fixed",
-        zIndex: "900",
-        top: "9vh",
-        left: "auto",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          border: "1px solid transparent",
-          width: "100%",
-          height: "8%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h2 style={{ fontSize: "0.9em", fontWeight: "400" }}>{chaine.toLocaleUpperCase()}</h2>
+    <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto] flex flex-col'>
+      <div className=' border border-solid border-transparent w-full h-[8%] flex flex-row items-center justify-center'>
+        <h2 className='text-[0.9em] font-[400]'>{chaine.toLocaleUpperCase()}</h2>
         <svg
-          width="3.5vw"
-          height="3.5vh"
+          width="3.5%"
+          height="3.5%"
           version="1.1"
           viewBox="0 0 20 20"
           x="0px"
@@ -137,16 +116,7 @@ export default function NavigationLive() {
         </svg>
       </div>
 
-      <div
-        style={{
-          border: "1px solid transparent",
-          width: "100%",
-          height: "90%",
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-        }}
-      >
+      <div className='border border-solid border-transparent w-full h-[90%] flex flex-col flex-nowrap'>
         {!data ? (
           <Skeleton
             variant="rounded"
@@ -163,75 +133,32 @@ export default function NavigationLive() {
                 className="GridLive"
                 key={index}
               >
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div className="w-[18%] h-full flex items-center justify-center"
                 >
                   <Image
-                    src={ImageSized(channelName.thumbnail_url, "50", "50")}
+                    src={getImageSized(channelName.thumbnail_url, "50", "50")}
                     width={30}
                     height={30}
                     alt="avatar"
-                    style={{ borderRadius: "50%", width: "30px", height: "30px" }}
+                    className="rounded-full w-[30px] h-[30px]"
                   />
                 </div>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                    flexDirection: "row",
-                    flexWrap: "nowrap",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "75%",
-                      height: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "flex-start",
-                      flexDirection: "column",
-                    }}
-                  >
+                <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap">
+                  <div className="w-[75%] h-[100%] flex justify-start items-start flex-col">
                     <p>{channelName?.user_name}</p>
-                    <p style={{ fontSize: "13px", fontWeight: "lighter" }}>
+                    <p className="text-[13px] font-[300]">
                       {channelName?.game_name.length > 17
                         ? channelName?.game_name.substring(0, 18) + "..."
                         : channelName?.game_name}
                     </p>
                   </div>
-                  <div
-                    style={{
-                      width: "25%",
-                      height: "100%",
-                      display: "flex",
-                      justifyContent: "space-evenly",
-                      alignItems: "center",
-                      flexDirection: "row",
-                      flexWrap: "nowrap",
-                    }}
-                  >
-                    <div
-                      style={{
-                        backgroundColor: "#eb0400",
-                        width: "8px",
-                        height: "8px",
-                        borderRadius: "50%",
-                      }}
-                    ></div>
-                    <p style={{ fontSize: "13px", fontWeight: "lighter" }}>
+                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
+                    <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
+                    <p className="text-[13px] font-[300]">
                       {channelName?.viewer_count < 1000 ? (
-                        <div>channelName?.viewer_count</div>
+                        <div>{channelName?.viewer_count}</div>
                       ) : (
-                        Nombres(channelName?.viewer_count)
+                        getNumber_K_Mode(channelName?.viewer_count)
                       )}
                     </p>
                   </div>

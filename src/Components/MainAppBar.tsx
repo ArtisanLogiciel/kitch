@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import Link from "next/link";
 
 export function MainAppBar() {
   const [search, setSearch] = React.useState<string>();
@@ -26,26 +27,8 @@ export function MainAppBar() {
         color: "black",
       }}
     >
-      <div
-        style={{
-          border: "2px solid transparentt",
-          width: "15%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          flexDirection: "row",
-          flexWrap: "nowrap",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "25%",
-          }}
+      <div className='border-2 border-solid border-transparent w-[15%] h-[100%] flex items-center justify-evenly flex-row flex-nowrap'>
+        <div className='hover:cursor-pointer flex items-center justify-center h-[100%] w-[25%]'
           onClick={() => router.push(`/`)}
         >
           <Image
@@ -53,69 +36,38 @@ export function MainAppBar() {
             alt="logo twitch"
             width={24}
             height={28}
-            style={{ height: "28px", width: "24px" }}
+            className='h-[28px] w-[24px]'
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "50%",
-          }}
-        >
+        <div className='flex items-center justify-center h-[100%] w-[50%]'>
+          <Link href="/browse">
           <p
-            style={{ fontSize: "14px", fontWeight: "500" }}
-            id="Parcourir"
+            className='text-[14px] font-[500] hover:text-[#5c16c5] hover:cursor-pointer'
             onClick={() => router.push(`/`)}
           >
             Parcourir
           </p>
+          </Link>
         </div>
-        <div
-          style={{
-            display: "flex",
-            width: "25%",
-            height: "100%",
-            flexDirection: "column",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div className="Points"></div>
-          <div className="Points"></div>
-          <div className="Points"></div>
+        <div className='flex w-[25%] h-[100%] flex-col flex-wrap justify-center items-center'>
+            <div className="w-[4px] h-[4px] mb-[2px] rounded-full bg-[black]"></div>
+            <div className="w-[4px] h-[4px] mb-[2px] rounded-full bg-[black]"></div>
+            <div className="w-[4px] h-[4px] mb-[2px] rounded-full bg-[black]"></div>
         </div>
       </div>
-      <div
-        style={{
-          border: "2px solid transparent",
-          width: "31%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className='border-2 border-solid border-transparent w-[31%] h-full flex items-center justify-center'>
         <form
           onSubmit={Send}
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+          className='w-full flex items-center justify-between'
         >
           <input
             type="search"
             value={search}
             placeholder="Rechercher"
             onChange={handleSearch}
-            id="BarreSearch"
+            className='w-[90%] border border-solid border-black rounded-[5px_0px_0px_5px] relative z-[9] h-[6vh] focus:outline-4 focus:outline focus:outline-[#772ce8] focus:border-0'
           />
-          <button type="submit" id="BTNFly">
+          <button type="submit" className='w-[10%] rounded-[0px_5px_5px_0px] h-[5.5vh] relative z-[3] bg-[#efeff1] border-0'>
             <svg
               width="80%"
               height="80%"
@@ -137,17 +89,7 @@ export function MainAppBar() {
           </button>
         </form>
       </div>
-      <div
-        style={{
-          border: "2px solid transparent",
-          width: "23%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "nowrap",
-        }}
-      >
+      <div className='border-2 border-solid border-transparent w-[23%] h-full flex justify-between items-center flex-nowrap'>
         <svg width="3.5vw" height="3.5vh" viewBox="0 0 20 20">
           <path
             fillRule="evenodd"
@@ -155,8 +97,8 @@ export function MainAppBar() {
             clipRule="evenodd"
           ></path>
         </svg>
-        <button className="BTNLogin">Se Connecter</button>
-        <button className="BTNSub">{"S'inscrire"}</button>
+        <button className="w-[8vw] h-[5vh] bg-[#efeff1] rounded border-0">Se Connecter</button>
+        <button className="h-[5vh] w-[6vw] rounded text-[white] bg-[#9147ff] border-0">{"S'inscrire"}</button>
         <svg width="3.5vw" height="3.5vh" viewBox="0 0 20 20">
           <path
             fillRule="evenodd"

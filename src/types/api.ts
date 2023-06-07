@@ -53,3 +53,9 @@ export type API_USERS = {
  export type API_USERFOLLOWERS = {
   total : number,
  };
+export type API_GAMES = {
+  id: string;
+  name: string;
+  box_art_url: string;
+  igdb_id: string;
+}
