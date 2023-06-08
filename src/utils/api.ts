@@ -93,7 +93,7 @@ export async function GetStreamGamesThree() {
 }
 export async function GetCreative() {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/Creative`, { cache: 'no-store' });
+    const response = await fetch(`${BASE}/${API_TWITCH}/Creative`);
     const data: API<API_STREAMS[]> = await response.json();
     return data;
   } catch (error) {

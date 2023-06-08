@@ -37,9 +37,6 @@ export async function LiveCarousel() {
         console.log(liveCarousel);
       }
     }
-    // getStreams().then(data => {setLiveCarousel(data)
-    // console.log(liveCarousel)}).catch(error => console.log(error))
-
     fetchData();
   }, []);
 
