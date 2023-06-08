@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { useSwiper } from 'swiper/react';
 
-
 function Nombres(nombre: number){
     const kol = nombre.toString()
     const tab = kol.split('')
@@ -22,12 +21,6 @@ function Nombres(nombre: number){
     }
 }
 
-function Image(view: string, width: any, height: any){
-    const un = view.replace('{width}', `${width}`)
-    const deux = un.replace('{height}', `${height}`)
-    return deux
-}
-
 const SwiperButtonNext = ({ children }: { children: any }) => {
     const swiper = useSwiper();
     return <button onClick={() => swiper.slideNext()}>{children}</button>;
@@ -38,4 +31,4 @@ const SwiperButtonNext = ({ children }: { children: any }) => {
     return <button onClick={() => swiper.slidePrev()}>{children}</button>;
   };
 
-  export {Nombres, Image, SwiperButtonNext, SwiperButtonPrev}
+  export {Nombres, SwiperButtonNext, SwiperButtonPrev}
