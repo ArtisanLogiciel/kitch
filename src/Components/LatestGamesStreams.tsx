@@ -12,9 +12,11 @@ export function GamesLatest(){
     const [dataLGames, setDataLGames] = React.useState<any>(null)
 
     React.useEffect(() => {
-        LatestGamesStreams()
-        .then(valeur => setDataLGames(valeur))
-        .catch(error => console.log(error))
+        async function fetchData() {
+            const data = await LatestGamesStreams();
+            setDataLGames(data);
+        }
+        fetchData();
     
     }, [])
     return(

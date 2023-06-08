@@ -13,9 +13,11 @@ export function CarSimulation(){
     const [dataSupercar, setdataSupercar] = React.useState<any>(null)
 
     React.useEffect(() => {
-        GetCarSimulation()
-        .then(valeur => setdataSupercar(valeur))
-        .catch(error => console.log(error))
+        async function fetchData() {
+            const data = await GetCarSimulation();
+           setdataSupercar(data);
+        }
+        fetchData();
     
     }, [])
     return(

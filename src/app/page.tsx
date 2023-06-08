@@ -6,7 +6,9 @@ import { SelectorCard } from "../Components/SelectorCard";
 import { Vogue } from "@/Components/Vogue";
 import { RecentlyGames } from "@/Components/RecentlyGames";
 import { GamesLatest } from "@/Components/LatestGamesStreams";
-import { GamesRecom } from "@/Components/RecommandationsGames";
+import { Games_1 } from "@/Components/GamesOne";
+import { Games_Two } from "@/Components/GamesTwo";
+import { Games_3 } from "@/Components/GamesThree";
 import { Creative } from "@/Components/Creative";
 import { Fight } from "@/Components/Fight";
 import { Platform } from "@/Components/PlatformAndGames";
@@ -29,7 +31,9 @@ export default function Homepage() {
       <Vogue />
       <RecentlyGames />
       <GamesLatest />
-      <GamesRecom />
+      <Games_1 />
+      <Games_Two />
+      <Games_3 />
       <Creative />
       <Fight />
       <Platform />

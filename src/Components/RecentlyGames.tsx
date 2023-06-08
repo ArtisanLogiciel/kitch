@@ -7,10 +7,11 @@ import { GetRecentlyGames } from '@/utils/api';
 export  function RecentlyGames(){
     const [dataRGames, setDataRGames] = React.useState<any>(null)
     React.useEffect(() => {
-        GetRecentlyGames()
-        .then(valeur => setDataRGames(valeur))
-        .catch(error => console.log(error))
-    
+        async function fetchData() {
+            const data = await GetRecentlyGames();
+            setDataRGames(data);
+        }
+        fetchData();
     }, [])
         return(
             

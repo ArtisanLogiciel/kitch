@@ -13,9 +13,11 @@ export function Platform(){
     const [dataPlatform, setdataPlatform] = React.useState<any>(null)
 
     React.useEffect(() => {
-        GetPlatformAndGames()
-        .then(valeur => setdataPlatform(valeur))
-        .catch(error => console.log(error))
+        async function fetchData() {
+            const data = await GetPlatformAndGames();
+           setdataPlatform(data);
+        }
+        fetchData();
     
     }, [])
     return(

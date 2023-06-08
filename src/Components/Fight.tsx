@@ -13,10 +13,11 @@ export function Fight(){
     const [dataCombat, setdataCombat] = React.useState<any>(null)
 
     React.useEffect(() => {
-        GetCombat()
-        .then(valeur => setdataCombat(valeur))
-        .catch(error => console.log(error))
-    
+        async function fetchData() {
+            const data = await GetCombat();
+           setdataCombat(data);
+        }
+        fetchData();
     }, [])
     return(
         <>

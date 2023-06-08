@@ -17,7 +17,6 @@ import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 export default function NavigationLive() {
   const router = useRouter();
-
   const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
   const [error, setError] = React.useState<any>(null);
 

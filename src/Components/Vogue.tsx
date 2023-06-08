@@ -12,10 +12,11 @@ const [dataVogue, setdataVogue] = React.useState<any>(null)
 const router = useRouter();
 
 React.useEffect(() => {
-    GetVogue()
-    .then(valeur => setdataVogue(valeur))
-    .catch(error => console.log(error))
-
+    async function fetchData() {
+          const data = await GetVogue();
+          setdataVogue(data);
+      }
+      fetchData();
 }, [])
 
         return(

@@ -13,9 +13,11 @@ export function Creative(){
     const [dataCreative, setdataCreative] = React.useState<any>(null)
 
     React.useEffect(() => {
-        GetCreative()
-        .then(valeur => setdataCreative(valeur))
-        .catch(error => console.log(error))
+        async function fetchData() {
+            const data = await GetCreative();
+           setdataCreative(data);
+        }
+        fetchData();
     
     }, [])
     return (

@@ -1,7 +1,7 @@
-'use server';
+//'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS } from "@/types/api";
+import { API, API_CATEGORIES, API_GAMES, API_STREAMS, API_VOGUE } from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -20,7 +20,7 @@ export async function getCategories() {
 
 export async function getStreams() {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { cache: 'no-store' });
+    const response = await fetch(`${BASE}/${API_TWITCH}/streams`);
     const data: API<API_STREAMS[]> = await response.json();
     return data;
   } catch (error) {
@@ -37,213 +37,103 @@ export async function getGames() {
     console.log("Error in getGames: ", error);
   }
 }
-// GET https://api.twitch.tv/helix/analytics/games
-
 export async function GetVogue() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
-  }   
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/vogue`, { cache: 'no-store' });
+    const data: API<API_VOGUE[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in getVogue: ", error);
+  }
 }
 export async function GetRecentlyGames() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/games?id=512998&id=518144&id=482130375&id=511844&id=747530903&id=55453844`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
-  }   
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/RecentlyGames`);
+    const data: API<API_GAMES[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetRecentlyGames: ", error);
+  }
 }
-export async function LatestGamesStreams(){
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const response = await fetch(`https://api.twitch.tv/helix/streams?game_id=512998&game_id=518144&game_id=482130375&game_id=511844&game_id=747530903&game_id=55453844`, options);
-      const dataStream = await response.json();
-      return dataStream?.data
-  }catch(error: any){
-      console.log(error.message)
+export async function LatestGamesStreams() {
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/LatestGamesStreams`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in LatestGamesStreams: ", error);
   }
 }
 export async function GetStreamGamesOne() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=509658&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
-  }   
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/StreamGamesOne`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetStreamGamesOne: ", error);
+  }
 }
 export async function GetStreamGamesTwo() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=21779&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/StreamGamesTwo`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetStreamGamesTwo: ", error);
   }
 }
 export async function GetStreamGamesThree() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=33214`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/StreamGamesThree`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetStreamGamesThree: ", error);
   }
 }
 export async function GetCreative() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=509660&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/Creative`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetCreative: ", error);
   }
 }
 export async function GetCombat() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=55453844&game_id=461067&game_id=504461&game_id=1657670363&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/fight`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetCombat: ", error);
   }
 }
 export async function GetPlatformAndGames() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=138585&game_id=488190&game_id=513143&game_id=1743359147&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/PlatformAndGames`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetPlatformAndGames: ", error);
   }
 }
 export async function GetCarSimulation() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=518014&game_id=1705795372&game_id=19554&game_id=313197&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/CarSimulation`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetPlatformAndGames: ", error);
   }
 }
 export async function GetSport() {
-  const options = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Client-ID': process.env.DB_CLIENT || '',
-          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
-        },
-        cache: 'no-store' as RequestCache,
-  };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=772421245&game_id=1705795372&game_id=1740873338&game_id=1745202732&game_id=30921&language=fr`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/Sport`, { cache: 'no-store' });
+    const data: API<API_STREAMS[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error in GetPlatformAndGames: ", error);
   }
 }
+// GET https://api.twitch.tv/helix/analytics/games

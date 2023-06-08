@@ -13,9 +13,11 @@ export function Sports(){
     const [dataSport, setdataSport] = React.useState<any>(null)
 
     React.useEffect(() => {
-        GetSport()
-        .then(valeur => setdataSport(valeur))
-        .catch(error => console.log(error))
+        async function fetchData() {
+            const data = await GetSport();
+           setdataSport(data);
+        }
+        fetchData();
     
     }, [])
     return(
