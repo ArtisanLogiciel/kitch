@@ -2,7 +2,7 @@
 import { LiveCarousel } from "../Components/LiveCarousel";
 import { LiveChannels } from "../Components/LiveChannels";
 import { Categories } from "../Components/Categories";
-import { SelectorCard } from "../Components/SelectorCard";
+import { SelectorCategory } from "../Components/SelectorCategory";
 import { Vogue } from "@/Components/Vogue";
 import { RecentlyGames } from "@/Components/RecentlyGames";
 import { GamesLatest } from "@/Components/LatestGamesStreams";
@@ -23,22 +23,34 @@ export default function Homepage() {
       {/* @ts-expect-error Async Server Component */}
         <LiveCarousel />
       {/* @ts-expect-error Async Server Component */}
-      <LiveChannels  Propstags={true}/>
+      <LiveChannels  />
       {/* @ts-expect-error Async Server Component */}
-      <SelectorCard />
+      <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}
       <Categories />
+      {/* @ts-expect-error Async Server Component */}
       <Vogue />
+      {/* @ts-expect-error Async Server Component */}
       <RecentlyGames />
+      {/* @ts-expect-error Async Server Component */}
       <GamesLatest />
+      {/* @ts-expect-error Async Server Component */}
       <Games_1 />
+      {/* @ts-expect-error Async Server Component */}
       <Games_Two />
+      {/* @ts-expect-error Async Server Component */}
       <Games_3 />
+      {/* @ts-expect-error Async Server Component */}
       <Creative />
+      {/* @ts-expect-error Async Server Component */}
       <Fight />
+      {/* @ts-expect-error Async Server Component */}
       <Platform />
+      {/* @ts-expect-error Async Server Component */}
       <CarSimulation />
+      {/* @ts-expect-error Async Server Component */}
       <Sports />
+      {/* @ts-expect-error Async Server Component */}
       <Footer />
     </>
   );

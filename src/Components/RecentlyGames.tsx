@@ -2,10 +2,11 @@
 import * as React from 'react'
 import { getImageSized } from "@/utils/getImageSized";
 import { GetRecentlyGames } from '@/utils/api';
+import { API, API_GAMES } from "@/types/api";
 
 
-export  function RecentlyGames(){
-    const [dataRGames, setDataRGames] = React.useState<any>(null)
+export async function RecentlyGames(){
+    const [dataRGames, setDataRGames] = React.useState<API<API_GAMES[]>>(null)
     React.useEffect(() => {
         async function fetchData() {
             const data = await GetRecentlyGames();

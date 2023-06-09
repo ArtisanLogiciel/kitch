@@ -1,7 +1,7 @@
 //'use server';
 
 // Types
-import { API, API_CATEGORIES, API_GAMES, API_STREAMS, API_VOGUE } from "@/types/api";
+import { API, API_CATEGORIES, API_GAMES, API_STREAMS} from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -40,7 +40,7 @@ export async function getGames() {
 export async function GetVogue() {
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/vogue`, { cache: 'no-store' });
-    const data: API<API_VOGUE[]> = await response.json();
+    const data: API<API_STREAMS[]> = await response.json();
     return data;
   } catch (error) {
     console.log("Error in getVogue: ", error);

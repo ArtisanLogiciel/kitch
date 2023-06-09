@@ -50,7 +50,7 @@ export async function LiveCarousel() {
       clickable: true,
     }}
     style={{ width: "100%", height: "100%" }}
-    navigation={true}
+    navigation={false}
     modules={[Pagination, Navigation]}
     className="mySwiper"
   >

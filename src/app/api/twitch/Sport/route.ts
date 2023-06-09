@@ -8,6 +8,7 @@ export async function GET() {
             'Client-ID': process.env.DB_CLIENT || '',
             'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
           },
+          cache: 'no-store' as RequestCache,
     };
     try{
         const res = await fetch(`https://api.twitch.tv/helix/streams?game_id=772421245&game_id=1705795372&game_id=1740873338&game_id=1745202732&game_id=30921&language=fr`, options)
