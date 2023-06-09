@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS } from "@/types/api";
+import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS } from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -30,6 +30,7 @@ export async function getStreams() {
   }
 }
 
+// Info sur un GAME  => https://dev.twitch.tv/docs/api/reference/#get-games (Gets information about specified categories or games.)
 export async function getGames() {
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/games`);
@@ -280,22 +281,6 @@ export async function getChannel(broadcaster_id: string) {
   }
 }
 
-
-// AH : pas besoin pour moi
-// Info sur un GAME  => https://dev.twitch.tv/docs/api/reference/#get-games (Gets information about specified categories or games.)
-// export async function getGame(game_id: string) {
-
-//   console.log("-----URL getGame = ", `${BASE}/${API_TWITCH}/game?game_id=${game_id}`);
-
-//   try {
-//     const response = await fetch(`${BASE}/${API_TWITCH}/game?game_id=${game_id}`, { cache: 'no-store' });
-//     const data: API<API_STREAMS[]> = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.log("Error in getGame: ", error);
-//   }
-// }
-
 // Info sur les CHANNEL_FOLLOWER  => https://dev.twitch.tv/docs/api/reference/#get-channel-followers (Gets a list of users that follow the specified broadcaster. You can also use this endpoint to see whether a specific user follows the broadcaster.)
 export async function getFollowers(broadcaster_id: string) {
 
@@ -317,7 +302,7 @@ export async function getTeams(broadcaster_id: string) {
 
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/team?broadcaster_id=${broadcaster_id}`, { cache: 'no-store' });
-    const data: API<API_STREAMS[]> = await response.json();
+    const data: API<API_TEAMS[]> = await response.json();
     return data;
   } catch (error) {
     console.log("Error in getTeams: ", error);

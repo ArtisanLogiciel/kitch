@@ -14,7 +14,7 @@ export async function GET() {
 console.log("-----fetch(https://api.twitch.tv/helix/streams?language=fr avec options : ", options);
 
   try {
-    const res = await fetch("https://api.twitch.tv/helix/streams?language=fr", options);
+    const res = await fetch(`https://api.twitch.tv/helix/streams?language=fr`, options);
 
 //console.log("---RES : ", res);    
 

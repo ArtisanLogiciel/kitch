@@ -67,7 +67,7 @@ export default function NavigationLive() {
   console.log("---1-(Component NavigationLive) On va chercher les STREAMERS : data (=Users/Streamers) = ", data);
   if (data) {
     console.log("---------Streamers 1 :-----------");
-    console.log(data[0]);
+    console.log("---------------",data[0]);
     //   console.log("user_login : ",data[0].user_login);    
     // if (dataUser) {
     //   console.log("---------Info sur le USER avec le user_login :-----------", data[0].user_login);

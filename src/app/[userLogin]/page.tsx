@@ -11,6 +11,7 @@ import { MainAppBar } from "@/Components/MainAppBar";
 //import NavigLive from "../../Components/NaviguationLive";
 import NavigLive from "@/Components/NaviguationLive";
 import Channel from '@/Components/Channel'
+import Chat from '@/Components/Chat'
 
 //const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
@@ -26,10 +27,9 @@ export default function Stream() {
   console.log("---2-([userLogin]/page.tsx) Au clic sur 1 chaine (<Link href={`/${channelName?.user_login}`}) : ", userLogin);
 
   return (
-    <>
-      <MainAppBar />
-      <NavigLive />
+    <>     
       <Channel userLogin={userLogin} />
+      <Chat />
 
 
       {/* <div className="ContenuPrincipale">
