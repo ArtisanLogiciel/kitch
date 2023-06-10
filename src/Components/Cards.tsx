@@ -25,7 +25,7 @@ return(
         <p className='w-full text-[13px] text-[#53535F]'>{element?.user_name}</p>
         <p className='w-full text-[13px] text-[#53535F]'>{element?.game_name}</p>
         {Propstags === true ? <div></div> : <div className='w-full flex justify-start flex-wrap items-center flex-row '>
-            {element?.tags.map((liste: any, index: number) => 
+            {element?.tags?.map((liste: any, index: number) => 
                  index < 4 ?  <div key={index} className='bg-[#efeff1] text-[12px] mr-[2%] p-[1%] mb-[1%] rounded'>{liste}</div> : null
              )}
         </div>}
@@ -44,7 +44,7 @@ return(
                         <p className='w-full text-[13px] text-[#53535F]'>{element?.user_name}</p>
                         <p className='w-full text-[13px] text-[#53535F]'>{element?.game_name}</p>
                         {Propstags === true ? <div></div> : <div className='w-full flex justify-start flex-wrap items-center flex-row '>
-                        {element?.tags.map((liste: any, index: number) => 
+                        {element?.tags?.map((liste: any, index: number) => 
                              index < 4 ?  <div key={index} className='bg-[#efeff1] text-[12px] mr-[2%] p-[1%] mb-[1%] rounded'>{liste}</div> : null
                          )}
                         </div>}
@@ -71,7 +71,7 @@ export function SecondCards({element, index, Propstags}: {element: any, index: n
         <p className='w-full text-[13px] text-[#53535F]'>{element?.user_name}</p>
         <p className='w-full text-[13px] text-[#53535F]'>{element?.game_name}</p>
         {Propstags === true ? <div></div> : <div className='w-full flex justify-start flex-wrap items-center flex-row '>
-            {element?.tags.map((liste: any, index: number) => 
+            {element?.tags?.map((liste: any, index: number) => 
                  index < 4 ?  <div key={index} className='bg-[#efeff1] text-[12px] mr-[2%] p-[1%] mb-[1%] rounded'>{liste}</div> : null
              )}
         </div>}

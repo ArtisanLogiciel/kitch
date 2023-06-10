@@ -4,17 +4,15 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { SecondCards } from './Cards';
 import { LatestGamesStreams } from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
-export async function GamesLatest(){
-    const [dataLGames, setDataLGames] = React.useState<API<API_STREAMS[]>>(null)
+
+export function GamesLatest(){
+    const [dataLGames, setDataLGames] = React.useState<any>(null)
 
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await LatestGamesStreams();
-            setDataLGames(data);
-        }
-        fetchData();
+        LatestGamesStreams()
+        .then(valeur => setDataLGames(valeur))
+        .catch(error => console.log(error))
     
     }, [])
     return(
@@ -25,7 +23,7 @@ export async function GamesLatest(){
           </h2>
               <div className='w-full flex flex-row flex-wrap items-center justify-between mb-[2%]'>
               {!dataLGames ? <div>chargement...</div> : 
-                    dataLGames.map((element, index) => (
+                    dataLGames.map((element: any, index: number) => (
                 <SecondCards key={index} element={element} index={index} Propstags={false} />
             ))}
                         <div className=' w-full flex items-center justify-evenly'>

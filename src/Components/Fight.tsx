@@ -4,18 +4,16 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { SecondCards } from './Cards';
 import { GetCombat} from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
 
-export async function Fight(){
-    const [dataCombat, setdataCombat] = React.useState<API<API_STREAMS[]>>(null)
+
+export function Fight(){
+    const [dataCombat, setdataCombat] = React.useState<any>(null)
 
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await GetCombat();
-           setdataCombat(data);
-        }
-        fetchData();
+        GetCombat()
+        .then(valeur => setdataCombat(valeur))
+        .catch(error => console.log(error))
     }, [])
     return(
         <>
@@ -25,7 +23,7 @@ export async function Fight(){
                     </h2>
                 <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                 {!dataCombat ? <div>chargement...</div> : 
-                        dataCombat.map((element, index) => (
+                        dataCombat.map((element: any, index: number) => (
                              <SecondCards key={index} element={element} index={index} Propstags={false} />
                         ))}
                           <div className=' w-full flex items-center justify-evenly'>

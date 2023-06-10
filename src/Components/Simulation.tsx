@@ -4,18 +4,15 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { SecondCards } from './Cards';
 import { GetCarSimulation} from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
 
-export  async function CarSimulation(){
-    const [dataSupercar, setdataSupercar] =  React.useState<API<API_STREAMS[]>>(null)
+export function CarSimulation(){
+    const [dataSupercar, setdataSupercar] =  React.useState<any>(null)
 
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await GetCarSimulation();
-           setdataSupercar(data);
-        }
-        fetchData();
+        GetCarSimulation()
+        .then(valeur => setdataSupercar(valeur))
+        .catch(error => console.log(error)) 
     
     }, [])
     return(
@@ -26,7 +23,7 @@ export  async function CarSimulation(){
                     </h2>
                 <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                 {!dataSupercar ? <div>chargement...</div> : 
-                        dataSupercar.map((element, index) => (
+                        dataSupercar.map((element: any, index: number) => (
                              <SecondCards key={index} element={element} index={index} Propstags={false} />
                         ))}
                           <div className=' w-full flex items-center justify-evenly'>

@@ -3,21 +3,17 @@ import * as React from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Cards } from './Cards';
 import { GetVogue } from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
 
-
-export async function Vogue(){
+export function Vogue(){
 const [ButtonVogue, setButtonVogue] = React.useState<any>(true)
-const [dataVogue, setdataVogue] = React.useState<API<API_STREAMS[]>>(null)
+const [dataVogue, setdataVogue] = React.useState<any>(null)
 
 
 React.useEffect(() => {
-    async function fetchData() {
-          const data = await GetVogue();
-          setdataVogue(data);
-      }
-      fetchData();
+    GetVogue()
+    .then(valeur => setdataVogue(valeur))
+    .catch(error => console.log(error))
 }, [])
 
         return(
@@ -27,7 +23,7 @@ React.useEffect(() => {
             </h2>
                 <div className='w-full border border-solid -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                 {!dataVogue ? <div>chargement...</div> : 
-                    dataVogue.map((element, index) => (
+                    dataVogue.map((element: any, index: number) => (
                 <Cards key={index} element={element} index={index} Propstags={false} Button={ButtonVogue}/>
             ))}
             { ButtonVogue ? <div className=' w-full flex items-center justify-evenly'>

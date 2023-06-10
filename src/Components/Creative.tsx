@@ -4,18 +4,15 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { SecondCards } from './Cards';
 import { GetCreative } from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
 
-export async function Creative(){
-    const [dataCreative, setdataCreative] = React.useState<API<API_STREAMS[]>>(null)
+export function Creative(){
+    const [dataCreative, setdataCreative] = React.useState<any>(null)
 
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await GetCreative();
-           setdataCreative(data);
-        }
-        fetchData();
+        GetCreative()
+        .then(valeur => setdataCreative(valeur))
+        .catch(error => console.log(error))
     
     }, [])
     return (
@@ -26,7 +23,7 @@ export async function Creative(){
                     </h2>
                 <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                     {!dataCreative ? <div>chargement...</div> : 
-                        dataCreative.map((element, index) => (
+                        dataCreative.map((element: any, index: number) => (
                              <SecondCards key={index} element={element} index={index} Propstags={false} />
                         ))}
                           <div className=' w-full flex items-center justify-evenly'>

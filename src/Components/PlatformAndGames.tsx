@@ -4,20 +4,15 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { SecondCards } from './Cards';
 import { GetPlatformAndGames} from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
 
 
-export async function Platform(){
-    const [dataPlatform, setdataPlatform] =  React.useState<API<API_STREAMS[]>>(null)
-
+export function Platform(){
+    const [dataPlatform, setdataPlatform] =  React.useState<any>(null)
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await GetPlatformAndGames();
-           setdataPlatform(data);
-        }
-        fetchData();
-    
+        GetPlatformAndGames()
+        .then(valeur => setdataPlatform(valeur))
+        .catch(error => console.log(error))
     }, [])
     return(
         <>
@@ -27,7 +22,7 @@ export async function Platform(){
                     </h2>
                 <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
                 {!dataPlatform ? <div>chargement...</div> : 
-                        dataPlatform.map((element, index) => (
+                        dataPlatform.map((element: any, index: number) => (
                              <SecondCards key={index} element={element} index={index} Propstags={false} />
                         ))}
                           <div className=' w-full flex items-center justify-evenly'>

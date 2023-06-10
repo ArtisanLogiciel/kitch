@@ -2,22 +2,18 @@
 import * as React from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { GetStreamGamesTwo } from '@/utils/api';
 import { Cards } from './Cards';
-import { API, API_STREAMS } from "@/types/api";
 
-export async function Games_Two(){
-    const router = useRouter()
-    const [GamesTwo, setGamesTwo] = React.useState<API<API_STREAMS[]>>(null)
+
+export function Games_Two(){
+    const [GamesTwo, setGamesTwo] = React.useState<any>(null)
     const [ButtonSecondRecom, setButtonSecondRecom] = React.useState<any>(true)
 
     React.useEffect(() => {
-        async function fetchData() {
-            const data = await GetStreamGamesTwo();
-            setGamesTwo(data);
-        }
-        fetchData();
+        GetStreamGamesTwo()
+        .then(valeur => setGamesTwo(valeur))
+        .catch(error => console.log(error))
     }, [])
 
     return(
@@ -27,7 +23,7 @@ export async function Games_Two(){
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
               {!GamesTwo ? <div>chargement...</div> : 
-                    GamesTwo.map((element, index) => (
+                    GamesTwo.map((element: any, index: number) => (
                 <Cards  key={index} element={element} index={index} Propstags={false} Button={ButtonSecondRecom}/>
             ))}
                      {ButtonSecondRecom ? <div className=' w-full flex items-center justify-evenly'>

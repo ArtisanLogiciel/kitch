@@ -4,19 +4,17 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
 import { Cards } from './Cards';
 import {GetStreamGamesThree } from '@/utils/api';
-import { API, API_STREAMS } from "@/types/api";
 
-export async function Games_3(){
-    const [GamesThree, setGamesThree] = React.useState<API<API_STREAMS[]>>(null)
+
+export function Games_3(){
+    const [GamesThree, setGamesThree] = React.useState<any>(null)
     const [ButtonThirstRecom, setButtonThirstRecom] = React.useState<any>(true)
 
 
 React.useEffect(() => {
-    async function fetchData() {
-        const data = await GetStreamGamesThree();
-        setGamesThree(data);
-    }
-    fetchData();
+    GetStreamGamesThree()
+    .then(valeur => setGamesThree(valeur))
+    .catch(error => console.log(error))
 }, [])
 
 return(
@@ -26,7 +24,7 @@ return(
           </h2>
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
               {!GamesThree ? <div>chargement...</div> : 
-                    GamesThree.map((element, index) => (
+                    GamesThree.map((element: any, index: number) => (
                 <Cards key={index} element={element} index={index} Propstags={false} Button={ButtonThirstRecom}/>
             ))}
                       {ButtonThirstRecom ? <div className=' w-full flex items-center justify-evenly'>

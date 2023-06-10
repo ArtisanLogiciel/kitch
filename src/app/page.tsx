@@ -28,29 +28,18 @@ export default function Homepage() {
       <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}
       <Categories />
-      {/* @ts-expect-error Async Server Component */}
       <Vogue />
-      {/* @ts-expect-error Async Server Component */}
+      
       <RecentlyGames />
-      {/* @ts-expect-error Async Server Component */}
       <GamesLatest />
-      {/* @ts-expect-error Async Server Component */}
       <Games_1 />
-      {/* @ts-expect-error Async Server Component */}
       <Games_Two />
-      {/* @ts-expect-error Async Server Component */}
       <Games_3 />
-      {/* @ts-expect-error Async Server Component */}
       <Creative />
-      {/* @ts-expect-error Async Server Component */}
       <Fight />
-      {/* @ts-expect-error Async Server Component */}
       <Platform />
-      {/* @ts-expect-error Async Server Component */}
       <CarSimulation />
-      {/* @ts-expect-error Async Server Component */}
       <Sports />
-      {/* @ts-expect-error Async Server Component */}
       <Footer />
     </>
   );

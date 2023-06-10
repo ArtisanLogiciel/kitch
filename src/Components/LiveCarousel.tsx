@@ -25,16 +25,15 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export async function LiveCarousel() {
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
-  console.log("liveCarousel", liveCarousel);
-
   React.useEffect(() => {
    async function fetchData() {
       try {
-        const data = await getStreams();
-        setLiveCarousel(data);
+        const data  = await getStreams();
+        if (data) {
+          setLiveCarousel(data.splice(-10, 7));
+        }
       } catch (error) {
         console.log(error);
-        console.log(liveCarousel);
       }
     }
     fetchData();
@@ -50,7 +49,7 @@ export async function LiveCarousel() {
       clickable: true,
     }}
     style={{ width: "100%", height: "100%" }}
-    navigation={false}
+    navigation={true}
     modules={[Pagination, Navigation]}
     className="mySwiper"
   >

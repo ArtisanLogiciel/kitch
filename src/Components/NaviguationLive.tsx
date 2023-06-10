@@ -80,7 +80,7 @@ export default function NavigationLive() {
                     src={getImageSized(channelName.thumbnail_url, "50", "50")}
                     width={30}
                     height={30}
-                    alt="avatar"
+                    alt={channelName?.user_login}
                     className="rounded-full w-[30px] h-[30px]"
                   />
                 </div>
