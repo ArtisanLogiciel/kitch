@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS } from "@/types/api";
+import { API, API_CATEGORIES, API_GAMES, API_STREAMS} from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -37,8 +37,6 @@ export async function getGames() {
     console.log("Error in getGames: ", error);
   }
 }
-// GET https://api.twitch.tv/helix/analytics/games
-
 export async function GetVogue() {
   const options = {
       method: 'GET',
@@ -247,3 +245,5 @@ export async function GetSport() {
       console.log(error.message)
   }
 }
+
+// GET https://api.twitch.tv/helix/analytics/games

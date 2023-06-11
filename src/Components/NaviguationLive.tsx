@@ -17,7 +17,6 @@ import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 export default function NavigationLive() {
   const router = useRouter();
-
   const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
   const [error, setError] = React.useState<any>(null);
 
@@ -73,7 +72,7 @@ export default function NavigationLive() {
             index > 9 ? null : (
               <div className="w-full h-[8%] border border-solid border-transparent flex flex-row items-center justify-center hover:cursor-pointer"
                 key={index}
-                onClick={() => router.push(`/${channelName?.user_name}`)}
+                onClick={() => router.push(`/${channelName?.user_login}`)}
               >
                 <div className="w-[18%] h-full flex items-center justify-center"
                 >
@@ -81,7 +80,7 @@ export default function NavigationLive() {
                     src={getImageSized(channelName.thumbnail_url, "50", "50")}
                     width={30}
                     height={30}
-                    alt="avatar"
+                    alt={channelName?.user_login}
                     className="rounded-full w-[30px] h-[30px]"
                   />
                 </div>

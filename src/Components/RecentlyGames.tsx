@@ -4,13 +4,13 @@ import { getImageSized } from "@/utils/getImageSized";
 import { GetRecentlyGames } from '@/utils/api';
 
 
-export  function RecentlyGames(){
+
+export function RecentlyGames(){
     const [dataRGames, setDataRGames] = React.useState<any>(null)
     React.useEffect(() => {
         GetRecentlyGames()
         .then(valeur => setDataRGames(valeur))
         .catch(error => console.log(error))
-    
     }, [])
         return(
             

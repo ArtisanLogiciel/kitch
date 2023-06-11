@@ -1,7 +1,6 @@
 "use client"
 
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Tablist({ id, game }: { id: string, game: string }) {
     const pathname = usePathname();
@@ -21,7 +20,7 @@ export default function Tablist({ id, game }: { id: string, game: string }) {
           return (
             <li
               key={index}
-              className={`${pathname.startsWith(tab.href) ? "text-blue-600 underline" : ""} cursor-pointer`}
+              className={`${pathname === tab.href ? "text-blue-600 underline" : ""} cursor-pointer`}
               onClick={() => router.push(tab.href)}
             >
               {tab.label}

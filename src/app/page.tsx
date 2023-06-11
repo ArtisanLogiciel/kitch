@@ -2,11 +2,13 @@
 import { LiveCarousel } from "../Components/LiveCarousel";
 import { LiveChannels } from "../Components/LiveChannels";
 import { Categories } from "../Components/Categories";
-import { SelectorCard } from "../Components/SelectorCard";
+import { SelectorCategory } from "../Components/SelectorCategory";
 import { Vogue } from "@/Components/Vogue";
 import { RecentlyGames } from "@/Components/RecentlyGames";
 import { GamesLatest } from "@/Components/LatestGamesStreams";
-import { GamesRecom } from "@/Components/RecommandationsGames";
+import { Games_1 } from "@/Components/GamesOne";
+import { Games_Two } from "@/Components/GamesTwo";
+import { Games_3 } from "@/Components/GamesThree";
 import { Creative } from "@/Components/Creative";
 import { Fight } from "@/Components/Fight";
 import { Platform } from "@/Components/PlatformAndGames";
@@ -21,15 +23,18 @@ export default function Homepage() {
       {/* @ts-expect-error Async Server Component */}
         <LiveCarousel />
       {/* @ts-expect-error Async Server Component */}
-      <LiveChannels />
+      <LiveChannels  />
       {/* @ts-expect-error Async Server Component */}
-      <SelectorCard />
+      <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}
       <Categories />
       <Vogue />
+      
       <RecentlyGames />
       <GamesLatest />
-      <GamesRecom />
+      <Games_1 />
+      <Games_Two />
+      <Games_3 />
       <Creative />
       <Fight />
       <Platform />
