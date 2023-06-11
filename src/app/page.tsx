@@ -28,7 +28,7 @@ export default function Homepage() {
       <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}
       <Categories />
-      <Vogue />
+      {/*<Vogue />
       
       <RecentlyGames />
       <GamesLatest />
@@ -40,7 +40,7 @@ export default function Homepage() {
       <Platform />
       <CarSimulation />
       <Sports />
-      <Footer />
+      <Footer />*/}
     </>
   );
 }

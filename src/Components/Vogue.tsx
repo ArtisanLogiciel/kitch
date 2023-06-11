@@ -16,6 +16,9 @@ React.useEffect(() => {
     .catch(error => console.log(error))
 }, [])
 
+if(!dataVogue){
+    return null
+}
         return(
             <div>
           <h2 className='text-lg m-2 font-[700]'>

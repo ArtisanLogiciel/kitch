@@ -15,6 +15,7 @@ import { getStreams } from "@/utils/api";
 import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
+
 export default function NavigationLive() {
   const router = useRouter();
   const [data, setData] = React.useState<API<API_STREAMS[]>>(null);

@@ -43,7 +43,6 @@ export function MainAppBar() {
           <Link href="/browse">
           <p
             className='text-[14px] font-[500] hover:text-[#5c16c5] hover:cursor-pointer'
-            onClick={() => router.push(`/`)}
           >
             Parcourir
           </p>
