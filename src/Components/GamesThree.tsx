@@ -25,7 +25,7 @@ return(
               <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
               {!GamesThree ? <div>chargement...</div> : 
                     GamesThree.map((element: any, index: number) => (
-                <Cards key={index} element={element} index={index} Propstags={false} Button={ButtonThirstRecom}/>
+                <Cards key={index} data={element} />
             ))}
                       {ButtonThirstRecom ? <div className=' w-full flex items-center justify-evenly'>
                                           <div className='w-[40%]'><div className='h-[0.5px] w-full bg-[black]'></div></div>
