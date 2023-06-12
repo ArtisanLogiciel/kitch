@@ -11,7 +11,6 @@ import { Platform } from "@/Components/PlatformAndGames";
 import { CarSimulation } from "@/Components/Simulation";
 import { Sports } from "@/Components/Sport";
 
-
 export function ParentComp(){
     
 }

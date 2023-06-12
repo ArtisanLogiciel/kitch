@@ -2,6 +2,7 @@ import Link from "next/link";
 
 // Types
 import { API, API_GAMES_CLIPS } from "@/types/api";
+import { Cards } from "@/Components/Cards";
 
 export async function getClips(game: string) {
   const options = {
@@ -43,29 +44,29 @@ export default async function Clips({ params }: { params: { id: string; game: st
         </Link>
 
         {videos.map((video, index) => {
-          return (
-            <div key={index}>
-              <p>id: {video.id}</p>
-              <p>url: {video.url}</p>
-              <p>embed_url: {video.embed_url}</p>
-              <p>broadcaster_id: {video.broadcaster_id}</p>
-              <p>broadcaster_name: {video.broadcaster_name}</p>
-              <p>creator_id: {video.creator_id}</p>
-              <p>creator_name: {video.creator_name}</p>
-              <p>video_id: {video.video_id}</p>
-              <p>game_id: {video.game_id}</p>
-              <p>language: {video.language}</p>
-              <p>title: {video.title}</p>
-              <p>view_count: {video.view_count}</p>
-              <p>created_at: {video.created_at}</p>
-              <p>thumbnail_url: {video.thumbnail_url}</p>
-              <p>duration: {video.duration}</p>
-              <p>vod_offset: {video.vod_offset}</p>
-              ---------------------------
-            </div>
-          );
+          return <Cards key={index} data={video}  />;
         })}
       </div>
     )
   );
 }
+
+            // <div key={index}>
+            //   <p>id: {video.id}</p>
+            //   <p>url: {video.url}</p>
+            //   <p>embed_url: {video.embed_url}</p>
+            //   <p>broadcaster_id: {video.broadcaster_id}</p>
+            //   <p>broadcaster_name: {video.broadcaster_name}</p>
+            //   <p>creator_id: {video.creator_id}</p>
+            //   <p>creator_name: {video.creator_name}</p>
+            //   <p>video_id: {video.video_id}</p>
+            //   <p>game_id: {video.game_id}</p>
+            //   <p>language: {video.language}</p>
+            //   <p>title: {video.title}</p>
+            //   <p>view_count: {video.view_count}</p>
+            //   <p>created_at: {video.created_at}</p>
+            //   <p>thumbnail_url: {video.thumbnail_url}</p>
+            //   <p>duration: {video.duration}</p>
+            //   <p>vod_offset: {video.vod_offset}</p>
+            //   ---------------------------
+            // </div>

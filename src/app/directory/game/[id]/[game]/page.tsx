@@ -24,6 +24,12 @@ export async function getGames(game: string) {
 
 export default async function Game({ params }: { params: { id: string, game: string } }) {
   const games: API<API_GAMES[]> = await getGames(params.id ?? "");
+  const number = 123456
+  const stringifiedNumber = number?.toString();
+  const splittedNumber = stringifiedNumber.split("");
+  console.log("stringifiedNumber", stringifiedNumber);
+  console.log("splittedNumber", splittedNumber);
+  console.log("length", stringifiedNumber.length);
 
   return (
     games && (
