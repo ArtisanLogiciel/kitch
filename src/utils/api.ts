@@ -27,6 +27,24 @@ export async function getCategories() {
 //     console.log("Error in getStreams: ", error);
 //   }
 // }
+export async function getStreams(){
+  const options = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Client-ID': process.env.DB_CLIENT || '',
+          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
+        },
+        cache: 'no-store' as RequestCache,
+  };
+  try{
+      const response = await fetch(`https://api.twitch.tv/helix/streams?language=fr`, options);
+      const dataStream = await response.json();
+      return dataStream?.data
+  }catch(error: any){
+      console.log("Error in getStreams: ", error)
+  }
+}
 
 export async function getGames() {
   try {

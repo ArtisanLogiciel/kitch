@@ -1,5 +1,5 @@
 export function getNumber_K_Mode(nombre: number) {
-  const kol = nombre.toString();
+  const kol = nombre?.toString();
   const tab = kol.split("");
   const longueur = tab.length;
   const reconvertir = tab.map((elmnt) => parseFloat(elmnt));

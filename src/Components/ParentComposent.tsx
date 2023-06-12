@@ -26,9 +26,6 @@ export default function Global(){
         const handleScroll = () => {
         const isBottom = window.scrollY;
         const Height = window.innerHeight;
-        console.log(isBottom)
-        console.log(window.innerHeight)
-
           if(isBottom >= Height){
              setIsLoading(true)
           }
