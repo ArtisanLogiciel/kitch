@@ -41,7 +41,7 @@ export async function LiveChannels() {
       </h2>
       <div className='w-full flex flex-row flex-wrap items-center justify-between mb-[2%]'>
         {!liveChannels ? <div>chargement...</div> : 
-            liveChannels.map((element, index) => (
+            liveChannels?.map((element, index) => (
                 <Cards key={index} element={element} index={index} Propstags={false} Button={ButtonCHLive}/>
             ))}
             { ButtonCHLive ? <div className=' w-full flex items-center justify-evenly'>

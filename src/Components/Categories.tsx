@@ -28,7 +28,7 @@ export async function Categories() {
   }, []);
 
   return categories ? (
-    <div className='mb-[2%] w-full h-[50vh]'>
+    <div className='mb-[2%] w-full h-[50vh]' id="Test1">
           <h2 className='text-lg font-medium m-2'>
             <Link href={`/directory`} className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Catégories </Link>
                 qui pourrait vous plaires
