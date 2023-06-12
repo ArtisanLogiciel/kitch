@@ -38,7 +38,6 @@ export function Games_1(){
               <Cards
                 key={index}
                 data={element}
-                Propstags={false}
               />
             )})
           )}

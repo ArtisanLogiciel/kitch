@@ -1,4 +1,5 @@
 // Types
+import { Cards } from "@/Components/Cards";
 import { API, API_GAME_VIDEOS } from "@/types/api";
 
 type getVideosProps = {
@@ -44,29 +45,29 @@ export default async function Videos({ game_id, type, sort }: VideosProps) {
     <div>
       <p>Videos</p>
       {videos.map((video, index) => {
-        return (
-          <div key={index}>
-            <p>id: {video.id}</p>
-            <p>stream_id: {video.stream_id}</p>
-            <p>user_id: {video.user_id}</p>
-            <p>user_login: {video.user_login}</p>
-            <p>user_name: {video.user_name}</p>
-            <p>title: {video.title}</p>
-            <p>description: {video.description}</p>
-            <p>created_at: {video.created_at}</p>
-            <p>published_at: {video.published_at}</p>
-            <p>url: {video.url}</p>
-            <p>thumbnail_url: {video.thumbnail_url}</p>
-            <p>viewable: {video.viewable}</p>
-            <p>view_count: {video.view_count}</p>
-            <p>language: {video.language}</p>
-            <p>type: {video.type}</p>
-            <p>duration: {video.duration}</p>
-            <p>muted_segments: {video.muted_segments}</p>
-            ------------------------
-          </div>
-        );
+        return <Cards key={index} data={video} tags />;
       })}
     </div>
   ) : null;
 }
+
+          // <div key={index}>
+          //   <p>id: {video.id}</p>
+          //   <p>stream_id: {video.stream_id}</p>
+          //   <p>user_id: {video.user_id}</p>
+          //   <p>user_login: {video.user_login}</p>
+          //   <p>user_name: {video.user_name}</p>
+          //   <p>title: {video.title}</p>
+          //   <p>description: {video.description}</p>
+          //   <p>created_at: {video.created_at}</p>
+          //   <p>published_at: {video.published_at}</p>
+          //   <p>url: {video.url}</p>
+          //   <p>thumbnail_url: {video.thumbnail_url}</p>
+          //   <p>viewable: {video.viewable}</p>
+          //   <p>view_count: {video.view_count}</p>
+          //   <p>language: {video.language}</p>
+          //   <p>type: {video.type}</p>
+          //   <p>duration: {video.duration}</p>
+          //   <p>muted_segments: {video.muted_segments}</p>
+          //   ------------------------
+          // </div>

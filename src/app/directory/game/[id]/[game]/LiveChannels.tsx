@@ -1,5 +1,5 @@
 // Components
-import { Cards, SecondCards } from "@/Components/Cards";
+import { Cards } from "@/Components/Cards";
 
 // Types
 import { API, API_GAME_STREAMS } from "@/types/api";
@@ -32,15 +32,10 @@ export default async function LiveChannels({ id }: {id: string}) {
 
   return (
     streams && (
-      <div className="flex flex-wrap gap-8 w-full">
-        {/* <p>LiveChannels</p> */}
-
+      <div className="flex flex-wrap gap-4 w-full">
         {streams.map((stream, index) => {
-          return (
-            <>
-              <Cards key={index} data={stream} Propstags={true} />
-            </>
-          );})}
+          return <Cards key={index} data={stream} tags />;
+        })}
       </div>
     )
   );
