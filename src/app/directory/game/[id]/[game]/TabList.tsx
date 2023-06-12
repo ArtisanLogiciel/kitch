@@ -14,8 +14,8 @@ export default function Tablist({ id, game }: { id: string, game: string }) {
     ]
 
   return (
-    <nav className=" text-xl">
-      <ul className="flex flex-wrap gap-4 bg-gray-200 p-4 font-bold rounded-lg">
+    <nav className="text-lg">
+      <ul className="flex flex-wrap gap-4 p-4 font-bold rounded-lg">
         {tabs.map((tab, index) => {
           return (
             <li

@@ -1,3 +1,6 @@
+// Components
+import { Cards, SecondCards } from "@/Components/Cards";
+
 // Types
 import { API, API_GAME_STREAMS } from "@/types/api";
 
@@ -25,15 +28,26 @@ export async function getLiveChannels(game: string) {
 
 export default async function LiveChannels({ id }: {id: string}) {
   const streams: API<API_GAME_STREAMS[]> = await getLiveChannels(id ?? "");
-  console.log("streams", streams);
+  console.log("streams LiveChannels", streams ? streams[0] : "no streams");
 
   return (
     streams && (
-      <div className="w-full">
-        <p>LiveChannels</p>
-        {streams.map((stream, index) => (
-          <div key={index}>
-            <p>id: {stream.id}</p>
+      <div className="flex flex-wrap gap-8 w-full">
+        {/* <p>LiveChannels</p> */}
+
+        {streams.map((stream, index) => {
+          return (
+            <>
+              <Cards key={index} data={stream} Propstags={true} />
+            </>
+          );})}
+      </div>
+    )
+  );
+}
+
+            {
+              /* <p>id: {stream.id}</p>
             <p>user_id: {stream.game_id}</p>
             <p>user_name: {stream.user_name}</p>
             <p>title: {stream.title}</p>
@@ -44,10 +58,5 @@ export default async function LiveChannels({ id }: {id: string}) {
             <p>tag_ids: {stream.tag_ids}</p>
             <p>tags: {stream.tags}</p>
             <p>is_mature: {stream.is_mature}</p>
-            ------------------------
-          </div>
-        ))}
-      </div>
-    )
-  );
-}
+            ------------------------ */
+            }

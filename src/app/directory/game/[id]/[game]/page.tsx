@@ -27,7 +27,7 @@ export default async function Game({ params }: { params: { id: string, game: str
 
   return (
     games && (
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col items-center justify-center w-full">
         {/* @ts-expect-error Async Server Component */}
         <LiveChannels id={params.id} />
       </div>
