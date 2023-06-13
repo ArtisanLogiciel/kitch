@@ -28,7 +28,7 @@ export function Cards({ data, tags, index }: CardsProps) {
             alt={data.title}
             width={320}
             height={180}
-            className="w-full h-full"
+            priority={true}
           />
 
           <div className="h-[3vh] font-[500] flex items-center justify-center bg-[#eb0400] text-[white] rounded pointer-events-none absolute m-[0.7rem] top-0 left-0">
@@ -52,12 +52,13 @@ export function Cards({ data, tags, index }: CardsProps) {
               alt={data.title}
               width={40}
               height={40}
+              priority={true}
               className="rounded-full w-[40px] h-[40px]"
             />
           </div>
 
           <div className="w-full flex items-start justify-start mt-[2%] flex-col">
-            <h3 className="w-full text-[14px] font-[600] whitespace-nowrap">
+            <h3 className="w-full text-[14px] font-[600]">
               {data?.title.length <= 33 ? data?.title : data?.title.substring(0, 33) + "..."}
             </h3>
             <p className="w-full text-[13px] text-[#53535F]">{data?.user_name}</p>

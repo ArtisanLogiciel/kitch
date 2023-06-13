@@ -10,13 +10,14 @@ type PropsStreamCard ={
     CallAPI: any,
     title: string,
     Choice: boolean,
-    Tags: boolean,
+    PropsTags: boolean,
 }
 
-export default function StreamCard({CallAPI, title, Choice, Tags} : PropsStreamCard){
+export default function StreamCard({CallAPI, title, Choice, PropsTags} : PropsStreamCard){
+    const router = useRouter()
     const [data, setdata] = React.useState<any>(null)
     const [Button, setButton] = React.useState<any>(true)
-    const router = useRouter()
+    console
     const [valeurIndex, setValeurIndex] = React.useState<number>(3)
     React.useEffect(() => {
         CallAPI()
@@ -38,11 +39,11 @@ export default function StreamCard({CallAPI, title, Choice, Tags} : PropsStreamC
                     
             }
           </h2>
-              <div className='w-full border  -600 flex flex-row flex-wrap items-center justify-between mb-[2%]'>
+              <div className='w-full flex flex-row flex-wrap items-center justify-between mb-[2%]'>
               {!data ? <div>chargement...</div> : 
                     data.map((element: any, index: number) => (
                         index < valeurIndex && (
-                            <Cards key={index} data={element} index={index} tags={Tags} />
+                            <Cards key={index} data={element} index={index} tags={PropsTags} />
                         )
             ))}
 {Button ? <div className=' w-full flex items-center justify-evenly'>
@@ -61,9 +62,9 @@ export default function StreamCard({CallAPI, title, Choice, Tags} : PropsStreamC
                                 } 
                         }}>
                         {Choice ? 'Afficher Tout' : 'Afficher plus'}</button>
-                        {Choice ? <KeyboardArrowRightIcon sx={{color: "#5c16c5"}} /> : <KeyboardArrowDownIcon sx={{color: "#5c16c5"}} />}  
+                        <div>{Choice ? <KeyboardArrowRightIcon sx={{color: "#5c16c5"}} /> : <KeyboardArrowDownIcon sx={{color: "#5c16c5"}} />}</div>  
                         </div>
-                        <div className='w-[40%]'><div className='h-[0.5px] w-full bg-[black]'></div></div>
+                            <div className='w-[40%]'><div className='h-[0.5px] w-full bg-[black]'></div></div>
                         </div>
                         : null}
               </div>                      

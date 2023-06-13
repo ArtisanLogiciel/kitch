@@ -17,7 +17,7 @@ export default function Homepage() {
                 CallAPI={getStreams} 
                 title='Chaînes lives' 
                 Choice={false}
-                Tags={false}
+                PropsTags={true}
                 />
       {/* @ts-expect-error Async Server Component */}
       <SelectorCategory />

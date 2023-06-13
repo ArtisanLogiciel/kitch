@@ -52,14 +52,14 @@ export default function Global(){
                 CallAPI={GetVogue} 
                 title='Vogue' 
                 Choice={false}
-                Tags={false}
+                PropsTags={true}
                 />
                 <RecentlyGames />
                 <StreamCard 
                 CallAPI={LatestGamesStreams} 
                 title='Streams de jeux récemment sortis' 
                 Choice={true}
-                Tags={false}
+                PropsTags={true}
                 />
                  
             </>
@@ -70,19 +70,19 @@ export default function Global(){
                 CallAPI={GetStreamGamesOne} 
                 title='Discussion' 
                 Choice={false}
-                Tags={false}
+                PropsTags={true}
                 />
                 <StreamCard 
                 CallAPI={GetStreamGamesTwo} 
                 title='League of Legends' 
                 Choice={false}
-                Tags={false}
+                PropsTags={true}
                 />
                 <StreamCard 
                 CallAPI={GetStreamGamesThree} 
                 title=' Fortnite' 
                 Choice={false}
-                Tags={false}
+                PropsTags={true}
                 /> 
             </>
             : null}
@@ -92,19 +92,19 @@ export default function Global(){
                 CallAPI={GetCreative} 
                 title='Créativité' 
                 Choice={true}
-                Tags={false}
+                PropsTags={true}
                 />
                 <StreamCard 
                 CallAPI={GetCombat} 
                 title='Jeux de combat' 
                 Choice={true}
-                Tags={false}
+                PropsTags={true}
                 />
                 <StreamCard 
                 CallAPI={GetPlatformAndGames} 
                 title='Jeux de cartes et de plateau' 
                 Choice={true}
-                Tags={false}
+                PropsTags={true}
                 />
             </>
             : null} 
@@ -114,13 +114,13 @@ export default function Global(){
                 CallAPI={GetCarSimulation} 
                 title='Simulations de course' 
                 Choice={true}
-                Tags={false}
+                PropsTags={true}
                 />
                 <StreamCard 
                 CallAPI={GetSport} 
                 title='Jeux de sports' 
                 Choice={true}
-                Tags={false}
+                PropsTags={false}
                 />
               <Footer />
             </>
