@@ -9,14 +9,16 @@ import Image from "next/image";
 export type CardsProps = {
   data: any;
   tags?: boolean;
+  index: number;
 };
 
-export function Cards({ data, tags }: CardsProps) {
+export function Cards({ data, tags, index }: CardsProps) {
   const router = useRouter();
 
   return (
     data && (
       <div
+        key={index}
         className="hover:cursor-pointer w-[32%] flex mb-[2%] flex-col items-start justify-start"
         onClick={() => router.push(`/${data?.user_login}`)}
       >

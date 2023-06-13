@@ -42,7 +42,7 @@ export default function StreamCard({CallAPI, title, Choice, Tags} : PropsStreamC
               {!data ? <div>chargement...</div> : 
                     data.map((element: any, index: number) => (
                         index < valeurIndex && (
-                            <Cards key={index} element={element} index={index} Propstags={Tags} />
+                            <Cards key={index} data={element} index={index} tags={Tags} />
                         )
             ))}
 {Button ? <div className=' w-full flex items-center justify-evenly'>
