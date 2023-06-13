@@ -1,9 +1,10 @@
 // Components
 import { LiveCarousel } from "../Components/LiveCarousel";
-import { LiveChannels } from "../Components/LiveChannels";
 import { Categories } from "../Components/Categories";
 import { SelectorCategory } from "../Components/SelectorCategory";
 import Global from "@/Components/ParentComposent";
+import StreamCard from "@/Components/StreamCard";
+import { getStreams } from "@/utils/api";
 
 
 export default function Homepage() {
@@ -11,9 +12,13 @@ export default function Homepage() {
     
     <>
       {/* @ts-expect-error Async Server Component */}
-        <LiveCarousel />
-      {/* @ts-expect-error Async Server Component */}
-      <LiveChannels  />
+      <LiveCarousel />
+      <StreamCard 
+                CallAPI={getStreams} 
+                title='Chaînes lives' 
+                Choice={false}
+                Tags={false}
+                />
       {/* @ts-expect-error Async Server Component */}
       <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}

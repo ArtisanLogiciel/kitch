@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS} from "@/types/api";
+import { API, API_CATEGORIES} from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";

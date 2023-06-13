@@ -14,11 +14,11 @@ export function RecentlyGames(){
     }, [])
         return(
             
-            <div className='mb-[2%] w-full h-[50vh]'>
+            <div className='mb-[4%] w-full h-[50vh]'>
           <h2 className='text-lg m-2 font-[700]'>
                 Jeux récemment sortis
             </h2>                            
-                <div className='w-full border-0  -600 flex justify-start items-start mr-[1%]'>
+                <div className='w-full  flex justify-start items-start mr-[1%]'>
                     {!dataRGames ? <div>chargement...</div> : dataRGames.map((element: any, index: number) => (
                         <div key={index} className='flex items-start justify-start flex-col h-[100%] w-[155px] mr-[1%]'>
                             <div className='w-full relative'>

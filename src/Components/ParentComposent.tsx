@@ -1,17 +1,18 @@
 "use client";
 
 import * as React from 'react';
-import { Vogue } from "@/Components/Vogue";
+import StreamCard from './StreamCard';
+import { GetVogue } from '@/utils/api';
+import { LatestGamesStreams } from '@/utils/api';
+import { GetStreamGamesOne } from '@/utils/api';
+import { GetStreamGamesTwo } from '@/utils/api';
+import { GetStreamGamesThree } from '@/utils/api';
+import { GetCreative } from '@/utils/api';
+import { GetCombat } from '@/utils/api';
+import { GetPlatformAndGames } from '@/utils/api';
+import { GetCarSimulation } from '@/utils/api';
+import { GetSport } from '@/utils/api';
 import { RecentlyGames } from "@/Components/RecentlyGames";
-import { GamesLatest } from "@/Components/LatestGamesStreams";
-import { Games_1 } from "@/Components/GamesOne";
-import { Games_Two } from "@/Components/GamesTwo";
-import { Games_3 } from "@/Components/GamesThree";
-import { Creative } from "@/Components/Creative";
-import { Fight } from "@/Components/Fight";
-import { Platform } from "@/Components/PlatformAndGames";
-import { CarSimulation } from "@/Components/Simulation";
-import { Sports } from "@/Components/Sport";
 import Footer from "@/Components/AmazonLogo";
 
 
@@ -47,29 +48,80 @@ export default function Global(){
         <>
         {isLaoding ? 
             <>
-                <Vogue />
+                <StreamCard 
+                CallAPI={GetVogue} 
+                title='Vogue' 
+                Choice={false}
+                Tags={false}
+                />
                 <RecentlyGames />
-                <GamesLatest /> 
+                <StreamCard 
+                CallAPI={LatestGamesStreams} 
+                title='Streams de jeux récemment sortis' 
+                Choice={true}
+                Tags={false}
+                />
+                 
             </>
             : null}
         {isLoadingTwo ? 
             <>
-                <Games_1 />
-                <Games_Two />
-                <Games_3 />  
+                <StreamCard 
+                CallAPI={GetStreamGamesOne} 
+                title='Discussion' 
+                Choice={false}
+                Tags={false}
+                />
+                <StreamCard 
+                CallAPI={GetStreamGamesTwo} 
+                title='League of Legends' 
+                Choice={false}
+                Tags={false}
+                />
+                <StreamCard 
+                CallAPI={GetStreamGamesThree} 
+                title=' Fortnite' 
+                Choice={false}
+                Tags={false}
+                /> 
             </>
             : null}
         {isLoadingThree ? 
             <>
-              <Creative />
-              <Fight />
-              <Platform /> 
+              <StreamCard 
+                CallAPI={GetCreative} 
+                title='Créativité' 
+                Choice={true}
+                Tags={false}
+                />
+                <StreamCard 
+                CallAPI={GetCombat} 
+                title='Jeux de combat' 
+                Choice={true}
+                Tags={false}
+                />
+                <StreamCard 
+                CallAPI={GetPlatformAndGames} 
+                title='Jeux de cartes et de plateau' 
+                Choice={true}
+                Tags={false}
+                />
             </>
             : null} 
         {isLoadingFour ? 
             <>
-              <CarSimulation />
-              <Sports />
+              <StreamCard 
+                CallAPI={GetCarSimulation} 
+                title='Simulations de course' 
+                Choice={true}
+                Tags={false}
+                />
+                <StreamCard 
+                CallAPI={GetSport} 
+                title='Jeux de sports' 
+                Choice={true}
+                Tags={false}
+                />
               <Footer />
             </>
             : null}     
