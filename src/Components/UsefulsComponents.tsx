@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { useSwiper } from 'swiper/react';
 
-
 function Nombres(nombre: number){
     const kol = nombre.toString()
     const tab = kol.split('')

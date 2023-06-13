@@ -98,7 +98,7 @@ export default function NavigationLive() {
                     <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
                     <p className="text-[13px] font-[300]">
                       {channelName?.viewer_count < 1000 ? (
-                        <div>{channelName?.viewer_count}</div>
+                        <>{channelName?.viewer_count}</>
                       ) : (
                         getNumber_K_Mode(channelName?.viewer_count)
                       )}
