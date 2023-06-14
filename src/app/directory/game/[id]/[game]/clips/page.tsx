@@ -4,7 +4,7 @@ import Link from "next/link";
 import { API, API_GAMES_CLIPS } from "@/types/api";
 import { Cards } from "@/Components/Cards";
 
-export async function getClips(game: string) {
+async function getClips(game: string) {
   const options = {
     method: "GET",
     headers: {
@@ -26,7 +26,14 @@ export async function getClips(game: string) {
   }
 }
 
-export default async function Clips({ params }: { params: { id: string; game: string } }) {
+type ClipsProps = {
+  params: {
+    id: string;
+    game: string;
+  };
+};
+
+export default async function Clips({ params }: ClipsProps) {
   const videos: API<API_GAMES_CLIPS[]> = await getClips(params.id ?? "");
 
   return (
