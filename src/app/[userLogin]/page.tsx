@@ -13,7 +13,7 @@ import NavigLive from "@/Components/NaviguationLive";
 import Channel from '@/Components/Channel'
 import Chat from '@/Components/Chat'
 
-//const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
+const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 
 export default function Stream() {
@@ -28,8 +28,17 @@ export default function Stream() {
 
   return (
     <>     
-      <Channel userLogin={userLogin} />
-      <Chat userLogin={userLogin} />
+    {userLogin ? <><Channel userLogin={userLogin} />
+      <Chat userLogin={userLogin} /> </> : <div className="ContenuPrincipale">
+      <div>
+        <ReactPlayer
+          url={`https://www.twitch.tv/${params.idvideos}`}
+          className="react-player"
+          controls
+        />
+        Chemin videos/ IdVIdeos
+      </div>
+    </div>}
 
 
       {/* <div className="ContenuPrincipale">
