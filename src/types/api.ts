@@ -1,4 +1,4 @@
-import { API_GAME_STREAMS } from './api';
+import { API_GAME_VIDEOS } from '@/types/api';
 export type API<T> = undefined | null | T;
 
 export type API_CATEGORIES = {
@@ -143,4 +143,19 @@ export type API_GAME_STREAMS = {
   is_mature: boolean;
 };
 
-
+export type API_GAME_VIDEOS = {
+  id: string;
+  user_id: string;
+  user_name: string;
+  title: string;
+  description: string;
+  created_at: string;
+  published_at: string;
+  url: string;
+  thumbnail_url: string;
+  viewable: string;
+  view_count: number;
+  language: string;
+  type: string;
+  duration: string;
+};
