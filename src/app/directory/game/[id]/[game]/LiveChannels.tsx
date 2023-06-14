@@ -26,7 +26,11 @@ export async function getLiveChannels(game: string) {
   }
 }
 
-export default async function LiveChannels({ id }: {id: string}) {
+type LiveChannelProps = {
+  id: string;
+};
+
+export default async function LiveChannels({ id }: LiveChannelProps) {
   const streams: API<API_GAME_STREAMS[]> = await getLiveChannels(id ?? "");
   console.log("streams LiveChannels", streams ? streams[0] : "no streams");
 
