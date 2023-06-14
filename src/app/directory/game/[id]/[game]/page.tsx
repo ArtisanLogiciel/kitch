@@ -22,7 +22,14 @@ export async function getGames(game: string) {
   }
 }
 
-export default async function Game({ params }: { params: { id: string, game: string } }) {
+type GameProps = {
+  params: {
+    id: string;
+    game: string;
+  };
+};
+
+export default async function Game({ params }: GameProps) {
   const games: API<API_GAMES[]> = await getGames(params.id ?? "");
   const number = 123456
   const stringifiedNumber = number?.toString();
