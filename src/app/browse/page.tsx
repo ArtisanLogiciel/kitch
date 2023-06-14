@@ -1,11 +1,9 @@
-"use client";
 // Components
-
 import Image from "next/image";
+
 export default function Browsepage() {
   return (
-    <div className="ContenuPrincipale">
-
+   
     <div className='w-full border-2 border-solid border-transparent flex items-center justify-evenly row flex-wrap mb-[2%] z-30'>
     <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
        <div className='flex items-center justify-center'>
@@ -69,6 +67,6 @@ export default function Browsepage() {
     </div>
 
 </div> 
-    </div>
+
   );
 }

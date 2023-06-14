@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
 import { useEffect, useState } from "react";
 
 // Types
@@ -12,7 +12,6 @@ import { getCategories } from "@/utils/api";
 import { getImageSized } from "@/utils/getImageSized";
 
 export async function Categories() {
-  const router = useRouter();
 
   const [categories, setCategories] = useState<API<API_CATEGORIES[]>>(null);
 
@@ -25,34 +24,27 @@ export async function Categories() {
         console.log(error);
       }
     }
-
     fetchData();
   }, []);
 
   return categories ? (
-    <div className="flex flex-col gap-4 w-full border-solid border-red-500 border-2 mb-10">
-      <h2 className="text-2xl font-bold">
-        <span className="text-blue-500 cursor-pointer" onClick={() => router.push(`/directory`)}>
-          Catégories
-        </span>{" "}
-        que vous pourriez aimer
-      </h2>
-
-      <div className="flex flex-wrap justify-center gap-4">
+    <div className='mb-[2%] w-full h-[50vh]' id="Test1">
+          <h2 className='text-lg font-medium m-2'>
+            <Link href={`/directory`} className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Catégories </Link>
+                qui pourrait vous plaires
+            </h2>                            
+      <div className="w-full flex justify-start items-start mr-[1%]">
         {categories.map((categorie, index) => {
           return (
-            index < 8 && (
-              <div key={index} className="flex flex-col items-start gap-2 w-1/5">
+            index < 6 && (
+              <div key={index} className="flex items-start justify-start flex-col h-[100%] w-[155px] mr-[1%] relative">
                 <Image
                   src={getImageSized(categorie.box_art_url, "204", "273")}
                   alt={categorie.name}
                   width={204}
                   height={273}
                 />
-                id: {categorie.id}
-                <br />
-                igdb_id: {categorie.igdb_id}
-                <p className="text-center">{categorie.name}</p>
+                <h2 className='font-semibold text-[15px] w-full mt-[1%]'>{categorie?.name}</h2>
               </div>
             )
           );
