@@ -1,4 +1,3 @@
-import { API_GAME_VIDEOS } from '@/types/api';
 export type API<T> = undefined | null | T;
 
 export type API_CATEGORIES = {
