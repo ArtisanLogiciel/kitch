@@ -9,7 +9,7 @@ import Image from "next/image";
 export type CardsProps = {
   data: any;
   tags?: boolean;
-  index: number;
+  index?: number;
 };
 
 export function Cards({ data, tags, index }: CardsProps) {
