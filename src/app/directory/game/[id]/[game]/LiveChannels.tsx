@@ -2,7 +2,7 @@
 import { Cards } from "@/Components/Cards";
 
 // Types
-import { API, API_GAME_STREAMS } from "@/types/api";
+import { API, API_STREAMS } from "@/types/api";
 
 export async function getLiveChannels(game: string) {
   const options = {

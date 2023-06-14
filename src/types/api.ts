@@ -1,3 +1,4 @@
+import { API_GAME_STREAMS } from './api';
 export type API<T> = undefined | null | T;
 
 export type API_CATEGORIES = {
@@ -32,7 +33,6 @@ export type API_GAMES = {
   igdb_id: string;
 }
 
-<<<<<<< HEAD
 export type API_USERS = {
   broadcaster_type: string,
   created_at: string,
@@ -110,14 +110,26 @@ export type API_CHAT = {
   };
 };
 
+export type API_GAMES_CLIPS = {
+  broadcaster_id: string;
+  broadcaster_name: string;
+  created_at: string;
+  creator_id: string;
+  creator_name: string;
+  embed_url: string;
+  game_id: string;
+  id: string;
+  language: string;
+  thumbnail_url: string;
+  title: string;
+  url: string;
+  video_id: string;
+  view_count: number;
+};
 
-
-
-=======
 export type API_GAME_STREAMS = {
   id: string;
   user_id: string;
-  user_login: string;
   user_name: string;
   game_id: string;
   game_name: string;
@@ -128,46 +140,7 @@ export type API_GAME_STREAMS = {
   language: string;
   thumbnail_url: string;
   tag_ids: string[];
-  tags: string[];
   is_mature: boolean;
 };
 
-export type API_GAME_VIDEOS = {
-  id: string;
-  stream_id: string;
-  user_id: string;
-  user_login: string;
-  user_name: string;
-  title: string;
-  description: string;
-  created_at: string;
-  published_at: string;
-  url: string;
-  thumbnail_url: string;
-  viewable: string;
-  view_count: number;
-  language: string;
-  type: string;
-  duration: string;
-  muted_segments: null;
-};
 
-export type API_GAMES_CLIPS = {
-  id: string;
-  url: string;
-  embed_url: string;
-  broadcaster_id: string;
-  broadcaster_name: string;
-  creator_id: string;
-  creator_name: string;
-  video_id: string;
-  game_id: string;
-  language: string;
-  title: string;
-  view_count: number;
-  created_at: string;
-  thumbnail_url: string;
-  duration: number;
-  vod_offset: number;
-};
->>>>>>> 546b16173e8bfb7b881a8bfaca21079c79db9037
