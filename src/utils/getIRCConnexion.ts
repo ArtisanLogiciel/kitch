@@ -31,7 +31,7 @@ console.log("**************",client,"**************");
         client.join(channel);
     });
 
-    client.on('message', (event) => {
+    client.on('message', (event: any) => {
         console.log(`[${event.channel}] ${event.nick}: ${event.message}`);
     });
 
