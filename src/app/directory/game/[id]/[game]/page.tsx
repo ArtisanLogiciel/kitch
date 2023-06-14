@@ -4,7 +4,7 @@ import LiveChannels from "./LiveChannels";
 // Types
 import { API, API_GAMES } from "@/types/api";
 
-export async function getGames(game: string) {
+async function getGames(game: string) {
   const options = {
     method: "GET",
     headers: {
