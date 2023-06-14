@@ -25,16 +25,15 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export async function LiveCarousel() {
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
-  //console.log("liveCarousel", liveCarousel);
-
   React.useEffect(() => {
-   async function fetchData() {
+   /*async function fetchData() {
       try {
-        const data = await getStreams();
-        setLiveCarousel(data);
+        const data  = await getStreams();
+        if (data) {
+          setLiveCarousel(data.splice(-10, 7));
+        }
       } catch (error) {
         console.log(error);
-        console.log(liveCarousel);
       }
     }
     // getStreams().then(data => {setLiveCarousel(data)
@@ -138,4 +137,6 @@ const SwiperButtonNext = ({ children }: { children: any }) => {
 const SwiperButtonPrev = ({ children }: { children: any }) => {
   const swiper = useSwiper();
   return <button onClick={() => swiper.slidePrev()}>{children}</button>;
-};
+};*/
+  }, []);
+}

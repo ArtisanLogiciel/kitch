@@ -1,41 +1,29 @@
 // Components
 import { LiveCarousel } from "../Components/LiveCarousel";
-import { LiveChannels } from "../Components/LiveChannels";
 import { Categories } from "../Components/Categories";
-import { SelectorCard } from "../Components/SelectorCard";
-import { Vogue } from "@/Components/Vogue";
-import { RecentlyGames } from "@/Components/RecentlyGames";
-import { GamesLatest } from "@/Components/LatestGamesStreams";
-import { GamesRecom } from "@/Components/RecommandationsGames";
-import { Creative } from "@/Components/Creative";
-import { Fight } from "@/Components/Fight";
-import { Platform } from "@/Components/PlatformAndGames";
-import { CarSimulation } from "@/Components/Simulation";
-import { Sports } from "@/Components/Sport";
-import Footer from "@/Components/AmazonLogo";
+import { SelectorCategory } from "../Components/SelectorCategory";
+import Global from "@/Components/ParentComposent";
+import StreamCard from "@/Components/StreamCard";
+import { getStreams } from "@/utils/api";
+
 
 export default function Homepage() {
   return (
     
     <>
       {/* @ts-expect-error Async Server Component */}
-        <LiveCarousel />
+      <LiveCarousel />
+      <StreamCard 
+                CallAPI={getStreams} 
+                title='Chaînes lives' 
+                Choice={false}
+                PropsTags={true}
+                />
       {/* @ts-expect-error Async Server Component */}
-      <LiveChannels />
-      {/* @ts-expect-error Async Server Component */}
-      <SelectorCard />
+      <SelectorCategory />
       {/* @ts-expect-error Async Server Component */}
       <Categories />
-      <Vogue />
-      <RecentlyGames />
-      <GamesLatest />
-      <GamesRecom />
-      <Creative />
-      <Fight />
-      <Platform />
-      <CarSimulation />
-      <Sports />
-      <Footer />
+      <Global />     
     </>
   );
 }

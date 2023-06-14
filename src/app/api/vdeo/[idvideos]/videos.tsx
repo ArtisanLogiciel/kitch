@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react'
-import BarreDeRecherche from '../../../../Components/NavBar';
 import { useParams } from 'next/navigation';
 import { default as _ReactPlayer } from 'react-player/lazy';
 import { ReactPlayerProps } from "react-player/types/lib";
@@ -13,7 +12,6 @@ export default function Home(){
 
     return (
         <>
-      <BarreDeRecherche />
       <NavigationLive />
       <div className="ContenuPrincipale">
         <div>

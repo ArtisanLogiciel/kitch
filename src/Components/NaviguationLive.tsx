@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from 'next/link';
 
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -17,8 +17,9 @@ import { getStreams } from "@/utils/api";
 import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
+
 export default function NavigationLive() {
-  //const router = useRouter();
+  const router = useRouter();
 
   const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
 
@@ -132,6 +133,7 @@ export default function NavigationLive() {
                 href={`/${channelName?.user_login}`}
                 className="GridLive"
                 key={index}
+                onClick={() => router.push(`/${channelName?.user_name}`)}
               >
                 <div className="w-[18%] h-full flex items-center justify-center"
                 >
@@ -139,7 +141,7 @@ export default function NavigationLive() {
                     src={getImageSized(channelName.thumbnail_url, "50", "50")}
                     width={30}
                     height={30}
-                    alt="avatar"
+                    alt={channelName?.user_login}
                     className="rounded-full w-[30px] h-[30px]"
                   />
                 </div>
@@ -156,7 +158,7 @@ export default function NavigationLive() {
                     <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
                     <p className="text-[13px] font-[300]">
                       {channelName?.viewer_count < 1000 ? (
-                        <div>{channelName?.viewer_count}</div>
+                        <>{channelName?.viewer_count}</>
                       ) : (
                         getNumber_K_Mode(channelName?.viewer_count)
                       )}

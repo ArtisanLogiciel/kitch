@@ -18,15 +18,31 @@ export async function getCategories() {
   }
 }
 
-
-// Info sur les Streams => https://dev.twitch.tv/docs/api/reference/#get-streams (Gets a list of all streams)
-export async function getStreams() {
-  try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { cache: 'no-store' });
-    const data: API<API_STREAMS[]> = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Error in getStreams: ", error);
+// export async function getStreams() {
+//   try {
+//     const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { cache: 'no-store' });
+//     const data: API<API_STREAMS[]> = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.log("Error in getStreams: ", error);
+//   }
+// }
+export async function getStreams(){
+  const options = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Client-ID': process.env.DB_CLIENT || '',
+          'Authorization': `Bearer ${process.env.DB_RESULT_TOKEN}`,
+        },
+        cache: 'no-store' as RequestCache,
+  };
+  try{
+      const response = await fetch(`https://api.twitch.tv/helix/streams?language=fr`, options);
+      const dataStream = await response.json();
+      return dataStream?.data
+  }catch(error: any){
+      console.log("Error in getStreams: ", error)
   }
 }
 
@@ -40,8 +56,6 @@ export async function getGames() {
     console.log("Error in getGames: ", error);
   }
 }
-// GET https://api.twitch.tv/helix/analytics/games
-
 export async function GetVogue() {
   const options = {
       method: 'GET',
