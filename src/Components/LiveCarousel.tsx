@@ -137,4 +137,6 @@ const SwiperButtonNext = ({ children }: { children: any }) => {
 const SwiperButtonPrev = ({ children }: { children: any }) => {
   const swiper = useSwiper();
   return <button onClick={() => swiper.slidePrev()}>{children}</button>;
-};
+};*/
+  }, []);
+}
