@@ -29,7 +29,7 @@ export default function Stream() {
   return (
     <>     
       <Channel userLogin={userLogin} />
-      <Chat />
+      <Chat userLogin={userLogin} />
 
 
       {/* <div className="ContenuPrincipale">

@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS } from "@/types/api";
+import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS, API_CHAT } from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -268,7 +268,7 @@ export async function getUser(userLogin: string) {
 // Info sur une CHAINE => https://dev.twitch.tv/docs/api/reference/#get-channel-information (Gets information about one or more channels.)
 export async function getChannel(broadcaster_id: string) {
 
-  console.log("-----URL getChannel = ", `${BASE}/${API_TWITCH}/channel?broadcaster_id=${broadcaster_id}`);
+  //console.log("-----URL getChannel = ", `${BASE}/${API_TWITCH}/channel?broadcaster_id=${broadcaster_id}`);
 
   // =>  http://localhost:3000/api/twitch/channel?broadcaster_id=407388596
 
@@ -284,7 +284,7 @@ export async function getChannel(broadcaster_id: string) {
 // Info sur les CHANNEL_FOLLOWER  => https://dev.twitch.tv/docs/api/reference/#get-channel-followers (Gets a list of users that follow the specified broadcaster. You can also use this endpoint to see whether a specific user follows the broadcaster.)
 export async function getFollowers(broadcaster_id: string) {
 
-  console.log("-----URL getFollowers = ", `${BASE}/${API_TWITCH}/followers?broadcaster_id=${broadcaster_id}`);
+  //console.log("-----URL getFollowers = ", `${BASE}/${API_TWITCH}/followers?broadcaster_id=${broadcaster_id}`);
 
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/followers?broadcaster_id=${broadcaster_id}`, { cache: 'no-store' });
@@ -298,7 +298,7 @@ export async function getFollowers(broadcaster_id: string) {
 // Info sur les EQUIPES  => https://dev.twitch.tv/docs/api/reference/#get-channel-teams (Gets the list of Twitch teams that the broadcaster is a member of.)
 export async function getTeams(broadcaster_id: string) {
 
-  console.log("-----URL getTeams = ", `${BASE}/${API_TWITCH}/team?broadcaster_id=${broadcaster_id}`);
+  //console.log("-----URL getTeams = ", `${BASE}/${API_TWITCH}/team?broadcaster_id=${broadcaster_id}`);
 
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/team?broadcaster_id=${broadcaster_id}`, { cache: 'no-store' });
@@ -306,5 +306,24 @@ export async function getTeams(broadcaster_id: string) {
     return data;
   } catch (error) {
     console.log("Error in getTeams: ", error);
+  }
+}
+
+export async function getChatMessages(broadcaster_id : string) {
+
+  console.log("-----URL getChatMessages = ", `${BASE}/${API_TWITCH}/chat/${broadcaster_id}`);
+
+  try {
+    const response = await fetch(`${BASE}/${API_TWITCH}/chat/${broadcaster_id}`, { cache: 'no-store' });
+    // const response = await fetch(`/chat/channels/${channelId}/events`);
+    const data : API<API_CHAT[]> = await response.json();
+    //const data: API<API_TEAMS[]> = await response.json();
+
+console.log("***CHAT*********data = ", data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in getChatMessages: ", error);
+    return null   // mieux d'ajouter ça ???
   }
 }

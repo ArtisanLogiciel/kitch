@@ -24,7 +24,7 @@ console.log("*****params : ",params);   //  URLSearchParams { 'userlogin' => 'sh
   };
 
 
-console.log(`-----fetch(https://api.twitch.tv/helix/games?language=fr&id=${game_id} avec options : `, options);
+//console.log(`-----fetch(https://api.twitch.tv/helix/games?language=fr&id=${game_id} avec options : `, options);
 
 
   try {
@@ -33,8 +33,8 @@ console.log(`-----fetch(https://api.twitch.tv/helix/games?language=fr&id=${game_
 
     const twitch = await res.json();
 
-console.log("---twitch : RES.json() : ", twitch); 
-console.log("------DATA : ", twitch.data);    
+// console.log("---twitch : RES.json() : ", twitch); 
+// console.log("------DATA : ", twitch.data);    
 
     return NextResponse.json(twitch.data);
   } catch (error: any) {

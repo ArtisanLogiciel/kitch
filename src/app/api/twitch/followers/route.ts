@@ -28,7 +28,7 @@ console.log("*****params : ",params);   //  URLSearchParams { 'userlogin' => 'sh
   };
 
 
-console.log(`-----fetch(https://api.twitch.tv/helix/channels/followers?language=fr&broadcaster_id=${broadcaster_id} avec options : `, options);
+//console.log(`-----fetch(https://api.twitch.tv/helix/channels/followers?language=fr&broadcaster_id=${broadcaster_id} avec options : `, options);
 
 
   try {
@@ -36,7 +36,7 @@ console.log(`-----fetch(https://api.twitch.tv/helix/channels/followers?language=
 
     const twitch = await res.json();
 
-console.log("---twitch : RES.json() : ", twitch); 
+//console.log("---twitch : RES.json() : ", twitch); 
 // PAS DE .data !! => If a scope is not provided, only the total follower count will be included in the response.
 //console.log("------DATA : ", twitch.data);    
 

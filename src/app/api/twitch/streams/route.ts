@@ -11,7 +11,7 @@ export async function GET() {
     cache: 'no-store' as RequestCache,
   };
 
-console.log("-----fetch(https://api.twitch.tv/helix/streams?language=fr avec options : ", options);
+//console.log("-----fetch(https://api.twitch.tv/helix/streams?language=fr avec options : ", options);
 
   try {
     const res = await fetch(`https://api.twitch.tv/helix/streams?language=fr`, options);

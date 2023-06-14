@@ -28,16 +28,16 @@ console.log("*****params : ",params);   //  URLSearchParams { 'userlogin' => 'sh
   };
 
 
-//console.log(`-----fetch(https://api.twitch.tv/helix/teams/channel?language=fr&broadcaster_id=${broadcaster_id} avec options : `, options);
+console.log(`-----fetch(https://api.twitch.tv/helix/chat/channels/${broadcaster_id}/events avec options : `, options);
 
 
   try {
-    const res = await fetch(`https://api.twitch.tv/helix/teams/channel?language=fr&broadcaster_id=${broadcaster_id}`, options);
+    const res = await fetch(`https://api.twitch.tv/helix/chat/channels/${broadcaster_id}/events`, options);
 
     const twitch = await res.json();
 
-// console.log("---twitch : RES.json() : ", twitch); 
-// console.log("------DATA : ", twitch.data);    
+console.log("---twitch : RES.json() : ", twitch); 
+console.log("------DATA : ", twitch.data);    
 
     return NextResponse.json(twitch.data);
   } catch (error: any) {

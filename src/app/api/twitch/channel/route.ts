@@ -28,7 +28,7 @@ console.log("*****params : ",params);   //  URLSearchParams { 'userlogin' => 'sh
   };
 
 
-console.log(`-----fetch(https://api.twitch.tv/helix/channels?language=fr&broadcaster_id=${broadcaster_id} avec options : `, options);
+//console.log(`-----fetch(https://api.twitch.tv/helix/channels?language=fr&broadcaster_id=${broadcaster_id} avec options : `, options);
 
 
   try {

@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React from 'react'       // Pas necessoire ???
 import Skeleton from "@mui/material/Skeleton";
 
 import Image from "next/image";
@@ -33,7 +33,7 @@ import { ReactPlayerProps } from "react-player/types/lib";
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
-export default function Channel({ userLogin }: any) {
+export default function Channel({ userLogin }: any) {           // Pk je px pas mettre string ???
     //const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
     const [dataUser, setDataUser] = React.useState<API<API_USERS[]>>(null);
     const [dataChannel, setDataChannel] = React.useState<API<API_CHANNELS[]>>(null);
@@ -158,7 +158,7 @@ export default function Channel({ userLogin }: any) {
     console.log(dataChannel);
 
     return (
-        <div className="w-full">
+        <div className=" w-[75%]">
             {!(dataUser && dataChannel) ? (
                 // A VOIR, marche pas !!!???
                 <Skeleton
