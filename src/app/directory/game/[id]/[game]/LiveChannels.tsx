@@ -2,7 +2,7 @@
 import { Cards } from "@/Components/Cards";
 
 // Types
-import { API, API_STREAMS } from "@/types/api";
+import { API, API_GAME_STREAMS } from "@/types/api";
 
 export async function getLiveChannels(game: string) {
   const options = {
@@ -31,7 +31,7 @@ type LiveChannelProps = {
 };
 
 export default async function LiveChannels({ id }: LiveChannelProps) {
-  const streams: API<API_STREAMS[]> = await getLiveChannels(id ?? "");
+  const streams: API<API_GAME_STREAMS[]> = await getLiveChannels(id ?? "");
   console.log("streams LiveChannels", streams ? streams[0] : "no streams");
 
   return (
