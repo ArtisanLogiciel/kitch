@@ -17,7 +17,11 @@ import { API, API_GAMES, API_GAMES_CLIPS } from "@/types/api";
 
 const { BASE, API_TWITCH, API_GAME } = URL;
 
-export async function getGameName({ name }: { name: string }) {
+type GetGameNameProps = {
+  name: string;
+};
+
+async function getGameName({ name }: GetGameNameProps) {
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/games/${name}`);
     const data: API<API_GAMES[]> = await response.json();
@@ -28,7 +32,12 @@ export async function getGameName({ name }: { name: string }) {
   }
 }
 
-export async function getClips({ game_id, started_at }: { game_id: string, started_at: string }) {
+type GetClipsProps = {
+  game_id: string;
+  started_at: string;
+};
+
+async function getClips({ game_id, started_at }: GetClipsProps) {
   try {
     const response = await fetch(`${BASE}/${API_GAME}/clips/${game_id}/${started_at}`);
     const data: API<API_GAMES_CLIPS[]> = await response.json();
