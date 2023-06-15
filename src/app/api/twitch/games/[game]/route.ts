@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request, { params }: { params: { game: string } }) {
   const options = {
     method: "GET",
     headers: {
@@ -9,8 +9,9 @@ export async function GET() {
       Authorization: `Bearer ${process.env.DB_RESULT_TOKEN}`,
     },
   };
+
   try {
-    const res = await fetch("https://api.twitch.tv/helix/games/top", options);
+    const res = await fetch(`https://api.twitch.tv/helix/games?name=${params.game}`, options);
     const twitch = await res.json();
     return NextResponse.json(twitch.data);
   } catch (error: any) {

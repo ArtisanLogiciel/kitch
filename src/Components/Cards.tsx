@@ -1,22 +1,44 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import * as React from "react";
+import { useEffect, useState } from "react";
+
+// Utils
 import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
-import Image from "next/image";
+import { getUsers } from "@/utils/api";
+
+// Types
+import { API, API_USERS } from "@/types/api";
 
 export type CardsProps = {
-  data: any;
-  tags?: boolean;
   index?: number;
+  data: any;
+  profile_picture: string;
+  tags?: boolean;
 };
 
-export function Cards({ data, tags, index }: CardsProps) {
+export function Cards({ data, profile_picture, tags, index }: CardsProps) {
   const router = useRouter();
 
+  const [user, setUser] = useState<API<API_USERS[]>>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await getUsers(profile_picture);
+        res && setUser(res);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [data, profile_picture]);
+
   return (
-    data && (
+    data &&
+    user && (
       <div
         key={index}
         className="hover:cursor-pointer w-[32%] flex mb-[2%] flex-col items-start justify-start"
@@ -24,11 +46,11 @@ export function Cards({ data, tags, index }: CardsProps) {
       >
         <div className="relative w-full">
           <Image
-            src={getImageSized(data.thumbnail_url, "320", "180")}
+            src={getImageSized(data?.thumbnail_url, "320", "180")}
             alt={data.title}
             width={320}
             height={180}
-            priority={true}
+            priority
           />
 
           <div className="h-[3vh] font-[500] flex items-center justify-center bg-[#eb0400] text-[white] rounded pointer-events-none absolute m-[0.7rem] top-0 left-0">
@@ -37,10 +59,23 @@ export function Cards({ data, tags, index }: CardsProps) {
 
           <div className="h-[10%] bg-[black] text-[14px] flex items-center justify-center text-[white] rounded pointer-events-none absolute m-[0.7rem] bottom-0 left-0">
             <p className="m-[3px]">
-              {data?.viewer_count <= 1000
-                ? data?.viewer_count
-                : getNumber_K_Mode(data?.viewer_count)}{" "}
-              spectateurs
+              {data?.viewer_count &&
+                (data?.viewer_count <= 1000
+                  ? data?.viewer_count
+                  : getNumber_K_Mode(data?.viewer_count))}
+              {data?.view_count &&
+                (data?.view_count <= 1000
+                  ? data?.view_count
+                  : getNumber_K_Mode(data?.view_count))}{" "}
+              {data?.viewer_count !== undefined
+                ? data?.viewer_count === 1
+                  ? "spectateur"
+                  : "spectateurs"
+                : data?.view_count !== undefined
+                ? data?.view_count === 1
+                  ? "vue"
+                  : "vues"
+                : ""}
             </p>
           </div>
         </div>
@@ -48,11 +83,11 @@ export function Cards({ data, tags, index }: CardsProps) {
         <div className="w-full grid pt-[2%] box-border grid-cols-[15%_85%]">
           <div className="w-full flex items-start justify-start mt-[2%]">
             <Image
-              src={getImageSized(data?.thumbnail_url, "40", "40")}
+              src={user[0].profile_image_url}
               alt={data.title}
               width={40}
               height={40}
-              priority={true}
+              priority
               className="rounded-full w-[40px] h-[40px]"
             />
           </div>
@@ -61,8 +96,13 @@ export function Cards({ data, tags, index }: CardsProps) {
             <h3 className="w-full text-[14px] font-[600]">
               {data?.title.length <= 33 ? data?.title : data?.title.substring(0, 33) + "..."}
             </h3>
-            <p className="w-full text-[13px] text-[#53535F]">{data?.user_name}</p>
+            <p className="w-full text-[13px] text-[#53535F]">
+              {data?.user_name ?? data.broadcaster_name}
+            </p>
             <p className="w-full text-[13px] text-[#53535F]">{data?.game_name}</p>
+            {data.creator_name && (
+              <p className="w-full text-[13px] text-[#53535F]">Clip créé par {data.creator_name}</p>
+            )}
 
             {tags && (
               <div className="w-full flex justify-start flex-wrap items-center flex-row ">
