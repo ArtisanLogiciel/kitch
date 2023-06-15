@@ -4,7 +4,6 @@ import React from "react";
 
 // Utils
 import { getChatMessages } from "@/utils/api";
-import { getIRCConnexion } from "@/utils/getIRCConnexion";
 
 import { BsArrowBarRight } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
@@ -36,7 +35,6 @@ export default function Chat({ userLogin }: ChatProps) {
     };
 
     React.useEffect(() => {
-      getIRCConnexion();
       setInterval(() => {
         fetchData();
       }, 3000);
