@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Swiper, useSwiper } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
@@ -26,7 +26,7 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 export async function LiveCarousel() {
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
   React.useEffect(() => {
-   /*async function fetchData() {
+   async function fetchData() {
       try {
         const data  = await getStreams();
         if (data) {
@@ -129,14 +129,20 @@ export async function LiveCarousel() {
       )
 }
 
-const SwiperButtonNext = ({ children }: { children: any }) => {
+type SwiperButtonNextProps = {
+  children: ReactNode;
+};
+
+const SwiperButtonNext = ({ children }: SwiperButtonNextProps) => {
   const swiper = useSwiper();
   return <button onClick={() => swiper.slideNext()}>{children}</button>;
 };
 
-const SwiperButtonPrev = ({ children }: { children: any }) => {
+type SwiperButtonPrevProps = {
+  children: ReactNode;
+};
+
+const SwiperButtonPrev = ({ children }: SwiperButtonPrevProps) => {
   const swiper = useSwiper();
   return <button onClick={() => swiper.slidePrev()}>{children}</button>;
-};*/
-  }, []);
 }
