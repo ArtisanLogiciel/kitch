@@ -2,16 +2,20 @@
 
 import { usePathname, useRouter } from "next/navigation";
 
-export default function Tablist({ id, game }: { id: string, game: string }) {
-    const pathname = usePathname();
-    const router = useRouter();
+type TabListProps = {
+  game: string;
+};
 
-    const path_base = `/directory/game/${id}/${game}`;
-    const tabs = [
-        { label: "Live Channels", href: path_base },
-        { label: "Videos", href: `${path_base}/videos/all` },
-        { label: "Clips", href: `${path_base}/clips` },
-    ]
+export default function Tablist({ game }: TabListProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const path_base = `/directory/game/${game}`;
+  const tabs = [
+    { label: "Chaînes live", href: path_base },
+    { label: "Vidéos", href: `${path_base}/videos/all` },
+    { label: "Clips", href: `${path_base}/clips` },
+  ];
 
   return (
     <nav className="text-lg">

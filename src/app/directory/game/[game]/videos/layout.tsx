@@ -3,9 +3,11 @@ import SortBy from "../SortBy";
 import Filters from "./Filters";
 
 type LayoutVideoProps = {
-  params: { id: string, game: string },
-  children: React.ReactNode
-}
+  params: {
+    game: string;
+  }
+  children: React.ReactNode;
+};
 
 export default async function LayoutVideo({ params, children }: LayoutVideoProps) {
 

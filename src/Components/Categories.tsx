@@ -14,6 +14,7 @@ import { getImageSized } from "@/utils/getImageSized";
 export async function Categories() {
 
   const [categories, setCategories] = useState<API<API_CATEGORIES[]>>(null);
+  console.log("CATEGORIES", categories);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +32,7 @@ export async function Categories() {
     <div className='mb-[2%] w-full h-[50vh]' id="Test1">
           <h2 className='text-lg font-medium m-2'>
             <Link href={`/directory`} className='text-[#5c16c5] text-[18px] font-[550] hover:text-[#9147ff] hover:underline'>Catégories </Link>
-                qui pourrait vous plaires
+                qui pourrait vous plaire
             </h2>                            
       <div className="w-full flex justify-start items-start mr-[1%]">
         {categories.map((categorie, index) => {
