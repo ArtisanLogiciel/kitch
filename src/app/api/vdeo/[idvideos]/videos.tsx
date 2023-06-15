@@ -18,7 +18,7 @@ export default function Home(){
         <ReactPlayer url={`https://www.twitch.tv/${params.idvideos}`} className='react-player' controls />
           Chemin videos/ IdVIdeos
         </div>
-        </div>
+      </div>
     </>
           
 

@@ -1,3 +1,4 @@
+
 export function getNumber_K_Mode(number: number) {
 
   if (number >= 1000) {

@@ -21,12 +21,19 @@ function Nombres(nombre: number){
     }
 }
 
-const SwiperButtonNext = ({ children }: { children: any }) => {
+type SwiperButttonNextProps = {
+    children: React.ReactNode;
+};
+
+const SwiperButtonNext = ({ children }: SwiperButttonNextProps) => {
     const swiper = useSwiper();
     return <button onClick={() => swiper.slideNext()}>{children}</button>;
   };
 
-  const SwiperButtonPrev = ({ children }: { children: any }) => {
+  type SwiperButttonPrevProps = {
+    children: React.ReactNode;
+}
+  const SwiperButtonPrev = ({ children }: SwiperButttonPrevProps) => {
     const swiper = useSwiper();
     return <button onClick={() => swiper.slidePrev()}>{children}</button>;
   };
