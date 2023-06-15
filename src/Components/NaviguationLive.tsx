@@ -99,9 +99,11 @@ export default function NavigationLive() {
   }
 
   return (
-    <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto] flex flex-col'>
+    <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto] flex justify-between'>
       <div className=' border border-solid border-transparent w-full h-[8%] flex flex-row items-center justify-center'>
         <h2 className='text-[0.9em] font-[400]'>{chaine.toLocaleUpperCase()}</h2>
+        
+
         <svg
           width="3.5%"
           height="3.5%"
@@ -142,11 +144,11 @@ export default function NavigationLive() {
                     width={30}
                     height={30}
                     alt={channelName?.user_login}
-                    className="rounded-full w-[30px] h-[30px]"
+                    className="rounded-full w-[30px] h-[30px] flex"
                   />
                 </div>
-                <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap">
-                  <div className="w-[75%] h-[100%] flex justify-start items-start flex-col">
+                <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-nowrap">
+                  <div className="w-[75%] h-[100%] flex justify-start items-start">
                     <p>{channelName?.user_name}</p>
                     <p className="text-[13px] font-[300]">
                       {channelName?.game_name.length > 17
@@ -154,7 +156,7 @@ export default function NavigationLive() {
                         : channelName?.game_name}
                     </p>
                   </div>
-                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
+                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-nowrap">
                     <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
                     <p className="text-[13px] font-[300]">
                       {channelName?.viewer_count < 1000 ? (
