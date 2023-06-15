@@ -23,7 +23,7 @@ export default function StreamCard({CallAPI, title, Choice, PropsTags} : PropsSt
         CallAPI()
           .then((valeur: string[]) => setdata(valeur))
           .catch((error: Error)=> console.log(error));
-      }, []);
+      }, [CallAPI]);
     return (
       <div>
         <h2 className="text-lg m-2 font-[700]">
