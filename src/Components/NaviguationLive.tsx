@@ -99,11 +99,9 @@ export default function NavigationLive() {
   }
 
   return (
-    <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto] flex justify-between'>
-      <div className=' border border-solid border-transparent w-full h-[8%] flex flex-row items-center justify-center'>
+    <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto]'>
+      <div className=' border border-solid border-transparent w-full h-[8%] flex flex-col items-center justify-center'>
         <h2 className='text-[0.9em] font-[400]'>{chaine.toLocaleUpperCase()}</h2>
-        
-
         <svg
           width="3.5%"
           height="3.5%"
@@ -133,11 +131,11 @@ export default function NavigationLive() {
             index > 9 ? null : (
               <Link
                 href={`/${channelName?.user_login}`}
-                className="GridLive"
+                className="GridLive flex items-center justify-between w-full h-[8%] border border-solid border-transparent hover:border-[#aa00ff]"
                 key={index}
                 onClick={() => router.push(`/${channelName?.user_name}`)}
               >
-                <div className="w-[18%] h-full flex items-center justify-center"
+                <div className="w-[18%] h-full flex items-center justify-beetween"
                 >
                   <Image
                     src={getImageSized(channelName.thumbnail_url, "50", "50")}
@@ -147,8 +145,8 @@ export default function NavigationLive() {
                     className="rounded-full w-[30px] h-[30px] flex"
                   />
                 </div>
-                <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-nowrap">
-                  <div className="w-[75%] h-[100%] flex justify-start items-start">
+                <div className="w-[82%] h-[100%] justify-beetween  flex items-center flex-nowrap">
+                  <div className="w-[75%] h-[100%] flex justify-beetween items-start">
                     <p>{channelName?.user_name}</p>
                     <p className="text-[13px] font-[300]">
                       {channelName?.game_name.length > 17
@@ -156,9 +154,9 @@ export default function NavigationLive() {
                         : channelName?.game_name}
                     </p>
                   </div>
-                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-nowrap">
+                  <div className=" w-[25%] h-[100%] flex justify-beetween items-center flex-nowrap">
                     <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
-                    <p className="text-[13px] font-[300]">
+                    <p className="text-[13px] font-[300] justify-between">
                       {channelName?.viewer_count < 1000 ? (
                         <>{channelName?.viewer_count}</>
                       ) : (
