@@ -131,7 +131,7 @@ export default function NavigationLive() {
                     width={30}
                     height={30}
                     alt={channelName?.user_login}
-                    className="rounded-full w-[30px] h-[30px]"
+                    className="rounded-full w-[30px] h-[30px] flex"
                   />
                 </div>
 
@@ -147,7 +147,7 @@ export default function NavigationLive() {
 
                   <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
                     <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
-                    <p className="text-[13px] font-[300]">
+                    <p className="text-[13px] font-[300] justify-between">
                       {channelName?.viewer_count < 1000 ? (
                         <>{channelName?.viewer_count}</>
                       ) : (

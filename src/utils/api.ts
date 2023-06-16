@@ -18,6 +18,17 @@ export async function getCategories() {
   }
 }
 
+export async function getUsers(profile_picture: string) {
+  try {
+    const response = await fetch(`${URL.BASE}/${URL.API_TWITCH}/users/${profile_picture}`);
+    const res: API_USERS[] = await response.json();
+
+    return res;
+  } catch (error) {
+    console.log("Error in getUser: ", error);
+  }
+}
+
 // export async function getStreams() {
 //   try {
 //     const response = await fetch(`${BASE}/${API_TWITCH}/streams`, { cache: 'no-store' });
@@ -27,6 +38,7 @@ export async function getCategories() {
 //     console.log("Error in getStreams: ", error);
 //   }
 // }
+
 export async function getStreams(){
   const options = {
       method: 'GET',
@@ -56,6 +68,7 @@ export async function getGames() {
     console.log("Error in getGames: ", error);
   }
 }
+
 export async function GetVogue() {
   const options = {
       method: 'GET',

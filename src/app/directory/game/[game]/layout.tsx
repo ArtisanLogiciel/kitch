@@ -1,30 +1,15 @@
 import Image from "next/image";
 
+// Components
+import Tablist from "./TabList";
+import { FavBtn } from "./FavBtn";
+
 // Types
 import { API, API_GAMES } from "@/types/api";
 
 // Utils
 import { getImageSized } from "@/utils/getImageSized";
-import Tablist from "./TabList";
-import { FavBtn } from "./FavBtn";
-
-export async function getGames(game: string) {
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Client-ID": process.env.DB_CLIENT || "",
-      Authorization: `Bearer ${process.env.DB_RESULT_TOKEN}`,
-    },
-  };
-  try {
-    const res = await fetch(`https://api.twitch.tv/helix/games?name=${game}`, options);
-    const twitch = await res.json();
-    return twitch?.data;
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
+import { getApiData } from "@/utils/getApiData";
 
 type LayoutGameProps = {
   params: { id: string; game: string };
@@ -32,7 +17,10 @@ type LayoutGameProps = {
 };
 
 export default async function LayoutGame({ params, children }: LayoutGameProps) {
-  const games: API<API_GAMES[]> = await getGames(params.game);
+  const games: API<API_GAMES[]> = await getApiData({
+    type: "games",
+    queries: [{ name: "name", data: params.game }],
+  });
 
   return (
     games && (
@@ -52,7 +40,7 @@ export default async function LayoutGame({ params, children }: LayoutGameProps) 
           </div>
         </div>
 
-        <Tablist id={params.id} game={params.game} />
+        <Tablist game={params.game} />
 
         {children}
       </div>

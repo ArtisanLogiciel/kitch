@@ -162,7 +162,7 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
     console.log(dataChannel);
 
     return (
-        <div className=" w-[75%]">
+        <div className="flex flex-row w-[75%]">
             {!(dataUser && dataChannel) ? (
                 // A VOIR, marche pas !!!???
                 <Skeleton

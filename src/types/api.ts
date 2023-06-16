@@ -109,6 +109,52 @@ export type API_CHAT = {
   };
 };
 
+export type API_GAMES_CLIPS = {
+  broadcaster_id: string;
+  broadcaster_name: string;
+  created_at: string;
+  creator_id: string;
+  creator_name: string;
+  game_id: string;
+  id: string;
+  language: string;
+  thumbnail_url: string;
+  title: string;
+  url: string;
+  embed_url: string;
+  video_id: string;
+  view_count: number;
+};
 
+export type API_GAME_STREAMS = {
+  id: string;
+  user_id: string;
+  user_name: string;
+  game_id: string;
+  game_name: string;
+  type: string;
+  title: string;
+  viewer_count: number;
+  started_at: string;
+  language: string;
+  thumbnail_url: string;
+  tag_ids: string[];
+  is_mature: boolean;
+};
 
-
+export type API_GAME_VIDEOS = {
+  id: string;
+  user_id: string;
+  user_name: string;
+  title: string;
+  description: string;
+  created_at: string;
+  published_at: string;
+  url: string;
+  thumbnail_url: string;
+  viewable: string;
+  view_count: number;
+  language: string;
+  type: string;
+  duration: string;
+};
