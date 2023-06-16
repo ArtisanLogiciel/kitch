@@ -49,7 +49,7 @@ export default async function Videos({ game, type, sort }: VideosProps) {
   return videos ? (
     <div className="flex flex-wrap gap-4 w-full">
       {videos.map((video, index) => {
-        return <Cards key={index} data={video} profile_picture={video.user_id} tags />;
+        return <Cards key={index} data={video} profile_picture={video.user_id} tags route={`/videos/${video.stream_id}`} />;
       })}
     </div>
   ) : null;

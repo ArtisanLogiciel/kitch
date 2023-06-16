@@ -23,7 +23,7 @@ type GetGameNameProps = {
 
 async function getGameName({ name }: GetGameNameProps) {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/games/${name}`);
+    const response = await fetch(`${BASE}/${API_TWITCH}/games/${name}`, { cache: "no-store" });
     const data: API<API_GAMES[]> = await response.json();
 
     return data;
@@ -39,7 +39,9 @@ type GetClipsProps = {
 
 async function getClips({ game_id, started_at }: GetClipsProps) {
   try {
-    const response = await fetch(`${BASE}/${API_GAME}/clips/${game_id}/${started_at}`);
+    const response = await fetch(`${BASE}/${API_GAME}/clips/${game_id}/${started_at}`, {
+      cache: "no-store",
+    });
     const data: API<API_GAMES_CLIPS[]> = await response.json();
 
     return data;
@@ -95,7 +97,14 @@ export default function Clips({ params }: ClipsProps) {
     videos && (
       <div className="flex flex-wrap gap-4 w-full">
         {videos.map((video, index) => {
-          return <Cards key={index} data={video} profile_picture={video.broadcaster_id} />;
+          return (
+            <Cards
+              key={index}
+              data={video}
+              profile_picture={video.broadcaster_id}
+              route={`/${video.broadcaster_name}/clip/${video.id}`}
+            />
+          );
         })}
       </div>
     )

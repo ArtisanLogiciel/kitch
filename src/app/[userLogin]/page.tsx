@@ -15,7 +15,6 @@ import Chat from '@/Components/Chat'
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
-
 export default function Stream() {
 
   const params = useParams();
@@ -24,22 +23,30 @@ export default function Stream() {
 
   const userLogin = params.userLogin;
 
-  console.log("---2-([userLogin]/page.tsx) Au clic sur 1 chaine (<Link href={`/${channelName?.user_login}`}) : ", userLogin);
+  console.log(
+    "---2-([userLogin]/page.tsx) Au clic sur 1 chaine (<Link href={`/${channelName?.user_login}`}) : ",
+    userLogin
+  );
 
   return (
-    <>     
-    {userLogin ? <><Channel userLogin={userLogin} />
-      <Chat userLogin={userLogin} /> </> : <div className="ContenuPrincipale">
-      <div>
-        <ReactPlayer
-          url={`https://www.twitch.tv/${params.idvideos}`}
-          className="react-player"
-          controls
-        />
-        Chemin videos/ IdVIdeos
-      </div>
-    </div>}
-
+    <>
+      {userLogin ? (
+        <>
+          <Channel userLogin={userLogin} />
+          <Chat userLogin={userLogin} />
+        </>
+      ) : (
+        <div className="ContenuPrincipale">
+          <div>
+            <ReactPlayer
+              url={`https://www.twitch.tv/${params.idvideos}`}
+              className="react-player"
+              controls
+            />
+            Chemin videos/ IdVIdeos
+          </div>
+        </div>
+      )}
 
       {/* <div className="ContenuPrincipale">
         <div>
