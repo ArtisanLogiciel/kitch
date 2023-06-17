@@ -1,6 +1,5 @@
 "use client"
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Components
@@ -11,6 +10,9 @@ import { getDateInRFC3339Format } from "@/utils/getDateInRFC3339Format";
 
 // Commons
 import { URL } from "@/commons/commons";
+
+// Hooks
+import { useGetQueryParams } from "@/hooks/useGetQueryParams";
 
 // Types
 import { API, API_GAMES, API_GAMES_CLIPS } from "@/types/api";
@@ -61,11 +63,6 @@ export default function Clips({ params }: ClipsProps) {
 
   const [games, setGames] = useState<API<API_GAMES[]>>(null);
   const [clips, setClips] = useState<API<API_GAMES_CLIPS[]>>(null);
-
-  function useGetQueryParams(query: string) {
-    const queryParams = useSearchParams().get(query);
-    return queryParams ?? "";
-  }
 
   useEffect(() => {
     async function getGames() {

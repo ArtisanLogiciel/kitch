@@ -8,9 +8,11 @@ import { Cards } from "@/Components/Cards";
 // Commons
 import { URL } from "@/commons/commons";
 
+// Hooks
+import { useGetQueryParams } from "@/hooks/useGetQueryParams";
+
 // Types
 import { API, API_GAMES, API_GAME_VIDEOS } from "@/types/api";
-import { useSearchParams } from "next/navigation";
 
 const { BASE, API_GAME, API_TWITCH } = URL;
 
@@ -67,11 +69,6 @@ export default function Videos({ game, type }: VideosProps) {
 
   const [games, setGames] = useState<API<API_GAMES[]>>(null);
   const [videos, setVideos] = useState<API<API_GAME_VIDEOS[]>>(null);
-
-  function useGetQueryParams(query: string) {
-    const queryParams = useSearchParams().get(query);
-    return queryParams ?? "";
-  }
 
   useEffect(() => {
     async function getGames() {

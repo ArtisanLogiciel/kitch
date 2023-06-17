@@ -61,6 +61,10 @@ export type API_USERFOLLOWERS = {
   total: number,
 };
 
+export type API_ALL_TAGS = {
+  [key: string]: string
+};
+
 export type API_TEAMS = {
   background_image_url: string,
   banner: string,
@@ -130,6 +134,7 @@ export type API_GAME_STREAMS = {
   id: string;
   user_id: string;
   user_name: string;
+  user_login: string;
   game_id: string;
   game_name: string;
   type: string;
@@ -139,6 +144,7 @@ export type API_GAME_STREAMS = {
   language: string;
   thumbnail_url: string;
   tag_ids: string[];
+  tags: string[];
   is_mature: boolean;
 };
 

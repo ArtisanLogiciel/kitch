@@ -17,7 +17,7 @@ export default function SortBy() {
 
   return (
     <div className="flex items-center gap-4 p-4">
-      <p>Trier par</p>
+      <p className="font-bold">Trier par</p>
 
       <select
         className="bg-[#ebebeb] p-2 rounded cursor-pointer"

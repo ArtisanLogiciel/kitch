@@ -13,7 +13,7 @@ export default async function LayoutVideo({ params, children }: LayoutVideoProps
 
   return (
     <article className="w-full">
-      <div className="flex items-center justify-between font-bold">
+      <div className="flex items-center justify-between">
         <Filters params={params} />
         <SortBy />
       </div>

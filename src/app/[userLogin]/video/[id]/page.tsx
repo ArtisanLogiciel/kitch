@@ -10,7 +10,7 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export default function Video() {
   const params = useParams();
-  const { userLogin, video } = params;
+  const { userLogin, id } = params;
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Video() {
         <div className="ContenuPrincipale">
           <div>
             <ReactPlayer
-              url={`https://www.twitch.tv/videos/${video}`}
+              url={`https://www.twitch.tv/videos/${id}`}
               className="react-player"
               controls
             />
