@@ -1,6 +1,6 @@
 // Components
-import SortBy from "../SortBy";
 import Filters from "./Filters";
+import SortBy from "./SortBy";
 
 type LayoutVideoProps = {
   params: {

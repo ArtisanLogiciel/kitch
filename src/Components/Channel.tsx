@@ -33,7 +33,11 @@ import { ReactPlayerProps } from "react-player/types/lib";
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
-export default function Channel({ userLogin }: any) {           // Pk je px pas mettre string ???
+type UserLoginProps = {
+    userLogin: string;
+};
+
+export default function Channel({ userLogin }: UserLoginProps) {           // Pk je px pas mettre string ???
     //const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
     const [dataUser, setDataUser] = React.useState<API<API_USERS[]>>(null);
     const [dataChannel, setDataChannel] = React.useState<API<API_CHANNELS[]>>(null);

@@ -8,9 +8,9 @@ import { ReactPlayerProps } from "react-player/types/lib";
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
-export default function Clip() {
+export default function Video() {
   const params = useParams();
-  const { userLogin, id } = params;
+  const { userLogin, video } = params;
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Clip() {
         <div className="ContenuPrincipale">
           <div>
             <ReactPlayer
-              url={`https://www.twitch.tv/${userLogin}/clip/${id}`}
+              url={`https://www.twitch.tv/videos/${video}`}
               className="react-player"
               controls
             />

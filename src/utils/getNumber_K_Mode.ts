@@ -7,8 +7,8 @@ export function getNumber_K_Mode(number: number) {
   const beforeDot = splittedNumber[0]
   const afterDot = splittedNumber[1];
 
-    return afterDot === "0" ? `${beforeDot}k` : `${beforeDot}.${afterDot}k`;
+    return afterDot === "0" ? `${beforeDot} k` : `${beforeDot}.${afterDot} k`;
   }
 
-  return `${number}k`;
+  return `${number} k`;
 }

@@ -32,7 +32,7 @@ async function getGameName({ name }: GetGameNameProps) {
   }
 }
 
-type GetClipsProps = {
+export type GetClipsProps = {
   game_id: string;
   started_at: string;
 };
@@ -60,7 +60,7 @@ export default function Clips({ params }: ClipsProps) {
   const rangeQueryParams = useGetQueryParams("range") || "all";
 
   const [games, setGames] = useState<API<API_GAMES[]>>(null);
-  const [videos, setVideos] = useState<API<API_GAMES_CLIPS[]>>(null);
+  const [clips, setClips] = useState<API<API_GAMES_CLIPS[]>>(null);
 
   function useGetQueryParams(query: string) {
     const queryParams = useSearchParams().get(query);
@@ -87,22 +87,23 @@ export default function Clips({ params }: ClipsProps) {
               ? rangeQueryParams
               : getDateInRFC3339Format({ days: rangeQueryParams }),
         }));
-      setVideos(response);
+        
+      setClips(response);
     }
 
     getVideos();
   }, [params.game, rangeQueryParams, games]);
 
   return (
-    videos && (
+    clips && (
       <div className="flex flex-wrap gap-4 w-full">
-        {videos.map((video, index) => {
+        {clips.map((clip, index) => {
           return (
             <Cards
               key={index}
-              data={video}
-              profile_picture={video.broadcaster_id}
-              route={`/${video.broadcaster_name}/clip/${video.id}`}
+              data={clip}
+              profile_picture={clip.broadcaster_id}
+              route={`/${clip.broadcaster_name}/clip/${clip.id}`}
             />
           );
         })}

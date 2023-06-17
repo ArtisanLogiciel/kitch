@@ -42,11 +42,13 @@ export default async function Game({ params }: GameProps) {
 
   return (
     streams && (
+      <>
         <div className="flex flex-wrap gap-4 w-full">
           {streams.map((stream, index) => {
             return <Cards key={index} data={stream} profile_picture={stream.user_id} tags />;
           })}
-      </div>
+        </div>
+      </>
     )
   );
 }
