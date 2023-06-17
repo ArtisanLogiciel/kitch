@@ -29,8 +29,23 @@ export default function Stream() {
 
   return (
     <>
-      <Channel userLogin={userLogin} />
-      <Chat userLogin={userLogin} />
+      {userLogin ? (
+        <>
+          <Channel userLogin={userLogin} />
+          <Chat userLogin={userLogin} />
+        </>
+      ) : (
+        <div className="ContenuPrincipale">
+          <div>
+            <ReactPlayer
+              url={`https://www.twitch.tv/${params.idvideos}`}
+              className="react-player"
+              controls
+            />
+            Chemin videos/ IdVIdeos
+          </div>
+        </div>
+      )}
     </>
   );
 }

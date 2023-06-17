@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: { params: { queries: string[] } }) {
+export async function GET() {
   const options = {
     method: "GET",
     headers: {
@@ -10,18 +10,10 @@ export async function GET(request: Request, { params }: { params: { queries: str
     },
   };
 
-  const game_id = params.queries[0];
-  const started_at = params.queries[1] || "all";
-
   try {
-    const res = await fetch(
-      `https://api.twitch.tv/helix/clips?game_id=${game_id}${
-        started_at === "all" ? "" : `&started_at=${started_at}`
-      }`,
-      options
-    );
+    const res = await fetch(`https://api.twitch.tv/helix/tags/streams`, options);
     const twitch = await res.json();
-
+    
     return NextResponse.json(twitch.data);
   } catch (error: any) {
     console.log(error.message);

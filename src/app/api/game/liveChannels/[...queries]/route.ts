@@ -10,14 +10,13 @@ export async function GET(request: Request, { params }: { params: { queries: str
     },
   };
 
-  const game_id = params.queries[0];
-  const started_at = params.queries[1] || "all";
+  const language = params.queries[0];
+  const game_id = params.queries[1];
+  const type = params.queries[2] || "RELEVANCE";
 
   try {
     const res = await fetch(
-      `https://api.twitch.tv/helix/clips?game_id=${game_id}${
-        started_at === "all" ? "" : `&started_at=${started_at}`
-      }`,
+      `https://api.twitch.tv/helix/streams?language=${language}&game_id=${game_id}&type=${type}`,
       options
     );
     const twitch = await res.json();

@@ -1,23 +1,41 @@
-"use client"
+"use client";
 
-import { usePathname } from 'next/navigation';
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+// Hooks
+import { useGetQueryParams } from "@/hooks/useGetQueryParams";
 
 export default function SortBy() {
-    const pathname = usePathname();
-    const router = useRouter();
+  const pathname = usePathname();
+  const router = useRouter();
+  const sortQueryParams = useGetQueryParams("sort");
+  const tagQueryParams = useGetQueryParams("tag");
 
-    const sorts = {
-      time: { label: "Temps", value: "time" },
-      trending: { label: "Vidéos du moment", value: "trending" },
-      views: { label: "Vues", value: "views" },
-    };
+  const sorts = {
+    relevance: { label: "Recommandées pour vous", value: "RELEVANCE" },
+    viewer_count: { label: "Spectateurs (décroissant)", value: "VIEWER_COUNT" },
+    viewer_count_asc: { label: "Spectateurs (croissant)", value: "VIEWER_COUNT_ASC" },
+    recent: { label: "Débutées récemment", value: "RECENT" },
+  };
 
   return (
     <div className="flex items-center gap-4 p-4">
+      <p className="font-bold">Trier par</p>
+
       <select
         className="bg-[#ebebeb] p-2 rounded cursor-pointer"
-        onChange={(e) => router.push(`${pathname}?sort=${e.target.value}`)}
+        defaultValue={
+          sortQueryParams === null || sortQueryParams === ""
+            ? sorts.relevance.value
+            : sortQueryParams
+        }
+        onChange={(e) =>
+          router.push(
+            `${pathname}?sort=${e.target.value}${
+              tagQueryParams === "" ? "" : `&tag=${tagQueryParams}`
+            }`
+          )
+        }
       >
         {Object.keys(sorts).map((sort, index) => {
           return (

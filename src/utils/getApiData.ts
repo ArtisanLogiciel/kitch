@@ -14,12 +14,16 @@ export async function getApiData({ type, queries }: getApiDataProps) {
       "Client-ID": process.env.DB_CLIENT || "",
       Authorization: `Bearer ${process.env.DB_RESULT_TOKEN}`,
     },
+    cache: "no-store" as RequestCache,
   };
   try {
     const allQueries = queries.reduce((acc, query) => {
         return acc + `&${query.name}=${query.data}`;
         }, "")
-    const res = await fetch(`https://api.twitch.tv/helix/${type}?${allQueries}`, options);
+    const res = await fetch(
+      `https://api.twitch.tv/helix/${type}?${allQueries}`,
+      options,
+    );
     const twitch = await res.json();
 
     return twitch?.data;

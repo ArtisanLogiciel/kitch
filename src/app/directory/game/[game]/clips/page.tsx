@@ -1,6 +1,5 @@
 "use client"
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Components
@@ -11,6 +10,9 @@ import { getDateInRFC3339Format } from "@/utils/getDateInRFC3339Format";
 
 // Commons
 import { URL } from "@/commons/commons";
+
+// Hooks
+import { useGetQueryParams } from "@/hooks/useGetQueryParams";
 
 // Types
 import { API, API_GAMES, API_GAMES_CLIPS } from "@/types/api";
@@ -23,7 +25,7 @@ type GetGameNameProps = {
 
 async function getGameName({ name }: GetGameNameProps) {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/games/${name}`);
+    const response = await fetch(`${BASE}/${API_TWITCH}/games/${name}`, { cache: "no-store" });
     const data: API<API_GAMES[]> = await response.json();
 
     return data;
@@ -32,14 +34,16 @@ async function getGameName({ name }: GetGameNameProps) {
   }
 }
 
-type GetClipsProps = {
+export type GetClipsProps = {
   game_id: string;
   started_at: string;
 };
 
 async function getClips({ game_id, started_at }: GetClipsProps) {
   try {
-    const response = await fetch(`${BASE}/${API_GAME}/clips/${game_id}/${started_at}`);
+    const response = await fetch(`${BASE}/${API_GAME}/clips/${game_id}/${started_at}`, {
+      cache: "no-store",
+    });
     const data: API<API_GAMES_CLIPS[]> = await response.json();
 
     return data;
@@ -58,12 +62,7 @@ export default function Clips({ params }: ClipsProps) {
   const rangeQueryParams = useGetQueryParams("range") || "all";
 
   const [games, setGames] = useState<API<API_GAMES[]>>(null);
-  const [videos, setVideos] = useState<API<API_GAMES_CLIPS[]>>(null);
-
-  function useGetQueryParams(query: string) {
-    const queryParams = useSearchParams().get(query);
-    return queryParams ?? "";
-  }
+  const [clips, setClips] = useState<API<API_GAMES_CLIPS[]>>(null);
 
   useEffect(() => {
     async function getGames() {
@@ -85,17 +84,25 @@ export default function Clips({ params }: ClipsProps) {
               ? rangeQueryParams
               : getDateInRFC3339Format({ days: rangeQueryParams }),
         }));
-      setVideos(response);
+        
+      setClips(response);
     }
 
     getVideos();
   }, [params.game, rangeQueryParams, games]);
 
   return (
-    videos && (
+    clips && (
       <div className="flex flex-wrap gap-4 w-full">
-        {videos.map((video, index) => {
-          return <Cards key={index} data={video} profile_picture={video.broadcaster_id} />;
+        {clips.map((clip, index) => {
+          return (
+            <Cards
+              key={index}
+              data={clip}
+              profile_picture={clip.broadcaster_id}
+              route={`/${clip.broadcaster_name}/clip/${clip.id}`}
+            />
+          );
         })}
       </div>
     )

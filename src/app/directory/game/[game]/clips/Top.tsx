@@ -18,10 +18,10 @@ export default function Top() {
     };
 
   return (
-    <div className="flex items-center gap-4 p-4">
+    <div className="flex items-center gap-4 font-bold p-4">
       <select
         className="bg-[#ebebeb] p-2 rounded cursor-pointer"
-        defaultValue={queryParams === null || queryParams === "" ? "all" : queryParams}
+        defaultValue={queryParams === null || queryParams === "" ? tops.week.value : queryParams}
         onChange={(e) => router.push(`${pathname}?range=${e.target.value}`)}
       >
         {Object.keys(tops).map((top, index) => {
