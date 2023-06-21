@@ -14,6 +14,7 @@ import { MdOutlineIosShare } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsPerson, BsDot, BsThreeDotsVertical } from 'react-icons/bs'
 
+import { useParams } from "next/navigation";
 
 
 // Components
@@ -24,20 +25,21 @@ import { API, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS } from "@/ty
 
 // Utils
 import { getUser, getChannel, getFollowers, getTeams } from "@/utils/api";
+import {toHoursAndMinutes} from "@/utils/toHoursAndMinutes";
 //import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 
 import { default as _ReactPlayer } from "react-player/lazy";
-// Pk pas : import ReactPlayer from 'react-player/lazy'
+// Pk default ???
 import { ReactPlayerProps } from "react-player/types/lib";
-
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
-type UserLoginProps = {
-    userLogin: string;
+type ChannelProps = {
+    viewer: number,
+    timeSecondes : number
 };
 
-export default function Channel({ userLogin }: UserLoginProps) {           // Pk je px pas mettre string ???
+export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) {           // Pk je px pas mettre string ???
     //const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
     const [dataUser, setDataUser] = React.useState<API<API_USERS[]>>(null);
     const [dataChannel, setDataChannel] = React.useState<API<API_CHANNELS[]>>(null);
@@ -46,10 +48,21 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
     const [dataTeams, setDataTeams] = React.useState<API<API_TEAMS[]>>(null);
     const [error, setError] = React.useState<any>(null);
 
+    const params = useParams();
+    const userLogin = params.userLogin
+
+
     const [online, setOnline] = React.useState<boolean>(true);
 
-    console.log("---Comp CHANNEL avec PROP : ", userLogin);
+    //console.log("---Comp CHANNEL avec PROP : ", userLogin);    
 
+    // console.log(toHoursAndMinutes(60));     // { h: 0, m: 1, s: 0 }
+    // console.log(toHoursAndMinutes(1000));       // { h: 0, m: 16, s: 40 }
+    // console.log(toHoursAndMinutes(4250))        // { h: 1, m: 10, s: 50 }
+    console.log(toHoursAndMinutes(timeSecondes))
+
+    const {h,m,s} = toHoursAndMinutes(timeSecondes);
+    console.log("///////****Vidéo commencée y'a*****////////////",h," heures, ",m," minutes et ",s," secondes");    
 
     React.useEffect(() => {
         async function fetchData() {
@@ -69,9 +82,6 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
 
                     const followersUser1 = await getFollowers(dataUser[0].id);
                     setDataFollowers(followersUser1)
-                    console.log("/// FOLLOWERS (followersUser1) : ", followersUser1);
-                    // console.log("///NB FOLLOWERS (followersUser1.total) : ",followersUser1.total);
-                    // console.log("///NB FOLLOWERS (dataFollowers.total): ",dataFollowers.total);
                     const teamsUser1 = await getTeams(dataUser[0].id);
                     setDataTeams(teamsUser1)
                 }
@@ -82,35 +92,33 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
         fetchData();
     }, [userLogin]);
 
-    console.log("---3-(Comp CHANNEL) On va chercher les info d'un CHAINE : ----------");
+    //console.log("---3-(Comp CHANNEL) On va chercher les info d'un CHAINE : ----------");
 
     let teamName = ''
 
     if (dataUser) {
-        console.log("---------Info sur le USER avec le user_login passé en PROPS :-----------", userLogin);
-        console.log(dataUser[0]);
+        // console.log("---------Info sur le USER avec le user_login passé en PROPS :-----------", userLogin);
+        // console.log(dataUser[0]);
 
-        if (dataChannel) {
-            console.log("---------Info sur la CHAINE avec le id de USER :-----------", dataUser[0].id);
-            console.log(dataChannel[0]);
-        }
-        if (dataFollowers) {
-            console.log("---------Info sur les FOLLOWERS avec le user_id :-----------", dataUser[0].id);
-            console.log(dataFollowers);
-        }
-        if (dataTeams) {
-            console.log("---------Info sur les TEAMS avec le user_id :-----------", dataUser[0].id);
-            console.log(dataTeams);
+        // if (dataChannel) {
+        //     console.log("---------Info sur la CHAINE avec le id de USER :-----------", dataUser[0].id);
+        //     console.log(dataChannel[0]);
+        // }
+        // if (dataFollowers) {
+        //     console.log("---------Info sur les FOLLOWERS avec le user_id :-----------", dataUser[0].id);
+        //     console.log(dataFollowers);
+        // }
+        // if (dataTeams) {
+            // console.log("---------Info sur les TEAMS avec le user_id :-----------", dataUser[0].id);
+            // console.log(dataTeams);
 
-            let date = 0
-            let teamName = ''
-
-            dataTeams.map((team, index) => {
-                const updated_atTS = Date.parse(team.updated_at);       // timestamp
-                console.log(index, ' => ', updated_atTS);
-                if (updated_atTS > date) date = updated_atTS;
-            })
-        }
+            // let date = 0
+            // dataTeams.map((team, index) => {
+            //     const updated_atTS = Date.parse(team.updated_at);       // timestamp
+            //     console.log(index, ' => ', updated_atTS);
+            //     if (updated_atTS > date) date = updated_atTS;
+            // })
+        // }
 
         // if (dataGame) {
         //     console.log("---------Info sur le GAME avec le game_id :-----------", data[0].game_id);
@@ -129,7 +137,6 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
         //         console.log(number, ' => ', number);
         //     }
         // })   
-
 
 
         // if (dataUser) {
@@ -151,18 +158,14 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
                     teamName = team.team_display_name
                 }
             })
-            console.log("TEAMNAME", teamName);
-            console.log(date);
+            // console.log("TEAMNAME", teamName);
+            // console.log(date);
         }
     }
-
-    const test = [1, 2, 3, 4, 5]
-    const heroes = ["Superman", "Batman", "Wonder Woman"]
-    console.log(heroes);
-    console.log(dataChannel);
+       
 
     return (
-        <div className="flex flex-row w-[75%]">
+        <div className="flex flex-row">
             {!(dataUser && dataChannel) ? (
                 // A VOIR, marche pas !!!???
                 <Skeleton
@@ -173,12 +176,12 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
                     style={{ backgroundColor: "#efeff1" }}
                 />
             ) : (
-                <div>
+                <div className=' w-full'>
                     <ReactPlayer
                         url={`https://www.twitch.tv/${userLogin}`}
-                        className="w-full"// h-[500px]"
+                        //className="w-full border-1 border-solid border-[#2b07f8]"// h-[500px]"
                         width={"100%"}
-                        height={"500px"}
+                        height={"80%"}
                         controls
                     />
                     <div className='flex justify-between mt-2 '>
@@ -231,12 +234,14 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
                             <div className='flex items-center justify-end mt-3'>
                                 {online ?
                                     <div className='flex items-center text-sm'>
-                                        {/* (getStream : .viewer_count, ms comment ???)  (nb followers du stream, se met à jour
+                                        {/*  (nb followers du stream, se met à jour
                                 constamment)*/}
                                         <BsPerson className=' text-[#971311] font-bold' size='1.1rem' />
-                                        <p className=' text-[#971311] mr-4 font-bold'>XXX XXX</p>
-                                        {/* (avec getStream : .started_at, ms comment ???)  (temps de la vidéo, se met à jour constamment) */}
-                                        <p className='mr-4'>XX : XX : XX</p>
+                                        <p className=' text-[#971311] mr-4 font-bold'>{viewer}</p>
+                                        {/*  (temps de la vidéo, se met à jour constamment) */}
+                                        <p className='mr-4'>
+                                            {h < 10 ? `0${h}` : h}:{m}:{s}
+                                        </p>
                                     </div>
                                     :
                                     null
@@ -250,6 +255,7 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
                             </div>
                         </div>
                     </div>
+
                     {/*  Encadré USER */}
                     <div className='flex justify-between bg-white p-10 mt-5'>
                         <div>
