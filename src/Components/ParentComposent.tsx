@@ -13,6 +13,7 @@ import { GetPlatformAndGames } from '@/utils/api';
 import { GetCarSimulation } from '@/utils/api';
 import { GetSport } from '@/utils/api';
 import { RecentlyGames } from "@/Components/RecentlyGames";
+import { Categories } from './Categories';
 import Footer from "@/Components/AmazonLogo";
 
 
@@ -21,31 +22,54 @@ export default function Global(){
     const [isLoadingTwo, setIsLoadingTwo] = React.useState(false)
     const [isLoadingThree, setIsLoadingThree] = React.useState(false)
     const [isLoadingFour, setIsLoadingFour] = React.useState(false)
-
+    
     React.useEffect(() => {
-        //console.log(element)
-        const handleScroll = () => {
-        const isBottom = window.scrollY;
-        const Height = window.innerHeight;
-          if(isBottom >= Height){
-             setIsLoading(true)
-          }
-         if(isBottom >= (Height * 2.05)){
-            setIsLoadingTwo(true)
-         }
-         if(isBottom >= (Height * 4.05)){
-            setIsLoadingThree(true)
-         }
-         if(isBottom >= (Height * 6)){
-            setIsLoadingFour(true)
-         }
-    };          
-            window.addEventListener("scroll", handleScroll)
-            return () => window.removeEventListener("scroll", handleScroll)
+        const initialElements = document.querySelectorAll('.Observe');
+        let elements = Array.from(initialElements);
+           console.log("verific", elements)
+           const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                    if(entry.isIntersecting === true){
+                        console.log("index", index, entry)
+                            if(index === 0){
+                                setIsLoading(true)
+                                const newElements = Array.from(document.querySelectorAll('.Observe'));
+                                elements = elements.concat(newElements);
+                                observer.disconnect(); // On arrête d'observer les éléments initiaux
+                                observeNewElements(); // On commence à observer les nouveaux éléments
+                            }
+                            if(index === 1){
+                                setIsLoadingTwo(true)
+                                const newElements = Array.from(document.querySelectorAll('.Observe'));
+                                elements = elements.concat(newElements);
+                                observer.disconnect(); // On arrête d'observer les éléments initiaux
+                                observeNewElements(); // On commence à observer les nouveaux éléments
+                            }
+                            if(index === 2){
+                                setIsLoadingThree(true)
+                                const newElements = Array.from(document.querySelectorAll('.Observe'));
+                                elements = elements.concat(newElements);
+                                observer.disconnect(); // On arrête d'observer les éléments initiaux
+                                observeNewElements(); // On commence à observer les nouveaux éléments
+                            }
+                            if(index === 3){
+                                setIsLoadingFour(true)
+                            }
+                        }
+            });
+          });
+        
+          const observeNewElements = () => {
+            elements.forEach((element) => {
+              observer.observe(element);
+            });
+          };
+          observeNewElements();         
     }, [])
 
     return(
         <>
+        <Categories />
         {isLaoding ? 
             <>
                 <StreamCard 
@@ -80,7 +104,7 @@ export default function Global(){
                 />
                 <StreamCard 
                 CallAPI={GetStreamGamesThree} 
-                title=' Fortnite' 
+                title='Fortnite' 
                 Choice={false}
                 PropsTags={true}
                 /> 

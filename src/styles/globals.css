@@ -21,6 +21,10 @@ Ne pas effacer
 .swiper-button-next{
   visibility: hidden;
 }
+
+.ChangerC:hover * {
+  color: black;
+}
 /*
 Ne pas effacer
 */

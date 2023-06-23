@@ -7,9 +7,9 @@ import { ReactPlayerProps } from "react-player/types/lib";
 
 // Components
 // import { MainAppBar } from "../../Components/MainAppBar";
-import { MainAppBar } from "@/Components/MainAppBar";
+
 //import NavigLive from "../../Components/NaviguationLive";
-import NavigLive from "@/Components/NaviguationLive";
+
 import Channel from "@/Components/Channel";
 import Chat from "@/Components/Chat";
 
