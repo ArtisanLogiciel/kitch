@@ -26,11 +26,9 @@ export default function Global(){
     React.useEffect(() => {
         const initialElements = document.querySelectorAll('.Observe');
         let elements = Array.from(initialElements);
-           console.log("verific", elements)
            const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                     if(entry.isIntersecting === true){
-                        console.log("index", index, entry)
                             if(index === 0){
                                 setIsLoading(true)
                                 const newElements = Array.from(document.querySelectorAll('.Observe'));

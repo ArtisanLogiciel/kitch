@@ -1,4 +1,4 @@
-export async function SelectorCategory(){
+export function SelectorCategory(){
     return(
         <div className='w-full border-0   flex items-center justify-evenly row flex-wrap mb-[2%]'>
                   <div className='w-[19%] flex items-center justify-around bg-[#772ce8] h-[45px] rounded hover:bg-[#9165d3] hover:cursor-pointer'>
