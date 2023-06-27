@@ -6,8 +6,8 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { default as _ReactPlayer } from "react-player/lazy";
 import { ReactPlayerProps } from "react-player/types/lib";
-import { useRouter } from "next/navigation";
 import { BsBoxArrowInUpRight } from "react-icons/bs";
+import Link from "next/link";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
@@ -24,7 +24,6 @@ type ChildrenProps = {
 }
 
 export function LiveCarousel() {
-  const router = useRouter()
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
   const [curr, setCurr] = React.useState(0)
   //slides.lentgh
@@ -65,7 +64,7 @@ export function LiveCarousel() {
                         height={"90%"}
                       />
                 <div className="w-[15vw] h-[90%] bg-[white] flex flex-col justify-center items-center">
-                    <div className="hover:cursor-pointer" onClick={() => router.push(`/${element?.user_login}`)}><BsBoxArrowInUpRight /></div>
+                    <Link href={`/${element?.user_login}`}><BsBoxArrowInUpRight /></Link>
                     <div className="w-full grid grid-cols-[40%_60%]">
                      <div className="w-full flex items-center justify-center"
                         >
