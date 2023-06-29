@@ -12,14 +12,9 @@
 /*
 Ne pas effacer
 */
-.swiper-pagination span{
-  visibility: hidden;
-}
-.swiper-button-prev{
-  visibility: hidden;
-}
-.swiper-button-next{
-  visibility: hidden;
+
+.ChangerC:hover * {
+  color: black;
 }
 /*
 Ne pas effacer

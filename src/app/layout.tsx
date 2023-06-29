@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { MainAppBar } from '@/Components/MainAppBar'
 //import NavigationLive from "../Components/NaviguationLive";
 import NavigationLive from "@/Components/NaviguationLive";
+import { StreamCardProvider } from "@/Components/StreamCardContext";
 
 export const metadata = {
   title: "Kitch",
