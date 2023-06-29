@@ -18,11 +18,9 @@ export default function Chat({ activeChat, setActiveChat }: ChatProps) {
 
   const params = useParams();
 
-  const [error, setError] = React.useState<any>(null);
-
   return (
     // <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] top-[9vh] left-[auto] flex flex-col'>
-    <div className='border-2 border-solid border-[#ff00bf] fixed h-[100%] flex flex-col self-end pb-[10%] '>
+    <div className='border-2 border-solid border-[#ff00bf] fixed h-[100%] flex flex-col pb-[6%] '>
       {activeChat ?
         <BsArrowBarRight
           size={25}
@@ -30,10 +28,10 @@ export default function Chat({ activeChat, setActiveChat }: ChatProps) {
           onClick={() => setActiveChat(!activeChat)}
         />
         :
-        < BsArrowBarLeft
+        <BsArrowBarLeft
           size={25}
-          color="white"
-          className=' absolute z-1 top-4 right-[13px] cursor-pointer '
+          color="lightblue"
+          className=' absolute z-1 top-4 right-[28px] cursor-pointer '
           onClick={() => setActiveChat(!activeChat)}
         />
       }

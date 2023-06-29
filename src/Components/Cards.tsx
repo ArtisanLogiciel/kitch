@@ -17,9 +17,10 @@ export type CardsProps = {
   data: any;
   profile_picture: string;
   tags?: boolean;
+  route?: string;
 };
 
-export function Cards({ data, profile_picture, tags, index }: CardsProps) {
+export function Cards({ index, data, profile_picture, tags, route = `/${data?.user_login}` }: CardsProps) {
   const router = useRouter();
 
   const [user, setUser] = useState<API<API_USERS[]>>(null);
@@ -42,7 +43,7 @@ export function Cards({ data, profile_picture, tags, index }: CardsProps) {
       <div
         key={index}
         className="hover:cursor-pointer w-[32%] flex mb-[2%] flex-col items-start justify-start"
-        onClick={() => router.push(`/${data?.user_login}`)}
+        onClick={() => router.push(route)}
       >
         <div className="relative w-full">
           <Image

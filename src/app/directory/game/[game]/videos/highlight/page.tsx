@@ -5,10 +5,5 @@ import Videos from "../Videos";
 import { GameParamsProps } from "@/types/props";
 
 export default function Highlight({ params }: GameParamsProps) {
-  return (
-    <>
-      {/* @ts-expect-error Async Server Component */}
-      <Videos game={params.game} type="highlight" />
-    </>
-  );
+  return <Videos game={params.game} type="highlight" />;
 }

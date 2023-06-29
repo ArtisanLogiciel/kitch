@@ -5,10 +5,5 @@ import Videos from "../Videos";
 import { GameParamsProps } from "@/types/props";
 
 export default async function All({ params }: GameParamsProps) {
-  return (
-    <>
-      {/* @ts-expect-error Async Server Component */}
-      <Videos game={params.game} />
-    </>
-  );
+  return <Videos game={params.game} type="all" />;
 }

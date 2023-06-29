@@ -1,10 +1,9 @@
 "use client";
 
-import React from 'react'       // Pas necessoire ???
-import Skeleton from "@mui/material/Skeleton";
-
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
+import React from "react";
+import Skeleton from "@mui/material/Skeleton";
 
 // React Icones
 import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai";
@@ -73,9 +72,8 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                 //console.log("////////////DATAUSER OK/////////");
 
                 if (dataUser) {
-
                     const channelUser1 = await getChannel(dataUser[0].id);
-                    setDataChannel(channelUser1)
+                    setDataChannel(channelUser1);
 
                     //   const gameUser1 = await getGame(data[0].game_id);
                     //   setDataGame(gameUser1)
@@ -94,7 +92,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
 
     //console.log("---3-(Comp CHANNEL) On va chercher les info d'un CHAINE : ----------");
 
-    let teamName = ''
+  let teamName = "";
 
     if (dataUser) {
         // console.log("---------Info sur le USER avec le user_login passé en PROPS :-----------", userLogin);
@@ -120,23 +118,22 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
             // })
         // }
 
-        // if (dataGame) {
-        //     console.log("---------Info sur le GAME avec le game_id :-----------", data[0].game_id);
-        //     console.log(dataGame[0]);
-        // }
+    // if (dataGame) {
+    //     console.log("---------Info sur le GAME avec le game_id :-----------", data[0].game_id);
+    //     console.log(dataGame[0]);
+    // }
 
-
-        //Test ARRONDIR Nombres (4 M, 2.3 k)
-        // const numbers = [1, 22, 333, 4_444, 55_555, 666_666, 7_777_777, 88_888_888,]
-        // numbers.map((number) => {
-        //     if (number > 999_999) {
-        //         console.log(number, ' => ', Math.round(number / 1_000_000), ' M');
-        //     } else if (number > 999) {
-        //         console.log(number, ' => ', Math.round(number / 100) / 10, ' k');
-        //     } else {
-        //         console.log(number, ' => ', number);
-        //     }
-        // })   
+    //Test ARRONDIR Nombres (4 M, 2.3 k)
+    // const numbers = [1, 22, 333, 4_444, 55_555, 666_666, 7_777_777, 88_888_888,]
+    // numbers.map((number) => {
+    //     if (number > 999_999) {
+    //         console.log(number, ' => ', Math.round(number / 1_000_000), ' M');
+    //     } else if (number > 999) {
+    //         console.log(number, ' => ', Math.round(number / 100) / 10, ' k');
+    //     } else {
+    //         console.log(number, ' => ', number);
+    //     }
+    // })
 
 
         // if (dataUser) {
@@ -145,11 +142,11 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
         //     console.log(dataUser.profile_image_url);     // idem navGauche
         // }
 
-        // On récupère le nom de la team qui a la date la plus récente
-        // => ici car je n'arrivais pas à mettre ds le JSX une ternaire avec plusieurs lignes
-        
-        if (dataTeams) {
-            let date = 0
+    // On récupère le nom de la team qui a la date la plus récente
+    // => ici car je n'arrivais pas à mettre ds le JSX une ternaire avec plusieurs lignes
+
+    if (dataTeams) {
+      let date = 0;
 
             dataTeams.map((team) => {
                 teamName = team.team_display_name
@@ -186,15 +183,17 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                     />
                     <div className='flex justify-between mt-2 '>
                         <div className='flex'>
-                            <Image
-                                src={dataUser[0].profile_image_url}
-                                //src={ImageSized(data?.offline_image_url, "50", "50")}
-                                width={50}
-                                height={70}
-                                alt="avatar"
-                                className='rounded-full mr-2'
-                            // style={{ borderRadius: "50%"}}
-                            />
+                            <div className=" w-20 mr-2">
+                                <Image
+                                    src={dataUser[0].profile_image_url}
+                                    //src={ImageSized(data?.offline_image_url, "50", "50")}
+                                    width={80}
+                                    height={80}
+                                    alt="avatar"
+                                    className='rounded-full'
+                                // style={{ borderRadius: "50%"}}
+                                />
+                            </div>
                             <div>
                                 <p className='font-bold'>{dataUser[0].display_name} </p>
                                 <p className='font-bold'>{dataChannel[0].title}</p>
@@ -324,7 +323,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                         </div>
                     </div>
 
-                    {/* <div>
+          {/* <div>
                 <p>{data[0].display_name} (display_name)</p>
                 <p>DIV2 SUMMER - LIL vs JL - W2D2 - BO1</p>
                 <p>League of Legends</p>       https://www.twitch.tv/directory/game/League%20of%20Legends 
@@ -339,8 +338,8 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                 <p>xxx followers</p>
                 <p>{data[0].description}</p>
             </div>*/}
-                </div>
-
-            )}
-        </div>)
+        </div>
+      )}
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS, API_CHAT } from "@/types/api";
+import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS } from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
