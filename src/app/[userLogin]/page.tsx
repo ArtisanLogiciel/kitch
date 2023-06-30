@@ -22,7 +22,7 @@ export default function Stream() {
   // const viewer: number = Number(searchParams.get("viewer"))
   // const timestamp = searchParams.get("time")
   // const timestampNb: number = Number(timestamp)
-  const router = useRouter().query.userLogin as string;
+  // const router = useRouter().query.userLogin as string;
   // const timestampNow = Date.parse(new Date().toString())  // car le timestamp est en STRING (pourtant passé en NUMBER dans le LINK) !!!???
 
   // On calcule le temps écoulé en secondes depuis le début de la vidéo
@@ -34,7 +34,7 @@ export default function Stream() {
 
   return (
     <div className={/*activeChat ? "grid grid-cols-[80%_20%] w-full h-full " : "grid grid-cols-[100%_0%] w-full h-full "*/""} >
-        <Channel userLogin={router} />
+        {/* <Channel userLogin={router} /> */}
         <div className={/*!activeChat ? "ml-5 " : ""*/ ""}>{/*<Chat activeChat={activeChat} setActiveChat={setActiveChat} />*/}</div>
     </div>
    
