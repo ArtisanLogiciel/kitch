@@ -25,7 +25,9 @@ export default function NavigationLive() {
   const [dataStream, setDataStream] = React.useState<API<API_STREAMS[]>>(null);  
 
   // On créer cette ref pour pouvoir la modifier dans le useEffect et la récupérer dans le return
-  const refUserProfileImg = React.useRef<Object>({})
+  // import * as React from "react";
+
+  const refUserProfileImg = React.useRef<Record<string, string>>({})
 
   const [error, setError] = React.useState<any>(null);
   const [fullNavLive, setFullNavLive] = React.useState<boolean>(true);
