@@ -3,6 +3,7 @@
 import Channel from "@/Components/Channel";
 import Chat from "@/Components/Chat";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { default as _ReactPlayer } from "react-player/lazy";
 import { ReactPlayerProps } from "react-player/types/lib";
 
@@ -17,7 +18,7 @@ export default function Video() {
       {userLogin ? (
         <>
           <Channel userLogin={userLogin} />
-          <Chat userLogin={userLogin} />
+          {/* <Chat userLogin={userLogin} /> */}
         </>
       ) : (
         <div className="ContenuPrincipale">
