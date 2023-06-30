@@ -33,35 +33,37 @@ export default function NavigationLive() {
   const [fullNavLive, setFullNavLive] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getStreams();
-        setDataStream(data);
+      const fetchData = async () => {
+        try {
+          const data = await getStreams();
+          setDataStream(data);
 
-        //=> pour chaque STREAM on veut afficher une image (avatar) mais pas celle qu'on a dans l'API STREAM => donc grâce au login on appel l'API USER et on met le login et l'URL dans un obj (le USEREF) qu'on récupère dans le RETURN
-        // (Melvynx dit : On n’affiche pas de REF dans le JSX) ???
-        if (data) {
-          data.map((channelName: API_STREAMS) => {
-            async function fetchDataUser() {
+          //=> pour chaque STREAM on veut afficher une image (avatar) mais pas celle qu'on a dans l'API STREAM => donc grâce au login on appel l'API USER et on met le login et l'URL dans un obj (le USEREF) qu'on récupère dans le RETURN
+          // (Melvynx dit : On n’affiche pas de REF dans le JSX) ???
+          if (data) {
+            data.map((channelName: API_STREAMS) => {
+                const fetchDataUser = async () => {
 
-              try {
-                const dataUser = await getUser(channelName.user_login);
+                  try {
+                    const dataUser = await getUser(channelName.user_login);
 
-                if (dataUser) {
-                  refUserProfileImg.current = {...refUserProfileImg.current, [channelName.user_login]: dataUser[0]?.profile_image_url}              
-                }
-              } catch (error) {
-                setError(error);
-              }
-            }
-            fetchDataUser()
-          })
+                    if (dataUser) {
+                      refUserProfileImg.current = {...refUserProfileImg.current, [channelName.user_login]: dataUser[0]?.profile_image_url}              
+                    }
+                  } catch (error) {
+                    setError(error);
+                  }
+                };
+
+                fetchDataUser()
+            })
+          }
+        } catch (error) {
+          setError(error);
         }
-      } catch (error) {
-        setError(error);
-      }
-    }
-    fetchData();
+      };
+
+      fetchData();
   }, []); // on ne met pas la dépendance dataStream sinon tourne en boucle !
 
 
@@ -121,13 +123,20 @@ export default function NavigationLive() {
             // console.log("888-4", channelName.thumbnail_url);
 
             return index > 9 ? null : (
+              // ce code génère une erreur :
+              // <Link
+              //   href={{
+              //     pathname: `/${channelName?.user_login}`,
+              //     query: {
+              //       "viewer": `${channelName?.viewer_count}`,
+              //       "time": Date.parse(`${channelName?.started_at}`),
+              //     }
+              //   }}
+              //   key={index}            
+              // >
               <Link
                 href={{
-                  pathname: `/${channelName?.user_login}`,
-                  query: {
-                    "viewer": `${channelName?.viewer_count}`,
-                    "time": Date.parse(`${channelName?.started_at}`),
-                  }
+                  pathname: `/${channelName?.user_login}`
                 }}
                 key={index}            
               >
