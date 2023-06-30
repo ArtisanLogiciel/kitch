@@ -35,7 +35,7 @@ export default function Stream() {
   return (
     <div className={activeChat ? "grid grid-cols-[80%_20%] w-full h-full " : "grid grid-cols-[100%_0%] w-full h-full "} >
         <Channel userLogin={userLogin} />
-        <div className={!activeChat ? "ml-5 " : ""}><Chat activeChat={activeChat} setActiveChat={setActiveChat} /></div>
+        <div className={!activeChat ? "ml-5 " : ""}>{/*<Chat activeChat={activeChat} setActiveChat={setActiveChat} />*/}</div>
     </div>
    
   );
