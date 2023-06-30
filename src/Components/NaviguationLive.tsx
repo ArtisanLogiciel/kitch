@@ -33,7 +33,7 @@ export default function NavigationLive() {
   const [fullNavLive, setFullNavLive] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-      const fetchData = async () => {
+      const fetchData = async (): Promise<void> => {
         try {
           const data = await getStreams();
           setDataStream(data);
@@ -42,7 +42,7 @@ export default function NavigationLive() {
           // (Melvynx dit : On n’affiche pas de REF dans le JSX) ???
           if (data) {
             data.map((channelName: API_STREAMS) => {
-                const fetchDataUser = async () => {
+                const fetchDataUser = async (): Promise<void> => {
 
                   try {
                     const dataUser = await getUser(channelName.user_login);
@@ -123,7 +123,6 @@ export default function NavigationLive() {
             // console.log("888-4", channelName.thumbnail_url);
 
             return index > 9 ? null : (
-              // ce code génère une erreur :
               // <Link
               //   href={{
               //     pathname: `/${channelName?.user_login}`,
@@ -135,7 +134,9 @@ export default function NavigationLive() {
               //   key={index}            
               // >
               <Link
-                href={`/${channelName?.user_login}`}
+                href={{
+                  pathname: `/${channelName?.user_login}`,
+                }}
                 key={index}            
               >
                 {/* <div className="w-[18%] h-full flex items-center justify-center"> */}
