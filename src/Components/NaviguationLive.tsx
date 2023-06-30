@@ -135,9 +135,7 @@ export default function NavigationLive() {
               //   key={index}            
               // >
               <Link
-                href={{
-                  pathname: `/${channelName?.user_login}`
-                }}
+                href={`/${channelName?.user_login}`}
                 key={index}            
               >
                 {/* <div className="w-[18%] h-full flex items-center justify-center"> */}
