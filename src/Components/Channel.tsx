@@ -9,7 +9,7 @@ import Link from 'next/link';
 // React Icones
 import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai";
 import { FaHandPaper, FaTwitter, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
-//import {GoShare} from "react-icons/go";     // ??? Le module '"react-icons/go"' n'a aucun membre exporté 'GoShare' !! Prtant ds la docs ! https://react-icons.github.io/react-icons/icons?name=go
+//import {GoShare} from "react-icons/go";
 import { MdOutlineIosShare } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsPerson, BsDot, BsThreeDotsVertical } from 'react-icons/bs'
@@ -52,7 +52,7 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
 
 
     React.useEffect(() => {
-        async function fetchData() {
+        const fetchData = async (): Promise<void> => {
             try {
                 const dataUser = await getUser(userLogin);
                 setDataUser(dataUser);
@@ -76,9 +76,11 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
                     setDataTeams(teamsUser1)
                 }
             } catch (error) {
+                console.error('Error fetching data:', error);
                 setError(error);
             }
-        }
+        };
+
         fetchData();
     }, [userLogin]);
 
@@ -108,7 +110,7 @@ export default function Channel({ userLogin }: UserLoginProps) {           // Pk
             dataTeams.map((team, index) => {
                 const updated_atTS = Date.parse(team.updated_at);       // timestamp
                 console.log(index, ' => ', updated_atTS);
-                if (updated_atTS > date) date = updated_atTS;
+                if (updated_atTS > date){ date = updated_atTS};
             })
         }
 
