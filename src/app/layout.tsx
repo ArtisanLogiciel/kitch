@@ -16,7 +16,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StreamCardProvider>
           <MainAppBar />
-            {/* <div className="w-full grid grid-cols-[19%_81%] border-3 border-dashed border-pink-500 box-border absolute top-[9vh] bg-[#f7f7f8]"> */}
             {/* Si on met FLEX alors le NavigationLive passe par dessus car position fixed !!!??? J'ai essayé avec STICKY et TOP-0 mais marche pas...
             car il faut mettre un HEIGHT au parent, mais on vt que ça soit 100% (et ça marche pas avec cette valeur) */}
             <div className="w-full grid grid-cols-[19%_81%] h-full absolute top-[9vh] bg-[#f7f7f8]">
