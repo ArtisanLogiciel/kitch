@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { FaSearch } from "react-icons/fa";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -30,8 +31,6 @@ export default function SearchTags() {
   const sortQueryParams = useGetQueryParams("sort");
   const tagQueryParams = useGetQueryParams("tag");
   const router = useRouter();
-
-  console.log("sortQueryParams", sortQueryParams);
 
 const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -79,13 +78,16 @@ useEffect(() => {
 
   return tags ? (
     <div className="relative flex items-center gap-4">
-      <input
-        type="text"
-        placeholder="Rechercher des tags"
-        className="bg-[#ebebeb] p-2 rounded"
-        onChange={(e) => setTag(e.target.value)}
-        ref={inputRef}
-      />
+      <div className="relative rounded border border-black hover:border-2">
+        <FaSearch color="rgba(0,0,0,0.75)" className="absolute top-1/2 left-2 -translate-y-1/2" />
+        <input
+          type="text"
+          placeholder="Rechercher des tags"
+          className="bg-transparent p-1 pl-8 focus:border-4 focus:border-blue-600 focus:outline-8 focus:outline-blue-600"
+          onChange={(e) => setTag(e.target.value)}
+          ref={inputRef}
+        />
+      </div>
 
       {tags.length > 0 && (
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-full bg-white p-2 border rounded-lg z-10 shadow-lg">

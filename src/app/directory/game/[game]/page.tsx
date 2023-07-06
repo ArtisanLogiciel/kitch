@@ -124,9 +124,16 @@ export default function Game({ params }: GameProps) {
           <Filters />
         </div>
 
-        <div className="flex flex-wrap gap-4 w-full">
+        <div className="flex flex-wrap gap-2 w-full">
           {filteredStreams.map((stream, index) => {
-            return <Cards key={index} data={stream} profile_picture={stream.user_id} tags />;
+            return (
+              <Cards
+                key={index}
+                data={stream}
+                profile_picture={stream.user_id}
+                tags
+              />
+            );
           })}
         </div>
       </>

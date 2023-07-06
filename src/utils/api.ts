@@ -10,7 +10,7 @@ const { BASE, API_TWITCH } = URL;
 
 export async function getCategories() {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/categories`);
+    const response = await fetch(`${BASE}/${API_TWITCH}/categories`, { cache: 'no-store' });
     const data: API<API_CATEGORIES[]> = await response.json();
     return data;
   } catch (error) {
@@ -20,7 +20,7 @@ export async function getCategories() {
 
 export async function getUsers(profile_picture: string) {
   try {
-    const response = await fetch(`${URL.BASE}/${URL.API_TWITCH}/users/${profile_picture}`);
+    const response = await fetch(`${URL.BASE}/${URL.API_TWITCH}/users/${profile_picture}`, { cache: 'no-store' });
     const res: API_USERS[] = await response.json();
 
     return res;
@@ -61,7 +61,7 @@ export async function getStreams(){
 // Info sur un GAME  => https://dev.twitch.tv/docs/api/reference/#get-games (Gets information about specified categories or games.)
 export async function getGames() {
   try {
-    const response = await fetch(`${BASE}/${API_TWITCH}/games`);
+    const response = await fetch(`${BASE}/${API_TWITCH}/games`, { cache: "no-store" });
     const data: API<any[]> = await response.json();
     return data;
   } catch (error) {
@@ -79,15 +79,15 @@ export async function GetVogue() {
         },
         cache: 'no-store' as RequestCache,
   };
-  try{
-      const res = await fetch(`https://api.twitch.tv/helix/streams`, options)
-      const twitch = await res.json()
-      return twitch?.data
-
-  }catch(error: any){
-      console.log(error.message)
+  try {
+    const res = await fetch(`https://api.twitch.tv/helix/streams`, options);
+    const twitch = await res.json();
+    return twitch?.data;
+  } catch (error: any) {
+    console.log(error.message);
   }   
 }
+
 export async function GetRecentlyGames() {
   const options = {
       method: 'GET',

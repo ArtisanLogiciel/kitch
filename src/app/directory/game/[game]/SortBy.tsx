@@ -23,7 +23,7 @@ export default function SortBy() {
       <p className="font-bold">Trier par</p>
 
       <select
-        className="bg-[#ebebeb] p-2 rounded cursor-pointer"
+        className="bg-white text-gray-600 p-1 rounded border border-black cursor-pointer"
         defaultValue={
           sortQueryParams === null || sortQueryParams === ""
             ? sorts.relevance.value
