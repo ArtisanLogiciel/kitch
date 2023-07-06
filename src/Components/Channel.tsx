@@ -109,7 +109,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                 <div className=' w-full'>
                     <ReactPlayer
                         url={`https://www.twitch.tv/${userLogin}`}
-                        className="w-full"// h-[500px]"
+                        className="w-full"
                         width={"100%"}
                         height={"500px"}
                         controls
@@ -118,7 +118,6 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                         <div className='flex relative'>
                             <Image
                                 src={dataUser[0].profile_image_url}
-                                //src={ImageSized(data?.offline_image_url, "50", "50")}
                                 width={50}
                                 height={70}
                                 alt="avatar"
