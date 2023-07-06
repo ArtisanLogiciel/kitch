@@ -2,10 +2,7 @@
 
 import React from "react";
 
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-
-import { default as _ReactPlayer } from "react-player/lazy";
-import { ReactPlayerProps } from "react-player/types/lib";
+import { useSearchParams } from "next/navigation";
 
 // Components
 import Channel from "@/Components/Channel";

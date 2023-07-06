@@ -38,6 +38,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
     const [dataUser, setDataUser] = React.useState<API<API_USERS[]>>(null);
     const [dataChannel, setDataChannel] = React.useState<API<API_CHANNELS[]>>(null);
     const [dataFollowers, setDataFollowers] = React.useState<API<API_USERFOLLOWERS>>(null);
+    const [followers, setFollowers] = React.useState<API<API_USERFOLLOWERS>>(null);
     const [dataTeams, setDataTeams] = React.useState<API<API_TEAMS[]>>(null);
     const [error, setError] = React.useState<any>(null);
 
@@ -49,10 +50,9 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
     const { h, m, s } = toHoursAndMinutes(timeSecondes);
 
     React.useEffect(() => {
-
         const abortController = new AbortController();
 
-        async function fetchData() {
+        const fetchData = async (): Promise<void> => {
             try {
                 const dataUser = await getUser(userLogin);
                 setDataUser(dataUser);
@@ -64,6 +64,9 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
 
                     const followersUser1 = await getFollowers(dataUser[0].id);
                     setDataFollowers(followersUser1)
+                    console.log("/// FOLLOWERS (followersUser1) : ", followersUser1);
+                    // console.log("///NB FOLLOWERS (followersUser1.total) : ",followersUser1.total);
+                    // console.log("///NB FOLLOWERS (dataFollowers.total): ",dataFollowers.total);
                     const teamsUser1 = await getTeams(dataUser[0].id);
                     setDataTeams(teamsUser1)
                 }
@@ -81,18 +84,34 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
     }, [userLogin]);
 
 
-    let teamName = "";
+    let teamName: string | Date = ''
 
-    if (dataTeams) {
-        let date = 0;
+    if (dataUser) {
+      
+        if (dataTeams) {          
 
-        dataTeams.map((team) => {
-            teamName = team.team_display_name
-            if (Date.parse(team.updated_at) > date) {
-                date = Date.parse(team.updated_at)
+            let date = 0
+            let teamName = ''
+
+            dataTeams.map((team, index) => {
+                const updated_atTS = Date.parse(team.updated_at);       // timestamp
+                console.log(index, ' => ', updated_atTS);
+                if (updated_atTS > date) { date = updated_atTS };
+            })
+        }      
+
+
+        if (dataTeams) {
+            let date = 0;
+
+            dataTeams.map((team) => {
                 teamName = team.team_display_name
-            }
-        })
+                if (Date.parse(team.updated_at) > date) {
+                    date = Date.parse(team.updated_at)
+                    teamName = team.team_display_name
+                }
+            })
+        }
     }
 
     return (
@@ -247,7 +266,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                 TikTok
                             </p>
                         </div>
-                    </div>          
+                    </div>
                 </div>
             )}
         </div>

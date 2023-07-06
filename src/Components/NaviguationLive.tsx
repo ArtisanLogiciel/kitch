@@ -33,8 +33,8 @@ export default function NavigationLive() {
 
   React.useEffect(() => {
     const abortController = new AbortController();
-
-    async function fetchData() {
+    
+    const fetchData = async (): Promise<void> => {
       try {
         const data = await getStreams();
         setDataStream(data);
@@ -110,6 +110,16 @@ export default function NavigationLive() {
           dataStream.map((channelName: API_STREAMS, index: number) => {         
 
             return index > 9 ? null : (
+              // <Link
+              //   href={{
+              //     pathname: `/${channelName?.user_login}`,
+              //     query: {
+              //       "viewer": `${channelName?.viewer_count}`,
+              //       "time": Date.parse(`${channelName?.started_at}`),
+              //     }
+              //   }}
+              //   key={index}            
+              // >
               <Link
                 href={{
                   pathname: `/${channelName?.user_login}`,
