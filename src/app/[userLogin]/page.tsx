@@ -24,7 +24,6 @@ export default function Stream() {
   const timeSecondes = (timestampNow - timestampNb) / 1000
 
   const [activeChat, setActiveChat] = React.useState<boolean>(true);
-  console.log("******activeChat******* : ",activeChat);
 
   return (
     <div className={activeChat ? "grid grid-cols-[80%_20%] w-full h-full " : "grid grid-cols-[100%_0%] w-full h-full "} >

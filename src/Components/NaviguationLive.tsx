@@ -14,7 +14,6 @@ import { API, API_STREAMS, API_USERS } from "@/types/api";
 
 // Utils
 import { getStreams, getUser } from "@/utils/api";
-import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
 import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs'
@@ -31,6 +30,8 @@ export default function NavigationLive() {
   const [fullNavLive, setFullNavLive] = React.useState<boolean>(true);
 
   React.useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchData() {
       try {
         const data = await getStreams();
@@ -60,18 +61,12 @@ export default function NavigationLive() {
       }
     }
     fetchData();
+
+    return () => {
+      abortController.abort();
+    }
+    
   }, []); // on ne met pas la dépendance dataStream sinon tourne en boucle !
-
-
-
-  // if (dataStream) {
-  //   console.log("---------Streamers 1 :-----------");
-  //   console.log("---------------", dataStream[0]);
-  //   console.log("---------------", dataStream[0].user_login);
-  //   console.log("---------------", Date.parse(dataStream[0].started_at));  // c'est un type NUMBER mais quand on le passe au LINK, il devient un type STRING !!!???
-  //   // Je voulais mettre une console.log dans le JSX (dans le .map) mais comment ???
-  // }
-
 
   if (error) {
     return <div> Error : {error.message}</div>;
@@ -100,7 +95,7 @@ export default function NavigationLive() {
       }
 
 
-      <div className=' border-2 border-green-600 w-full h-[90%] flex flex-col'>
+      <div className=' w-full h-[90%] flex flex-col'>
         {!dataStream ? (
           <Skeleton
             variant="rounded"
@@ -110,13 +105,7 @@ export default function NavigationLive() {
             style={{ backgroundColor: "#efeff1" }}
           />
         ) : (
-          dataStream.map((channelName: API_STREAMS, index: number) => {
-
-            // console.log("888-0", refUserProfileImg);
-            // console.log("888-1", refUserProfileImg.current);
-            // console.log("888-2", Object.entries(refUserProfileImg.current).length);
-            // console.log("888-3", refUserProfileImg.current[channelName.user_login]);
-            // console.log("888-4", channelName.thumbnail_url);
+          dataStream.map((channelName: API_STREAMS, index: number) => {         
 
             return index > 9 ? null : (
               <Link
@@ -129,7 +118,6 @@ export default function NavigationLive() {
                 }}
                 key={index}            
               >
-                {/* <div className="w-[18%] h-full flex items-center justify-center"> */}
                 <div className="flex mb-2">
                   {Object.entries(refUserProfileImg.current).length != 0 &&    // Sinon au 1er RENDER SRC = null 
                   <Image
@@ -142,7 +130,6 @@ export default function NavigationLive() {
                   />}
                  
                   {fullNavLive ?
-                    //<div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap">  
                     <>
                       <div className="w-[75%] h-[100%] flex justify-start items-start flex-col ml-2">
                         <p className="font-bold">{channelName?.user_name}</p>
