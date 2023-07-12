@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { Cards } from './Cards';
 import { useStreamDonnees } from './StreamCardContext';
+//mport { API, API_STREAMS } from "@/types/api";
 
 
 type PropsStreamCard ={
@@ -21,9 +22,7 @@ export default function StreamCard({CallAPI, title, Choice, PropsTags} : PropsSt
     const { setStreamCardData} = useStreamDonnees();
     const [data, setdata] = React.useState<any>(null)
     const [Button, setButton] = React.useState<any>(true)
-    const [valeurIndex, setValeurIndex] = React.useState<number>(3)
-
-    
+    const [valeurIndex, setValeurIndex] = React.useState<number>(3)   
 
     React.useEffect(() => {
       CallAPI()

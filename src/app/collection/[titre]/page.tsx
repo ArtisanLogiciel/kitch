@@ -2,19 +2,15 @@
 
 import { Cards } from "@/Components/Cards";
 import * as React from 'react'
-import { useStreamDonnees } from "@/Components/StreamCardContext";
+//import { useStreamDonnees } from "@/Components/StreamCardContext";
 import { useParams } from "next/navigation";
 
 export default function Page() {
-    const {titre} = useParams()
-    const {streamCardData}  = useStreamDonnees();
-
-    React.useEffect(() => {
-        if(streamCardData) {
-          // Les données sont disponibles, vous pouvez effectuer des actions ici
-          console.log(streamCardData)
-        }
-      }, [streamCardData]);
+  const {titre} = useParams()
+  const storedStreamCardData = sessionStorage.getItem('streamCardData');
+  const NewData = storedStreamCardData ? JSON.parse(storedStreamCardData) : null;
+  const [streamCardData]  = React.useState(NewData)
+  
     return (
         <div>
             <h2 className=" text-[32px] font-[600]">{decodeURIComponent(titre)}</h2>
