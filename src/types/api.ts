@@ -80,39 +80,6 @@ export type API_TEAMS = {
   updated_at: string,
 };
 
-
-export type API_CHAT = {
-  id: string;
-  event_type: string;
-  event_timestamp: string;
-  version: string;
-  is_anonymous: boolean;
-  user_id: string;
-  user_name: string;
-  channel_id: string;
-  channel_name: string;
-  message: {
-    message_id: string;
-    user_id: string;
-    user_name: string;
-    user_badges: {
-      [badgeName: string]: string;
-    };
-    user_color: string;
-    user_notice_params?: string[];
-    system_notice?: string;
-    message_content: string;
-    message_type: string;
-    message_emotes: {
-      [emoteId: string]: string[];
-    };
-    message_bits?: number;
-    message_bits_context?: string;
-    message_bits_total?: number;
-    message_is_automod?: boolean;
-  };
-};
-
 export type API_GAMES_CLIPS = {
   broadcaster_id: string;
   broadcaster_name: string;

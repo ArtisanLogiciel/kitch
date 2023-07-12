@@ -1,17 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { ReactNode } from "react";
-import { Swiper, useSwiper } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import { SwiperSlide } from "swiper/react";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import * as React from "react";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import { default as _ReactPlayer } from "react-player/lazy";
 import { ReactPlayerProps } from "react-player/types/lib";
+import { BsBoxArrowInUpRight } from "react-icons/bs";
+import Link from "next/link";
 
 // Types
 import { API, API_STREAMS } from "@/types/api";
@@ -22,9 +18,17 @@ import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 import { getImageSized } from "@/utils/getImageSized";
 
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
+type ChildrenProps = {
+  children: any,
+  curr: number,
+}
 
-export async function LiveCarousel() {
+export function LiveCarousel() {
   const [liveCarousel, setLiveCarousel] = React.useState<API<API_STREAMS[]>>(null);
+  const [curr, setCurr] = React.useState(0)
+  //slides.lentgh
+  const prev = () => setCurr((curr) => curr === 0 ? 7 - 1 : curr - 1)
+  const next = () => setCurr((curr) => curr === 7 - 1 ? 0 : curr + 1)
   React.useEffect(() => {
    async function fetchData() {
       try {
@@ -36,56 +40,34 @@ export async function LiveCarousel() {
         console.log(error);
       }
     }
-    // getStreams().then(data => {setLiveCarousel(data)
-    // console.log(liveCarousel)}).catch(error => console.log(error))
 
     fetchData();
   }, []);
 
   return (
-    <div className='w-full mb-10 h-[350px]'>
-    <Swiper
-    slidesPerView={1}
-    spaceBetween={30}
-    loop
-    pagination={{
-      clickable: true,
-    }}
-    style={{ width: "100%", height: "100%" }}
-    navigation={true}
-    modules={[Pagination, Navigation]}
-    className="mySwiper"
-  >
-    {!liveCarousel ? null : liveCarousel.map((element, index) => (  
-          <SwiperSlide
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div className="w-full h-[300px] grid grid-cols-[12%_77%_11%]">
-              <div
-                className='w-full flex items-center justify-start'
-              >
-                <SwiperButtonPrev>
-                  <ArrowBackIosNewIcon />
-                </SwiperButtonPrev>
-              </div>
-              <div className="className='w-full h-[300px] grid grid-cols-[75%_25%]">
-                 <ReactPlayer
-                  url={`https://www.twitch.tv/${element.user_name}`}
-                  className="react-player"
-                  controls
-                  width={"100%"}
-                  height={"100%"}
-                /> 
-
-                <div className="w-full h-full bg-[white] flex flex-col justify-center items-center">
-                  <div className="w-full grid grid-cols-[40%_60%]">
-                    <div className="w-full flex items-center justify-center"
-                    >
+    <div className='w-full mb-10 h-[350px] flex flex-row flex-nowrap justify-between items-center'>
+        <button className="w-[10%] 
+                          h-[10%] 
+                          flex justify-start items-center
+                       " 
+                       onClick={prev}><MdKeyboardArrowLeft size={"80%"} /></button>
+   
+          <div className="max-w-[70%] h-full">
+              <Carsoussel curr={curr}>     
+                  {!liveCarousel ? null : liveCarousel.map((element, index) => (  
+                    <div  key={index} className="w-full flex flex-row">
+                       <ReactPlayer
+                         url={`https://www.twitch.tv/${element.user_name}`}
+                        className="react-player"
+                        controls
+                        width={"40vw"}
+                        height={"90%"}
+                      />
+                <div className="w-[15vw] h-[90%] bg-[white] flex flex-col justify-center items-center">
+                    <Link href={`/${element?.user_login}`}><BsBoxArrowInUpRight /></Link>
+                    <div className="w-full grid grid-cols-[40%_60%]">
+                     <div className="w-full flex items-center justify-center"
+                        >
                       <Image
                         src={getImageSized(element?.thumbnail_url, "50", "50")}
                         alt="logo"
@@ -116,33 +98,34 @@ export async function LiveCarousel() {
                   </div>
                 </div>
               </div>
-              <div className='w-full flex items-center justify-end'>
-                <SwiperButtonNext>
-                  <ArrowForwardIosIcon />
-                </SwiperButtonNext>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-          </Swiper>
+          ))}
+          </Carsoussel>
           </div>
+          <button className="w-[10%]
+                            h-[10%]
+                            flex justify-end items-center
+                          " 
+                        onClick={next}><MdKeyboardArrowRight size={"80%"}/></button>
+        </div>
       )
 }
-
-type SwiperButtonNextProps = {
-  children: ReactNode;
-};
-
-const SwiperButtonNext = ({ children }: SwiperButtonNextProps) => {
-  const swiper = useSwiper();
-  return <button onClick={() => swiper.slideNext()}>{children}</button>;
-};
-
-type SwiperButtonPrevProps = {
-  children: ReactNode;
-};
-
-const SwiperButtonPrev = ({ children }: SwiperButtonPrevProps) => {
-  const swiper = useSwiper();
-  return <button onClick={() => swiper.slidePrev()}>{children}</button>;
+const Carsoussel = ({children: slides, curr}: ChildrenProps) => {
+return (
+  <div style={{overflow: 'hidden',
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+          }}>
+              <div style={{
+                          transform: `translateX(-${curr * 100}%)`,
+                          transitionDuration: '300ms',
+                          transitionTimingFunction: 'ease-in-out',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          height: '100%',
+                  }}>
+                  {slides}
+              </div>
+      </div>
+)
 }

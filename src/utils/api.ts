@@ -1,7 +1,7 @@
 'use server';
 
 // Types
-import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS, API_CHAT } from "@/types/api";
+import { API, API_CATEGORIES, API_STREAMS, API_USERS, API_CHANNELS, API_USERFOLLOWERS, API_TEAMS } from "@/types/api";
 
 // Commons
 import { URL } from "@/commons/commons";
@@ -343,7 +343,8 @@ export async function getChatMessages(broadcaster_id : string) {
   try {
     const response = await fetch(`${BASE}/${API_TWITCH}/chat/${broadcaster_id}`, { cache: 'no-store' });
     // const response = await fetch(`/chat/channels/${channelId}/events`);
-    const data : API<API_CHAT[]> = await response.json();
+    
+    const data : any = await response.json();
     //const data: API<API_TEAMS[]> = await response.json();
 
 console.log("***CHAT*********data = ", data);

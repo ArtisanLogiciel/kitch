@@ -17,7 +17,7 @@ export default function Clip() {
       {userLogin ? (
         <>
           <Channel userLogin={userLogin} />
-          <Chat userLogin={userLogin} />
+          {/* <Chat userLogin={userLogin} /> */}
         </>
       ) : (
         <div className="ContenuPrincipale">

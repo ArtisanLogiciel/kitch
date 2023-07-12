@@ -1,58 +1,79 @@
 "use client";
 
+import * as React from "react";
+
 import Image from "next/image";
 import Link from 'next/link';
 
-//import { useRouter } from "next/navigation";
-import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
 // Components
 
 // Types
-import { API, API_STREAMS } from "@/types/api";
+import { API, API_STREAMS, API_USERS } from "@/types/api";
 
 // Utils
-import { getStreams } from "@/utils/api";
+import { getStreams, getUser } from "@/utils/api";
 import { getImageSized } from "@/utils/getImageSized";
 import { getNumber_K_Mode } from "@/utils/getNumber_K_Mode";
 
- import { BsArrowBarLeft } from 'react-icons/bs'
+import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs'
 
 
 export default function NavigationLive() {
-  //const router = useRouter();
 
-  const [data, setData] = React.useState<API<API_STREAMS[]>>(null);
+  const [dataStream, setDataStream] = React.useState<API<API_STREAMS[]>>(null);  
 
-  // Test pour voir les info
-  // const [dataUser, setDataUser] = React.useState<API<API_STREAMS[]>>(null);
-  // const [dataChannel, setDataChannel] = React.useState<API<API_STREAMS[]>>(null);
-  // const [dataGame, setDataGame] = React.useState<API<API_STREAMS[]>>(null);
-  // const [dataFollowers, setDataFollowers] = React.useState<API<API_STREAMS[]>>(null);
-  // const [dataTeams, setDataTeams] = React.useState<API<API_STREAMS[]>>(null);
+  // On créer cette ref pour pouvoir la modifier dans le useEffect et la récupérer dans le return
+  // import * as React from "react";
 
+  const refUserProfileImg = React.useRef<Record<string, string>>({})
 
   const [error, setError] = React.useState<any>(null);
-
-  //const chaine = "Chaînes recommandées";
+  const [fullNavLive, setFullNavLive] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getStreams();
-        setData(data);
-      } catch (error) {
-        setError(error);
-      }
-    }
-    fetchData();
-  }, []);
+      const fetchData = async (): Promise<void> => {
+        try {
+          const data = await getStreams();
+          setDataStream(data);
 
-  // console.log("---1-(Component NavigationLive) On va chercher les STREAMERS : data (=Users/Streamers) = ", data);
-  // if (data) {
+          //=> pour chaque STREAM on veut afficher une image (avatar) mais pas celle qu'on a dans l'API STREAM => donc grâce au login on appel l'API USER et on met le login et l'URL dans un obj (le USEREF) qu'on récupère dans le RETURN
+          // (Melvynx dit : On n’affiche pas de REF dans le JSX) ???
+          if (data) {
+            data.map((channelName: API_STREAMS) => {
+                const fetchDataUser = async (): Promise<void> => {
+
+                  try {
+                    const dataUser = await getUser(channelName.user_login);
+
+                    if (dataUser) {
+                      refUserProfileImg.current = {...refUserProfileImg.current, [channelName.user_login]: dataUser[0]?.profile_image_url}              
+                    }
+                  } catch (error) {
+                    setError(error);
+                  }
+                };
+
+                fetchDataUser()
+            })
+          }
+        } catch (error) {
+          setError(error);
+        }
+      };
+
+      fetchData();
+  }, []); // on ne met pas la dépendance dataStream sinon tourne en boucle !
+
+
+
+  // if (dataStream) {
   //   console.log("---------Streamers 1 :-----------");
-  //   console.log("---------------",data[0]);   
+  //   console.log("---------------", dataStream[0]);
+  //   console.log("---------------", dataStream[0].user_login);
+  //   console.log("---------------", Date.parse(dataStream[0].started_at));  // c'est un type NUMBER mais quand on le passe au LINK, il devient un type STRING !!!???
+  //   // Je voulais mettre une console.log dans le JSX (dans le .map) mais comment ???
   // }
 
 
@@ -62,18 +83,29 @@ export default function NavigationLive() {
 
   return (
     <div className='bg-[#efeff1] fixed w-[19%] h-[100%] z-[900] left-[auto] flex flex-col'>
-      <div className=' border border-solid border-transparent w-full h-[8%] flex items-center justify-between'>
-        {/* justify-content: space-between */}
-        <div className="">
-        {/* <div className=" justify-self-center self-center"> */}
-          <h1 className='font-bold mb-1'>Pour vous</h1>
-          <h2 className='text-[0.9em] font-bold'>CHAÎNES RECOMMANDÉES</h2>
+      {fullNavLive ?
+        <div className=' border border-solid border-transparent w-full h-[8%] flex items-center justify-between'>
+          <div>
+            <h1 className='font-bold mb-1'>Pour vous</h1>
+            <h2 className='text-[0.9em] font-bold'>CHAÎNES RECOMMANDÉES</h2>
+          </div>
+          <BsArrowBarLeft
+            size={20}
+            className=" justify-self-end cursor-pointer"
+            onClick={() => setFullNavLive(!fullNavLive)}
+          />
         </div>
-        <BsArrowBarLeft size={20} className=" justify-self-end"/>       
-      </div>
+        :
+        <BsArrowBarRight
+          size={20}
+          className=" justify-self-end cursor-pointer"
+          onClick={() => setFullNavLive(!fullNavLive)}
+        />
+      }
+
 
       <div className=' border-2 border-green-600 w-full h-[90%] flex flex-col'>
-        {!data ? (
+        {!dataStream ? (
           <Skeleton
             variant="rounded"
             width={"100%"}
@@ -82,82 +114,73 @@ export default function NavigationLive() {
             style={{ backgroundColor: "#efeff1" }}
           />
         ) : (
-          data.map((channelName: API_STREAMS, index: number) =>
-            index > 9 ? null : (
+          dataStream.map((channelName: API_STREAMS, index: number) => {
+
+            // console.log("888-0", refUserProfileImg);
+            // console.log("888-1", refUserProfileImg.current);
+            // console.log("888-2", Object.entries(refUserProfileImg.current).length);
+            // console.log("888-3", refUserProfileImg.current[channelName.user_login]);
+            // console.log("888-4", channelName.thumbnail_url);
+
+            return index > 9 ? null : (
+              // <Link
+              //   href={{
+              //     pathname: `/${channelName?.user_login}`,
+              //     query: {
+              //       "viewer": `${channelName?.viewer_count}`,
+              //       "time": Date.parse(`${channelName?.started_at}`),
+              //     }
+              //   }}
+              //   key={index}            
+              // >
               <Link
-                href={`/${channelName?.user_login}`}
-                //className="GridLive"
-                key={index}
-              //onClick={() => router.push(`/${channelName?.user_name}`)}
+                href={{
+                  pathname: `/${channelName?.user_login}`,
+                }}
+                key={index}            
               >
                 {/* <div className="w-[18%] h-full flex items-center justify-center"> */}
                 <div className="flex mb-2">
+                  {Object.entries(refUserProfileImg.current).length != 0 &&    // Sinon au 1er RENDER SRC = null 
                   <Image
-                    src={getImageSized(channelName.thumbnail_url, "50", "50")}
+                    //src={getImageSized(channelName.thumbnail_url, "50", "50")}
+                    src={refUserProfileImg.current[channelName.user_login]}
                     width={30}
                     height={30}
                     alt={channelName?.user_login}
                     className="rounded-full w-[30px] h-[30px] ml-2"
-                  />
-                  {/* </div> */}
+                  />}
+                 
+                  {fullNavLive ?
+                    //<div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap">  
+                    <>
+                      <div className="w-[75%] h-[100%] flex justify-start items-start flex-col ml-2">
+                        <p className="font-bold">{channelName?.user_name}</p>
+                        <p className="text-[13px] font-[300]">
+                          {channelName?.game_name.length > 17
+                            ? channelName?.game_name.substring(0, 18) + "..."
+                            : channelName?.game_name}
+                        </p>
+                      </div>
 
-                  {/* <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap"> */}
-                  <div className="w-[75%] h-[100%] flex justify-start items-start flex-col ml-2">
-                    <p className="font-bold">{channelName?.user_name}</p>
-                    <p className="text-[13px] font-[300]">
-                      {channelName?.game_name.length > 17
-                        ? channelName?.game_name.substring(0, 18) + "..."
-                        : channelName?.game_name}
-                    </p>
-                  </div>
-
-                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
-                    <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
-                    <p className="text-[13px] font-[300]">
-                      {channelName?.viewer_count < 1000 ? (
-                        <>{channelName?.viewer_count}</>
-                      ) : (
-                        getNumber_K_Mode(channelName?.viewer_count)
-                      )}
-                    </p>
-                  </div>
+                      <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
+                        <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
+                        <p className="text-[13px] font-[300]">
+                          {channelName?.viewer_count < 1000 ? (
+                            <>{channelName?.viewer_count}</>
+                          ) : (
+                            getNumber_K_Mode(channelName?.viewer_count)
+                          )}
+                        </p>
+                      </div>
+                    </>
+                    :
+                    null
+                  }
                 </div>
-
-
-
-                {/* <div className="w-[18%] h-full flex items-center justify-center">
-                  <Image
-                    src={getImageSized(channelName.thumbnail_url, "50", "50")}
-                    width={30}
-                    height={30}
-                    alt={channelName?.user_login}
-                    className="rounded-full w-[30px] h-[30px] flex"
-                  />
-                </div>
-
-                <div className="w-[82%] h-[100%] justify-evenly  flex items-center flex-row flex-nowrap">
-                  <div className="w-[75%] h-[100%] flex justify-start items-start flex-col">
-                    <p>{channelName?.user_name}</p>
-                    <p className="text-[13px] font-[300]">
-                      {channelName?.game_name.length > 17
-                        ? channelName?.game_name.substring(0, 18) + "..."
-                        : channelName?.game_name}
-                    </p>
-                  </div>
-
-                  <div className=" w-[25%] h-[100%] flex justify-evenly items-center flex-row flex-nowrap">
-                    <div className="bg-[#eb0400] w-[8px] h-[8px] rounded-full"></div>
-                    <p className="text-[13px] font-[300] justify-between">
-                      {channelName?.viewer_count < 1000 ? (
-                        <>{channelName?.viewer_count}</>
-                      ) : (
-                        getNumber_K_Mode(channelName?.viewer_count)
-                      )}
-                    </p>
-                  </div>
-                </div> */}
               </Link>
             )
+          }
           )
         )}
       </div>
