@@ -64,9 +64,6 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
 
                     const followersUser1 = await getFollowers(dataUser[0].id);
                     setDataFollowers(followersUser1)
-                    console.log("/// FOLLOWERS (followersUser1) : ", followersUser1);
-                    // console.log("///NB FOLLOWERS (followersUser1.total) : ",followersUser1.total);
-                    // console.log("///NB FOLLOWERS (dataFollowers.total): ",dataFollowers.total);
                     const teamsUser1 = await getTeams(dataUser[0].id);
                     setDataTeams(teamsUser1)
                 }
@@ -84,28 +81,29 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
     }, [userLogin]);
 
 
+console.log("--dataTeams--", dataTeams);
+
     let teamName: string | Date = ''
 
     if (dataUser) {
       
-        if (dataTeams) {          
+        // if (dataTeams) {  
+        //     let date = 0
 
-            let date = 0
-            let teamName = ''
-
-            dataTeams.map((team, index) => {
-                const updated_atTS = Date.parse(team.updated_at);       // timestamp
-                console.log(index, ' => ', updated_atTS);
-                if (updated_atTS > date) { date = updated_atTS };
-            })
-        }      
+        //     dataTeams.map((team, index) => {
+        //         const updated_atTS = Date.parse(team.updated_at);       // timestamp
+        //         console.log(index, ' => ', updated_atTS);
+        //         if (updated_atTS > date) { date = updated_atTS };
+        //     })
+        // }      
 
 
+        // On affiche la team mise à jour le plus récemment
         if (dataTeams) {
             let date = 0;
 
             dataTeams.map((team) => {
-                teamName = team.team_display_name
+
                 if (Date.parse(team.updated_at) > date) {
                     date = Date.parse(team.updated_at)
                     teamName = team.team_display_name
@@ -134,10 +132,10 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                         controls
                     />
                     <div className='flex justify-between mt-2 '>
-                        <div className='flex relative'>
+                        <div className='flex relative w-[10%] mt-[1rem] mx-[1rem] '>
                             <Image
                                 src={dataUser[0].profile_image_url}
-                                width={50}
+                                width={70}
                                 height={70}
                                 alt="avatar"
                                 className='rounded-full'
@@ -146,12 +144,12 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                 LIVE
                             </div>
                         </div>
-                        <div>
+                        <div className=' w-[45%]'>
                             <p className='font-bold'>{dataUser[0].display_name} </p>
                             <p className='font-bold'>{dataChannel[0].title}</p>
                             <div className='flex items-center'>
                                 <Link
-                                    href={`/categories/${dataChannel[0].title}`}
+                                    href={`/directory/game/${dataChannel[0].game_name}`}
                                     className="text-[#9147ff]">
                                     {dataChannel[0].game_name}
                                 </Link>
@@ -160,7 +158,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div className=' w-[45%]'>
                             <div className='flex justify-end'>
                                 {online ?
                                     <button className="flex text-[#9147ff] hover:text-black hover:bg-[#cacaca] rounded-md items-center p-1 mr-4 font-bold">
@@ -186,7 +184,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                         <BsPerson className=' text-[#971311] font-bold' size='1.1rem' />
                                         <p className=' text-[#971311] mr-4 font-bold'>{viewer}</p>
                                         <p className='mr-4'>
-                                            {h < 10 ? `0${h}` : h}:{m}:{s}
+                                            {h < 10 ? `0${h}` : h}:{m < 10 ? `0${m}` : m }:{s < 10 ? `0${s}` : s }
                                         </p>
                                     </div>
                                     :
@@ -231,7 +229,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                     ?
                                     <div className='flex'>
                                         <BsDot />
-                                        {dataTeams
+                                        {teamName != ""
                                             ?
                                             <p className=' font-bold'>{teamName}</p>
                                             :
