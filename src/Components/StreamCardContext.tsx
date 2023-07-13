@@ -8,7 +8,13 @@ type StreamCardContextType = {
 
 export const StreamCardContext = React.createContext<StreamCardContextType | undefined>(undefined);
 export const StreamCardProvider: React.FC<React.PropsWithChildren<{}>>= ({ children }) => {
-  const [streamCardData, setStreamCardData] = React.useState<any>(null);
+
+  const storedStreamCardData = sessionStorage.getItem('streamCardData');
+  const [streamCardData, setStreamCardData] = React.useState<any>(storedStreamCardData ? JSON.parse(storedStreamCardData) : null);
+
+  React.useEffect(() => {
+    sessionStorage.setItem('streamCardData', JSON.stringify(streamCardData));
+  }, [streamCardData]);
 
   return (
     <StreamCardContext.Provider value={{ streamCardData, setStreamCardData }}>
