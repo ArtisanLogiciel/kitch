@@ -110,22 +110,22 @@ export default function NavigationLive() {
           dataStream.map((channelName: API_STREAMS, index: number) => {         
 
             return index > 9 ? null : (
-              // <Link
-              //   href={{
-              //     pathname: `/${channelName?.user_login}`,
-              //     query: {
-              //       "viewer": `${channelName?.viewer_count}`,
-              //       "time": Date.parse(`${channelName?.started_at}`),
-              //     }
-              //   }}
-              //   key={index}            
-              // >
               <Link
+                href={{
+                  pathname: `/${channelName?.user_login}`,
+                  query: {
+                    "viewer": `${channelName?.viewer_count}`,
+                    "time": Date.parse(`${channelName?.started_at}`),
+                  }
+                }}
+                key={index}            
+              >
+              {/* <Link
                 href={{
                   pathname: `/${channelName?.user_login}`,
                 }}
                 key={index}            
-              >
+              > */}
                 <div className="flex mb-2">
                   {Object.entries(refUserProfileImg.current).length != 0 &&    // Sinon au 1er RENDER SRC = null 
                   <Image

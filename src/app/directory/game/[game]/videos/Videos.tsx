@@ -106,7 +106,7 @@ export default function Videos({ game, type }: VideosProps) {
             data={video}
             profile_picture={video.user_id}
             tags
-            route={`/${video.user_name}/video/${video.stream_id}`}
+            route={`/${video.user_name}/video/${video.id}`}
           />
         );
       })}
