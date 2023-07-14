@@ -186,7 +186,7 @@ export default function Channel({ viewer = 0, timeSecondes = 0 }: ChannelProps) 
                                         <BsPerson className=' text-[#971311] font-bold' size='1.1rem' />
                                         <p className=' text-[#971311] mr-4 font-bold'>{viewer}</p>
                                         <p className='mr-4'>
-                                            {h < 10 ? `0${h}` : h}:{m}:{s}
+                                            {h < 10 ? `0${h}` : h}:{m < 10 ? `0${m}` : m}:{s < 10 ? `0${s}` : s}
                                         </p>
                                     </div>
                                     :

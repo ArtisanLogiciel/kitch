@@ -35,7 +35,7 @@ export default async function LayoutGame({ params, children }: LayoutGameProps) 
           />
 
           <div className="flex flex-col items-center justify-center gap-8 h-full">
-            <h1 className="font-bold text-4xl">{params.game}</h1>
+            <h1 className="font-bold text-4xl">{decodeURIComponent(params.game)}</h1>
             <FavBtn />
           </div>
         </div>

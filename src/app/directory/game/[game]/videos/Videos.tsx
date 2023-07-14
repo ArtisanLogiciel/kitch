@@ -69,6 +69,7 @@ export default function Videos({ game, type }: VideosProps) {
 
   const [games, setGames] = useState<API<API_GAMES[]>>(null);
   const [videos, setVideos] = useState<API<API_GAME_VIDEOS[]>>(null);
+  console.log("SO", videos)
 
   useEffect(() => {
     async function getGames() {
@@ -105,7 +106,7 @@ export default function Videos({ game, type }: VideosProps) {
             data={video}
             profile_picture={video.user_id}
             tags
-            route={`/${video.user_name}/videos/${video.id}`}
+            route={`/${video.user_name}/video/${video.stream_id}`}
           />
         );
       })}
