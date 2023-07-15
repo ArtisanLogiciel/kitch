@@ -18,7 +18,7 @@ export default function Video() {
     <>
       {userLogin ? (
         <>
-          <Channel userLogin={userlogin} />
+          {/* <Channel userLogin={userlogin} /> */}
           {/* <Chat userLogin={userLogin} /> */}
         </>
       ) : (

@@ -66,28 +66,28 @@ export default function Game({ params }: GameProps) {
   const [streams, setStreams] = useState<API<API_GAME_STREAMS[]>>(null);
 
   useEffect(() => {
-    async function getGames() {
-      const response: API<API_GAMES[]> = await getGameName({ name: params.game });
-      setGames(response);
-    }
+      const getGames = async (): Promise<void> => {
+        const response: API<API_GAMES[]> = await getGameName({ name: params.game });
+        setGames(response);
+      };
 
-    getGames();
+      getGames();
   }, [params.game]);
 
   useEffect(() => {
-    async function getVideos() {
-      const response: API<API_GAME_STREAMS[]> =
-        games &&
-        (await getStreams({
-          language: "fr",
-          game_id: games[0].id,
-          type: "live",
-        }));
+      const getVideos = async (): Promise<void> => {
+        const response: API<API_GAME_STREAMS[]> =
+          games &&
+          (await getStreams({
+            language: "fr",
+            game_id: games[0].id,
+            type: "live",
+          }));
 
-      setStreams(response);
-    }
+        setStreams(response);
+      };
 
-    getVideos();
+      getVideos();
   }, [params.game, games, tagQueryParams, sortQueryParams]);
 
   const sortedStreams = streams?.sort((a, b) => {
