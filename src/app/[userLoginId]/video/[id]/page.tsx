@@ -11,12 +11,12 @@ const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 
 export default function Video() {
   const params = useParams();
-  const { userLogin, id } = params;
+  const { userLoginparams, id } = params;
   const userlogin = useRouter().query.userLoginId as string;
 
   return (
     <>
-      {userLogin ? (
+      {userLoginparams ? (
         <>
           <Channel userLogin={userlogin} />
           {/* <Chat userLogin={userLogin} /> */}
