@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 // import { ReactPlayerProps } from "react-player/types/lib";
 
 // Components
-import Channel from "./Channel";
+import Channel from "@/Components/Channel";
 // import Chat from "@/Components/Chat";
 
 // interface StreamProps {
@@ -31,7 +31,7 @@ export default function Stream() {
   // const userLogin = router.query.userLogin as string;
   // const [activeChat, setActiveChat] = React.useState<boolean>(true);
   // console.log("******activeChat******* : ",activeChat);
-  const userLoginId = useRouter().query.userLoginId as string;
+  const userLoginId = String(useRouter().query.userLoginId);
   return (
     <div className={/*activeChat ? "grid grid-cols-[80%_20%] w-full h-full " : "grid grid-cols-[100%_0%] w-full h-full "*/""} >
         <Channel userLogin={userLoginId} />
