@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 // import { ReactPlayerProps } from "react-player/types/lib";
 
 // Components
-import Channel from "@/Components/Channel";
+import Channel from "./Channel";
 // import Chat from "@/Components/Chat";
 
 // interface StreamProps {
